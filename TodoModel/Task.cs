@@ -48,5 +48,10 @@ namespace Model
 		{
 			throw new NotImplementedException();
 		}
+
+		public int CompareTo(ITask other)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
