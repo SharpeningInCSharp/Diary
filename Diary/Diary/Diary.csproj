@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\TodoModel\TodoModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Ego.png" />
     <Resource Include="Resources\TrashIcon.ico" />
   </ItemGroup>
