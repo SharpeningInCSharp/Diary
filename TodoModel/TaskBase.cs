@@ -1,19 +1,34 @@
 ﻿using System;
 
-namespace Model
+namespace TodoModel
 {
-	public abstract partial class TaskBase : IEquatable<TaskBase>, IComparable<TaskBase>
+	public abstract partial class TaskBase
 	{
 		/// <summary>
 		/// Indicates is current Task completed or not
 		/// </summary>
 		public bool IsCompleted { get; private set; } = false;
 
+		/// <summary>
+		/// Header of the Task
+		/// </summary>
 		public string Header { get; set; }
 
+		/// <summary>
+		/// Some note to the Task
+		/// </summary>
 		public string Note { get; set; }
 
-		public PriorityBase Priority { get; set; }
+		public Priority Priority { get; set; }
+
+		public delegate void TaskHandler(TaskBase task);
+
+		public event TaskHandler TaskDeleted;
+		public event TaskHandler TaskCompleted;
+		public event TaskHandler TaskSetAside;
+
+		public TaskBase()
+		{ }
 
 		/// <summary>
 		/// Completes task
@@ -21,22 +36,24 @@ namespace Model
 		public void Complete()
 		{
 			IsCompleted = true;
-		}
-
-		public void Undo()
-		{
-			IsCompleted = false;
+			TaskCompleted?.Invoke(this);
 		}
 
 		/// <summary>
 		/// Deletes task
 		/// </summary>
-		public abstract void Delete();
+		public void Delete()
+		{
+			TaskDeleted?.Invoke(this);
+		}
 
 		/// <summary>
 		/// Delays task
 		/// </summary>
-		public abstract void SetAside();
+		public void SetAside()
+		{
+			TaskSetAside?.Invoke(this);
+		}
 	}
 
 	public abstract partial class TaskBase : IEquatable<TaskBase>, IComparable<TaskBase>
@@ -65,6 +82,15 @@ namespace Model
 				new ArgumentNullException(nameof(other));
 
 			return Priority.CompareTo(other.Priority);
+		}
+
+
+		public override bool Equals(object obj)
+		{
+			if (obj is TaskBase task)
+				return Equals(task);
+
+			return false;
 		}
 	}
 }

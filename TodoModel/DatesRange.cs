@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Model
+namespace TodoModel
 {
 	public interface IDatesRange
 	{

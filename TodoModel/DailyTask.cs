@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model
+namespace TodoModel
 {
-	public abstract partial class DailyTask
+	public class DailyTask : TaskBase
 	{
 		public void Call()
 		{
 
 		}
-	}
-
-	public abstract partial class DailyTask : TaskBase
-	{
 	}
 }

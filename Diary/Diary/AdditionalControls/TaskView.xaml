@@ -5,9 +5,41 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Diary.AdditionalControls.TaskView">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Entry x:Name="HeaderEntry"
+                   Grid.Row="0"
+                   Grid.Column="0"/>
+
+            <Editor x:Name="NoteEditor"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+
+            <Button x:Name="RemoveButton"
+                    Grid.Column="1"
+                    IsVisible="False"
+                    BackgroundColor="Transparent"
+                    Grid.Row="0"
+                    Clicked="RemoveButton_Clicked">
+            </Button>
+
+            <Image Source="TrashIcon.ico"
+                    Grid.Column="1"
+                    Grid.Row="0"/>
+            
+        </Grid>
+    </ContentView.Content>
 </ContentView>
