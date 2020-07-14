@@ -2,7 +2,7 @@
 
 namespace Model
 {
-	public interface ITask : IEquatable<ITask>
+	public interface ITask : IEquatable<ITask>, IComparable<ITask>
 	{
 		string Header { get; set; }
 
