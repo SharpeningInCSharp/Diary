@@ -4,4 +4,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+  <color name="PaletteDarkBlue">#116094</color>
+  <color name="PaletteBeige">#FFEDE3</color>
+  <color name="PaletteSkyBlue">#40DBE6</color>
+  <color name="PaletteRed">#FF5C42</color>
+  <color name="PaletteGreen">#B3FFC4</color>
 </resources>

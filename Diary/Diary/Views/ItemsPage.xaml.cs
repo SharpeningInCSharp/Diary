@@ -46,5 +46,10 @@ namespace Diary.Views
 			if (viewModel.Items.Count == 0)
 				viewModel.IsBusy = true;
 		}
+
+		private void SearchDate_Clicked(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
