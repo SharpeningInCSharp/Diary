@@ -2,7 +2,7 @@
 
 namespace Model
 {
-	public abstract class TaskBase : IEquatable<TaskBase>
+	public abstract class TaskBase : IEquatable<TaskBase>, IComparable<TaskBase>
 	{
 		public bool IsCompleted { get; private set; } = false;
 
@@ -36,6 +36,11 @@ namespace Model
 		public abstract void SetAside();
 
 		public bool Equals(TaskBase other)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int CompareTo(TaskBase other)
 		{
 			throw new NotImplementedException();
 		}

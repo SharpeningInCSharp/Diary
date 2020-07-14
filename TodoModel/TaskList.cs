@@ -9,15 +9,15 @@ namespace TodoModel
 	{
 		public string Name { get; }
 
-		private List<ITask> tasks = new List<ITask>();
-		private List<ITask> completedTasks = new List<ITask>();
+		private List<TaskBase> tasks = new List<TaskBase>();
+		private List<TaskBase> completedTasks = new List<TaskBase>();
 
 		public TaskList(string name)
 		{
 			Name = name;
 		}
 
-		public void Add(ITask task)
+		public void Add(TaskBase task)
 		{
 			tasks.Add(task);
 		}
