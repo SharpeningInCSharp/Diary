@@ -12,13 +12,13 @@ namespace Model
 		}
 	}
 
-	public abstract partial class DailyTask : ITask
+	public abstract partial class DailyTask : TaskBase
 	{
 		public string Header { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public string Note { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public IPriority Priority { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-		public bool Equals(ITask other)
+		public bool Equals(TaskBase other)
 		{
 			throw new NotImplementedException();
 		}

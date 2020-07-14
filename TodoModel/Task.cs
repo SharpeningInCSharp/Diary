@@ -6,14 +6,14 @@ using System.Text;
 
 namespace Model
 {
-	public abstract partial class Task : IEnumerable<ITask>, IDatesRange
+	public abstract partial class Task : IEnumerable<TaskBase>, IDatesRange
 	{
 		private List<Task> innerTasks = null;
 
 		public DateTime? InitialDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public DateTime? FinalDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-		public IEnumerator<ITask> GetEnumerator()
+		public IEnumerator<TaskBase> GetEnumerator()
 		{
 			throw new NotImplementedException();
 		}
@@ -23,13 +23,13 @@ namespace Model
 			throw new NotImplementedException();
 		}
 	}
-	public abstract partial class Task : ITask
+	public abstract partial class Task : TaskBase
 	{
 		public string Header { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public string Note { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public IPriority Priority { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-		public bool Equals(ITask other)
+		public bool Equals(TaskBase other)
 		{
 			throw new NotImplementedException();
 		}
