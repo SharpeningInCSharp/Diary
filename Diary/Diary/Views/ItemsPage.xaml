@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ctrl="clr-namespace:Diary.AdditionalControls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Diary.Views.ItemsPage"
@@ -11,37 +12,34 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Calendar" IconImageSource="calendar_icon.png" Clicked="SearchDate_Clicked"/>
-        <ToolbarItem Text="Calendar" IconImageSource="sort_accending_icon.png" Clicked="AddItem_Clicked"/>
-
+        <ToolbarItem Text="Ordering" IconImageSource="sort_accending_icon.png" Clicked="Ordering_Click"/>
     </ContentPage.ToolbarItems>
     
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <Grid>
-        <CollectionView x:Name="ItemsCollectionView"
+            <CollectionView x:Name="ItemsCollectionView"
                 ItemsSource="{Binding Tasks}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10">
-                        <Label Text="{Binding Header}" 
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+
+                            <Label Text="{Binding Path= Header, Mode=Default}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
-                        
-                        <Label Text="{Binding Note}" 
-                                d:Text="Item descripton"
+
+                            <Label Text="{Binding Path=Note, Mode=Default}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />
-                        
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected">
-                                
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <Button  WidthRequest="80" HeightRequest="80" ImageSource="plus.png" 
                      VerticalOptions="End" Margin="0,0,20,100" HorizontalOptions="End"
