@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 
 namespace TodoModel
@@ -28,7 +29,7 @@ namespace TodoModel
 		public static Priority Hight => new Priority("Hight", 8);
 	}
 
-	public partial class Priority : IComparable<Priority>, IEquatable<Priority>
+	public partial class Priority : ModelNotifier, IComparable<Priority>, IEquatable<Priority>
 	{
 		/// <summary>
 		/// Comparsion for ordering
