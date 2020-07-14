@@ -6,24 +6,23 @@ using System.Text;
 
 namespace Model
 {
-	public abstract partial class Task : IEnumerable<TaskBase>, IDatesRange
+	public partial class Task : TaskBase
 	{
 		private List<Task> innerTasks = null;
 
 		public DateTime? InitialDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public DateTime? FinalDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+	}
+	public partial class Task : IEnumerable<TaskBase>, IDatesRange
+	{
 		public IEnumerator<TaskBase> GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return innerTasks.GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return innerTasks.GetEnumerator();
 		}
-	}
-	public abstract partial class Task : TaskBase
-	{
 	}
 }

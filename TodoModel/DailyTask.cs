@@ -4,15 +4,11 @@ using System.Text;
 
 namespace Model
 {
-	public abstract partial class DailyTask
+	public class DailyTask : TaskBase
 	{
 		public void Call()
 		{
 
 		}
-	}
-
-	public abstract partial class DailyTask : TaskBase
-	{
 	}
 }

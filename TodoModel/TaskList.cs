@@ -19,7 +19,22 @@ namespace TodoModel
 
 		public void Add(TaskBase task)
 		{
+			task.TaskCompleted += Task_TaskCompleted;
+			task.TaskDeleted += Task_TaskDeleted;
+
 			tasks.Add(task);
+		}
+
+		private void Task_TaskDeleted(TaskBase task)
+		{
+			tasks.Remove(task);
+			completedTasks.Remove(task);
+		}
+
+		private void Task_TaskCompleted(TaskBase task)
+		{
+			tasks.Remove(task);
+			completedTasks.Add(task);
 		}
 
 		public void OrderByPriority()
