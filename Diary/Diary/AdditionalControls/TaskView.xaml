@@ -7,7 +7,7 @@
              x:Class="Diary.AdditionalControls.TaskView">
   <ContentView.Content>
       <StackLayout>
-          <Label Text="Федя привет здарова"/>
+          <Label Text="Hello Xamarin.Forms!" />
       </StackLayout>
   </ContentView.Content>
 </ContentView>
