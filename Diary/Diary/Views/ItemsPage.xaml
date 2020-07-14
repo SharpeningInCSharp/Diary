@@ -14,7 +14,7 @@
         <ToolbarItem Text="Calendar" IconImageSource="sort_accending_icon.png" Clicked="AddItem_Clicked"/>
 
     </ContentPage.ToolbarItems>
-
+    
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <Grid>
         <CollectionView x:Name="ItemsCollectionView"
@@ -44,8 +44,11 @@
         </CollectionView>
 
             <Button  WidthRequest="80" HeightRequest="80" ImageSource="plus.png" 
-                     VerticalOptions="End" Margin="0,0,10,50" HorizontalOptions="End"
+                     VerticalOptions="End" Margin="0,0,20,100" HorizontalOptions="End"
                      BackgroundColor="Transparent" Clicked="AddItem_Clicked"/>
+            
         </Grid>
+        
     </RefreshView>
+    
 </ContentPage>
