@@ -16,5 +16,10 @@ namespace Diary.AdditionalControls
 		{
 			InitializeComponent();
 		}
+
+		private void RemoveButton_Clicked(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
