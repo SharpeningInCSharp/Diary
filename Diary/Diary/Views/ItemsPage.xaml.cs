@@ -27,8 +27,6 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
-			BindingContextChanged += ItemsPage_BindingContextChanged;
-
 			TasksList = new TaskList("Today");
 
 			TasksList.Add(new TodoModel.Task
@@ -51,11 +49,6 @@ namespace Diary.Views
 			BindingContext = TasksList;
 		}
 
-		private void ItemsPage_BindingContextChanged(object sender, EventArgs e)
-		{
-			var i = 1932;
-		}
-
 		async void OnItemSelected(object sender, EventArgs args)
 		{
 			var layout = (BindableObject)sender;
@@ -72,16 +65,6 @@ namespace Diary.Views
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-
-			if (TasksList != null)
-			{
-				BindingContext = null;
-				BindingContext = TasksList;
-			}
-
-			UpdateChildrenLayout();
-			//if (viewModel.Items.Count == 0)
-			//	viewModel.IsBusy = true;
 		}
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
