@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Model
+namespace TodoModel
 {
 	public partial class Priority
 	{

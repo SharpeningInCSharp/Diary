@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Model
+namespace TodoModel
 {
 	public abstract partial class TaskBase
 	{
@@ -36,7 +36,7 @@ namespace Model
 		public void Complete()
 		{
 			IsCompleted = true;
-			TaskCompleted?.Invoke();
+			TaskCompleted?.Invoke(this);
 		}
 
 		/// <summary>

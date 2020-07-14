@@ -1,12 +1,18 @@
-﻿using Model;
+﻿using TodoModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace TodoModel
 {
-	public class TaskList
+	public partial class TaskList
 	{
+		/// <summary>
+		/// true - в прямом направление, в обратном - false
+		/// </summary>
+		private bool ascending = true;
+
 		public string Name { get; }
 
 		private List<TaskBase> tasks = new List<TaskBase>();
@@ -39,7 +45,71 @@ namespace TodoModel
 
 		public void OrderByPriority()
 		{
-			tasks.Sort();
+			if (ascending)
+			{
+				tasks.Sort();
+			}
+			else
+			{
+				tasks.Sort();
+				tasks.Reverse();
+			}
+
+			ascending = !ascending;
+		}
+	}
+
+	public partial class TaskList : IList<TaskBase>
+	{
+		public TaskBase this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+		public int Count => throw new NotImplementedException();
+
+		public bool IsReadOnly => throw new NotImplementedException();
+
+		public void Clear()
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool Contains(TaskBase item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void CopyTo(TaskBase[] array, int arrayIndex)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerator<TaskBase> GetEnumerator()
+		{
+			throw new NotImplementedException();
+		}
+
+		public int IndexOf(TaskBase item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Insert(int index, TaskBase item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool Remove(TaskBase item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void RemoveAt(int index)
+		{
+			throw new NotImplementedException();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

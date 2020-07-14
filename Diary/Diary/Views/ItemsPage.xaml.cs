@@ -11,6 +11,8 @@ using Diary.Models;
 using Diary.Views;
 using Diary.ViewModels;
 
+using TodoModel;
+
 namespace Diary.Views
 {
 	// Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -18,13 +20,35 @@ namespace Diary.Views
 	[DesignTimeVisible(false)]
 	public partial class ItemsPage : ContentPage
 	{
-		ItemsViewModel viewModel;
+		//	ItemsViewModel viewModel;
+		//TaskItemsViewModel viewModel;
+		TaskList Tasks;
 
 		public ItemsPage()
 		{
 			InitializeComponent();
 
-			BindingContext = viewModel = new ItemsViewModel();
+			BindingContext = Tasks = new TaskList("Today")
+			{
+				new TodoModel.Task
+				{
+					Header = "Мыть попу",
+					Note = "с мылом",
+				},
+
+				new TodoModel.Task
+				{
+					Header = "RUN",
+				},
+
+				new TodoModel.Task
+				{
+					Header = "WALK",
+					Note = "Alone",
+				}
+			};
+
+			//BindingContext = viewModel = new ItemsViewModel();
 		}
 
 		async void OnItemSelected(object sender, EventArgs args)
@@ -43,8 +67,8 @@ namespace Diary.Views
 		{
 			base.OnAppearing();
 
-			if (viewModel.Items.Count == 0)
-				viewModel.IsBusy = true;
+			//if (viewModel.Items.Count == 0)
+			//	viewModel.IsBusy = true;
 		}
 	}
 }
