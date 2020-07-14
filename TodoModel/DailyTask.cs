@@ -32,5 +32,10 @@ namespace Model
 		{
 			throw new NotImplementedException();
 		}
+
+		public void Complete()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
