@@ -13,14 +13,14 @@ namespace TodoModel
 		/// </summary>
 		private bool ascending = true;
 
-		public string Name { get; }
+		public string Title { get; }
 
-		private List<TaskBase> tasks = new List<TaskBase>();
+		public List<TaskBase> Tasks { get; set; } = new List<TaskBase>();
 		private List<TaskBase> completedTasks = new List<TaskBase>();
 
 		public TaskList(string name)
 		{
-			Name = name;
+			Title = name;
 		}
 
 		public void Add(TaskBase task)
@@ -28,18 +28,18 @@ namespace TodoModel
 			task.TaskCompleted += Task_TaskCompleted;
 			task.TaskDeleted += Task_TaskDeleted;
 
-			tasks.Add(task);
+			Tasks.Add(task);
 		}
 
 		private void Task_TaskDeleted(TaskBase task)
 		{
-			tasks.Remove(task);
+			Tasks.Remove(task);
 			completedTasks.Remove(task);
 		}
 
 		private void Task_TaskCompleted(TaskBase task)
 		{
-			tasks.Remove(task);
+			Tasks.Remove(task);
 			completedTasks.Add(task);
 		}
 
@@ -47,21 +47,25 @@ namespace TodoModel
 		{
 			if (ascending)
 			{
-				tasks.Sort();
+				Tasks.Sort();
 			}
 			else
 			{
-				tasks.Sort();
-				tasks.Reverse();
+				Tasks.Sort();
+				Tasks.Reverse();
 			}
 
 			ascending = !ascending;
 		}
 	}
 
-	public partial class TaskList : IList<TaskBase>
+	public partial class TaskList //: IList<TaskBase>
 	{
-		public TaskBase this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		/*public TaskBase this[int index] 
+		{ 
+			get => throw new NotImplementedException(); 
+			set => throw new NotImplementedException(); 
+		}
 
 		public int Count => throw new NotImplementedException();
 
@@ -110,6 +114,6 @@ namespace TodoModel
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			throw new NotImplementedException();
-		}
+		}*/
 	}
 }

@@ -20,35 +20,32 @@ namespace Diary.Views
 	[DesignTimeVisible(false)]
 	public partial class ItemsPage : ContentPage
 	{
-		//	ItemsViewModel viewModel;
-		//TaskItemsViewModel viewModel;
-		TaskList Tasks;
+		TaskList TasksList;
 
 		public ItemsPage()
 		{
 			InitializeComponent();
 
-			BindingContext = Tasks = new TaskList("Today")
+			TasksList = new TaskList("Today");
+
+			TasksList.Add(new TodoModel.Task
 			{
-				new TodoModel.Task
-				{
-					Header = "Мыть попу",
-					Note = "с мылом",
-				},
+				Header = "Мыть попу",
+				Note = "с мылом",
+			});
 
-				new TodoModel.Task
-				{
-					Header = "RUN",
-				},
+			TasksList.Add(new TodoModel.Task
+			{
+				Header = "RUN",
+			});
 
-				new TodoModel.Task
-				{
-					Header = "WALK",
-					Note = "Alone",
-				}
-			};
+			TasksList.Add(new TodoModel.Task
+			{
+				Header = "WALK",
+				Note = "Alone",
+			});
 
-			//BindingContext = viewModel = new ItemsViewModel();
+			BindingContext = TasksList;
 		}
 
 		async void OnItemSelected(object sender, EventArgs args)
