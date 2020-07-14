@@ -27,6 +27,7 @@ namespace Diary.AdditionalControls
 		private void RemoveButton_Clicked(object sender, EventArgs e)
 		{
 			Task.Delete();
+			Navigation.PopAsync();
 		}
 
 		private void TasksListPicker_SelectedIndexChanged(object sender, EventArgs e)
