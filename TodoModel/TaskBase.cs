@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace TodoModel
 {
@@ -9,17 +11,47 @@ namespace TodoModel
 		/// </summary>
 		public bool IsCompleted { get; private set; } = false;
 
+		private string header;
+
 		/// <summary>
 		/// Header of the Task
 		/// </summary>
-		public string Header { get; set; }
+		public string Header
+		{
+			get => header;
+			set
+			{
+				SetField(ref header, value, "Header");
+			}
+		}
+
+		private string note;
 
 		/// <summary>
 		/// Some note to the Task
 		/// </summary>
-		public string Note { get; set; }
+		public string Note
+		{
+			get => note;
+			set
+			{
+				SetField(ref note, value, "Note");
+			}
+		}
 
-		public Priority Priority { get; set; }
+		private Priority priority;
+
+		/// <summary>
+		/// Task Priority
+		/// </summary>
+		public Priority Priority
+		{
+			get => priority;
+			set
+			{
+				SetField(ref priority, value, "Priority");
+			}
+		}
 
 		public delegate void TaskHandler(TaskBase task);
 
@@ -56,8 +88,25 @@ namespace TodoModel
 		}
 	}
 
-	public abstract partial class TaskBase : IEquatable<TaskBase>, IComparable<TaskBase>
+	public abstract partial class TaskBase : IEquatable<TaskBase>, IComparable<TaskBase>, INotifyPropertyChanged
 	{
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged(string propertyName)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		protected bool SetField<T>(ref T field, T value, string propertyName)
+		{
+			if (EqualityComparer<T>.Default.Equals(field, value))
+				return false;
+
+			field = value;
+			OnPropertyChanged(propertyName);
+			return true;
+		}
+
 		/// <summary>
 		/// Equality comparison
 		/// </summary>
