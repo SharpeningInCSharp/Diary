@@ -15,6 +15,8 @@ namespace TodoModel
 
 		public string Title { get; }
 
+		public event Action CollectionChanged;
+
 		public List<TaskBase> Tasks { get; set; } = new List<TaskBase>();
 		private List<TaskBase> completedTasks = new List<TaskBase>();
 
@@ -29,12 +31,16 @@ namespace TodoModel
 			task.TaskDeleted += Task_TaskDeleted;
 
 			Tasks.Add(task);
+
+			CollectionChanged?.Invoke();
 		}
 
 		private void Task_TaskDeleted(TaskBase task)
 		{
 			Tasks.Remove(task);
 			completedTasks.Remove(task);
+
+			CollectionChanged?.Invoke();
 		}
 
 		private void Task_TaskCompleted(TaskBase task)
@@ -59,61 +65,8 @@ namespace TodoModel
 		}
 	}
 
-	public partial class TaskList //: IList<TaskBase>
+	public partial class TaskList
 	{
-		/*public TaskBase this[int index] 
-		{ 
-			get => throw new NotImplementedException(); 
-			set => throw new NotImplementedException(); 
-		}
 
-		public int Count => throw new NotImplementedException();
-
-		public bool IsReadOnly => throw new NotImplementedException();
-
-		public void Clear()
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool Contains(TaskBase item)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void CopyTo(TaskBase[] array, int arrayIndex)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IEnumerator<TaskBase> GetEnumerator()
-		{
-			throw new NotImplementedException();
-		}
-
-		public int IndexOf(TaskBase item)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Insert(int index, TaskBase item)
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool Remove(TaskBase item)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void RemoveAt(int index)
-		{
-			throw new NotImplementedException();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			throw new NotImplementedException();
-		}*/
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 
 namespace TodoModel
@@ -13,7 +12,15 @@ namespace TodoModel
 
 		public int Value { get; }
 
-		public Color Color { get; set; }
+		private Color color;
+		public Color Color
+		{
+			get => color;
+			set
+			{
+				SetField(ref color, value, "Color");
+			}
+		}
 
 		public Priority(string name, int value)
 		{

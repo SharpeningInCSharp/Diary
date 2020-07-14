@@ -29,6 +29,7 @@ namespace Diary.Views
 
 			TasksList = new TaskList("Today");
 
+			TasksList.CollectionChanged += TasksList_CollectionChanged;
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "Мыть попу",
@@ -49,6 +50,12 @@ namespace Diary.Views
 			BindingContext = TasksList;
 		}
 
+		private void TasksList_CollectionChanged()
+		{
+			BindingContext = null;
+			BindingContext = TasksList;
+		}
+
 		async void OnItemSelected(object sender, EventArgs args)
 		{
 			var layout = (BindableObject)sender;
@@ -59,7 +66,10 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			await Navigation.PushModalAsync(new TaskDatailsView());
+			var empltyTask = new TodoModel.Task();
+			TasksList.Add(empltyTask);
+
+			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 		}
 
 		protected override void OnAppearing()

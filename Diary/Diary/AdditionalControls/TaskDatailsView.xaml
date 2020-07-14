@@ -33,7 +33,6 @@
             <Editor x:Name="NoteEditor"
                     Text="{Binding Note, Mode=TwoWay}"
                     Grid.Row="1"
-                    TextChanged="NoteEditor_TextChanged"
                     Grid.Column="0"/>
 
             
