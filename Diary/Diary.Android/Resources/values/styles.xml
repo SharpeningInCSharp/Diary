@@ -16,7 +16,7 @@
     <item name="colorPrimaryDark">#116094</item>
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
-    <item name="colorAccent">#FF4081</item>
+    <item name="colorAccent">#40DBE6</item>
 
     
     
@@ -28,6 +28,6 @@
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-    <item name="colorAccent">#FF4081</item>
+    <item name="colorAccent">#40DBE6</item>
   </style>
 </resources>

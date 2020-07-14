@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Diary.Views.MenuPage"
-             Title="Menu">
+             Title="Menu"
+             BackgroundColor="{StaticResource PaletteBeige}">
              
     <StackLayout VerticalOptions="FillAndExpand">
         <ListView x:Name="ListViewMenu"
@@ -14,8 +15,8 @@
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="10">
-                            <Label Text="{Binding Title}" d:Text="{Binding .}" FontSize="20"/>
-                        </Grid>
+                            <Label Text="{Binding Title}" FontSize="20"/>
+                        </Grid>                        
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
