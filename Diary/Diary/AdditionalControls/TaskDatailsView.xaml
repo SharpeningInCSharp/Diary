@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Diary.AdditionalControls.TaskDatailsView">
+             x:Class="Diary.AdditionalControls.TaskDatailsView"
+             BackgroundColor="{StaticResource PaletteBeige}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Remove" IconImageSource="delete_icon.png" Clicked="RemoveButton_Clicked"/>
