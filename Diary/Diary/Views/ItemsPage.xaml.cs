@@ -66,7 +66,12 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			var empltyTask = new TodoModel.Task();
+			var empltyTask = new TodoModel.Task()
+			{
+				Header = "",
+				Note = "",
+			};
+
 			TasksList.Add(empltyTask);
 
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
@@ -86,7 +91,7 @@ namespace Diary.Views
 		{
 			TasksList.OrderByPriority();
 
-			if(TasksList.Ascending)
+			if (TasksList.Ascending)
 			{
 
 			}

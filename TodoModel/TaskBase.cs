@@ -9,35 +9,33 @@ namespace TodoModel
 		/// </summary>
 		public bool IsCompleted { get; private set; } = false;
 
-		private string header;
-
 		/// <summary>
 		/// Header of the Task
 		/// </summary>
 		public string Header
 		{
-			get => header;
+			get => headerData;
 			set
 			{
-				SetField(ref header, value, "Header");
+				SetField(ref headerData, value, "Header");
 			}
 		}
-
-		private string note;
 
 		/// <summary>
 		/// Some note to the Task
 		/// </summary>
 		public string Note
 		{
-			get => note;
+			get => noteData;
 			set
 			{
-				SetField(ref note, value, "Note");
+				SetField(ref noteData, value, "Note");
 			}
 		}
 
 		private Priority priority = Priority.Normal;
+		private string noteData;
+		private string headerData;
 
 		/// <summary>
 		/// Task Priority
@@ -58,7 +56,8 @@ namespace TodoModel
 		public event TaskHandler TaskSetAside;
 
 		public TaskBase()
-		{ }
+		{
+		}
 
 		/// <summary>
 		/// Completes task
@@ -98,7 +97,7 @@ namespace TodoModel
 			if (other is null)
 				return false;
 
-			return Header.Equals(other.Header);
+			return headerData.Equals(other.headerData);
 		}
 
 		/// <summary>
