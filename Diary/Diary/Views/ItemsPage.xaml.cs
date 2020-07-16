@@ -70,12 +70,19 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
+			
+
+
 			var empltyTask = new TodoModel.Task();
 			TasksList.Add(empltyTask);
-			await AddButton.RotateTo(400,300);
+
+
+			await AddButton.RotateTo(-90, 300, Easing.CubicInOut);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 			AddButton.Rotation = 0;
 		}
+
+		
 
 		protected override void OnAppearing()
 		{
@@ -89,7 +96,11 @@ namespace Diary.Views
 
 		private void Ordering_Click(object seder, EventArgs e)
 		{
-			if (order) SortBut.IconImageSource = "sort_descending_icon.png";
+			if (order)
+			{
+				
+				SortBut.IconImageSource = "sort_descending_icon.png";
+			}
 			else SortBut.IconImageSource = "sort_accending_icon.png";
 			order = !order;
 		}
