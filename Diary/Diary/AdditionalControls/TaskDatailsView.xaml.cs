@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TodoModel;
 using TodoModel.Database;
@@ -18,10 +19,12 @@ namespace Diary.AdditionalControls
 		{
 			InitializeComponent();
 
-			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 			//storage = DependencyService.Get<ITodoStorage>();
-
 			//InitializeCB();
+			PriorityPicker.ItemsSource = new List<IPriority>
+			{ Priority.Low, Priority.Hight, Priority.Normal};
+
+			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 		}
 
 		private void InitializeCB()
@@ -43,7 +46,6 @@ namespace Diary.AdditionalControls
 
 		private void PriorityPicker_SelectedIndexChanged(object sender, EventArgs e)
 		{
-
 		}
 
 		private void RepeatButton_Clicked(object sender, EventArgs e)

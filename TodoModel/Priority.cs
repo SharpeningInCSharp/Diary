@@ -56,5 +56,10 @@ namespace TodoModel
 		{
 			return Name.Equals(other.Name) && Value.Equals(other.Value);
 		}
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 }

@@ -11,7 +11,7 @@ namespace TodoModel
 		/// <summary>
 		/// true - в прямом направление, в обратном - false
 		/// </summary>
-		private bool ascending = true;
+		public bool Ascending { get; private set; } = true;
 
 		public string Title { get; }
 
@@ -51,7 +51,7 @@ namespace TodoModel
 
 		public void OrderByPriority()
 		{
-			if (ascending)
+			if (Ascending)
 			{
 				Tasks.Sort();
 			}
@@ -61,7 +61,9 @@ namespace TodoModel
 				Tasks.Reverse();
 			}
 
-			ascending = !ascending;
+			Ascending = !Ascending;
+
+			CollectionChanged?.Invoke();
 		}
 	}
 

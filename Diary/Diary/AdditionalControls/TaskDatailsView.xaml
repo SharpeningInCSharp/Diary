@@ -14,8 +14,14 @@
                 <Setter Property="FontSize" Value="20"/>
             </Style>
 
-            <Style TargetType="IndicatorView" x:Key="InputItem">
+            <Style TargetType="Editor" x:Key="InputItem">
                 <Setter Property="Margin" Value="6,4,2,4"/>
+                <Setter Property="TextColor" Value="{StaticResource PaletteBeige}"/>
+            </Style>
+
+            <Style TargetType="Picker" x:Key="InputPicker">
+                <Setter Property="TextColor" Value="{StaticResource PaletteBeige}"/>
+                <Setter Property="WidthRequest" Value="150"/>
             </Style>
 
             <Style TargetType="Image" x:Key="ImageStyle">
@@ -38,59 +44,59 @@
 
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource PaletteGrayBlue}">
-        <StackLayout Margin="10">
+            <StackLayout Margin="10">
 
-            <Label Text="Task title" 
+                <Label Text="Task title" 
                    Style="{StaticResource NotationLabel}"
                    TextColor="{StaticResource PaletteDarkBeige}"/>
-            <Entry x:Name="HeaderEntry"
+                <Editor x:Name="HeaderEntry"
                    Style="{StaticResource InputItem}"
-                   Text="{Binding Header, Mode=TwoWay}"
-                   TextColor="{StaticResource PaletteBeige}"/>
+                   Text="{Binding Header, Mode=TwoWay}"/>
 
-            <Label Text="Add details"
+                <Label Text="Add details"
                    Style="{StaticResource NotationLabel}"
                    TextColor="{StaticResource PaletteDarkBeige}"/>
-            <Editor x:Name="NoteEditor"
+                <Editor x:Name="NoteEditor"
                     Style="{StaticResource InputItem}"
-                    Text="{Binding Note, Mode=TwoWay}"
-                    TextColor="{StaticResource PaletteBeige}"/>
+                    Text="{Binding Note, Mode=TwoWay}"/>
 
-            <StackLayout Orientation="Horizontal">
-                <Image Source="items_list_icon.png"
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="items_list_icon.png"
                        Style="{StaticResource ImageStyle}"/>
-                <Picker x:Name="TasksListPicker"
-                    SelectedIndexChanged="TasksListPicker_SelectedIndexChanged"/>
-            </StackLayout>
+                    <Picker x:Name="TasksListPicker"
+                            Style="{StaticResource InputPicker}"
+                            ItemDisplayBinding="{Binding Title}"
+                            SelectedIndexChanged="TasksListPicker_SelectedIndexChanged"/>
+                </StackLayout>
 
-            <StackLayout Orientation="Horizontal">
-                <Image Source="calendar_icon.png"
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="calendar_icon.png"
                        Style="{StaticResource ImageStyle}"/>
-                <Button x:Name="SelectDatesRangeButton"
+                    <Button x:Name="SelectDatesRangeButton"
                         Text="Dates range"
                         WidthRequest="120"
                         TextColor="{StaticResource PaletteDarkBeige}"
                         Style="{StaticResource TransparentButton}"
                         Clicked="SelectDatesRangeButton_Clicked"/>
 
-                <Image Source="repeat_icon.png"
+                    <Image Source="repeat_icon.png"
                        Style="{StaticResource ImageStyle}"/>
-                <Button x:Name="RepeatButton"
+                    <Button x:Name="RepeatButton"
                         Text="Repeat"
                         TextColor="{StaticResource PaletteDarkBeige}"
                         Style="{StaticResource TransparentButton}"
                         Clicked="RepeatButton_Clicked"/>
-            </StackLayout>
+                </StackLayout>
 
-            <StackLayout Orientation="Horizontal">
-                <Image Source="priority_icon.png"
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="priority_icon.png"
                        Style="{StaticResource ImageStyle}"/>
                     <Picker x:Name="PriorityPicker"
-                        SelectedItem="{Binding Priority, Mode=TwoWay}">
-                        
-                    </Picker>
+                            Style="{StaticResource InputPicker}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding Priority, Mode=TwoWay}"/>
                 </StackLayout>
-        </StackLayout>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

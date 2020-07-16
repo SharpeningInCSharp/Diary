@@ -23,8 +23,6 @@ namespace Diary.Views
 	{
 		TaskList TasksList;
 
-		bool order = true;
-
 		public ItemsPage()
 		{
 			InitializeComponent();
@@ -46,12 +44,10 @@ namespace Diary.Views
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "WALK",
-				Note = "Alone",
+				Note = "With dog",
 			});
 
 			BindingContext = TasksList;
-
-			
 		}
 
 		private void TasksList_CollectionChanged()
@@ -70,12 +66,21 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			var empltyTask = new TodoModel.Task();
+			var empltyTask = new TodoModel.Task()
+			{
+				//Header = "",
+				//Note = "",
+			};
+
 			TasksList.Add(empltyTask);
-			await AddButton.RotateTo(400,300);
+
+
+			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 			AddButton.Rotation = 0;
 		}
+
+		
 
 		protected override void OnAppearing()
 		{
@@ -89,9 +94,17 @@ namespace Diary.Views
 
 		private void Ordering_Click(object seder, EventArgs e)
 		{
-			if (order) SortBut.IconImageSource = "sort_descending_icon.png";
-			else SortBut.IconImageSource = "sort_accending_icon.png";
-			order = !order;
+			if (TasksList.Ascending)
+			{
+				SortBut.IconImageSource = "sort_accending_icon.png";
+			}
+			else
+			{
+				SortBut.IconImageSource = "sort_descending_icon.png";
+			}
+
+			TasksList.OrderByPriority();
+
 		}
 	}
 }
