@@ -23,6 +23,8 @@ namespace Diary.Views
 	{
 		TaskList TasksList;
 
+		bool order = false;
+
 		public ItemsPage()
 		{
 			InitializeComponent();
@@ -48,6 +50,8 @@ namespace Diary.Views
 			});
 
 			BindingContext = TasksList;
+
+			
 		}
 
 		private void TasksList_CollectionChanged()
@@ -79,12 +83,14 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
 		{
-
+			if (order) SortBut.IconImageSource = "sort_descending_icon.png";
+			else SortBut.IconImageSource = "sort_accending_icon.png";
+			order = !order;
 		}
 	}
 }
