@@ -16,5 +16,14 @@ namespace Diary.Views
         {
             InitializeComponent();
         }
+
+        private void AuthButton_Clicked(object sender, EventArgs e)
+        {
+            if (Device.RuntimePlatform == Device.Android)
+            {
+
+            }
+
+        }
     }
 }
