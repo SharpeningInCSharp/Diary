@@ -62,6 +62,8 @@ namespace TodoModel
 			}
 
 			Ascending = !Ascending;
+
+			CollectionChanged?.Invoke();
 		}
 	}
 
