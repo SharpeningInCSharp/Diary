@@ -4,14 +4,20 @@ namespace TodoModel.Database
 {
 	/// <summary>
 	/// Applies to DB's buffer
+	/// Buffer stores:
+	/// Priorities (IPriority) and
+	/// TaskLists
 	/// </summary>
 	public interface ITodoStorage
 	{
 		/// <summary>
-		/// 
+		/// Gives access to storing sets of:
+		/// Priorities (IPriority) and
+		/// TaskLists
 		/// </summary>
-		/// <returns>Enumeration of all available priorities</returns>
-		IEnumerable<IPriority> GetPriorities();
+		/// <typeparam name="TData">Required data type</typeparam>
+		/// <returns>Set of <typeparamref name="TData"/></returns>
+		IEnumerable<TData> Get<TData>();
 
 		/// <summary>
 		/// Add data to DB
