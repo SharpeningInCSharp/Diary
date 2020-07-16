@@ -27,6 +27,8 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
+			
+
 			TasksList = new TaskList("Today");
 
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
