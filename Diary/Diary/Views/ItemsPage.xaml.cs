@@ -72,8 +72,9 @@ namespace Diary.Views
 		{
 			var empltyTask = new TodoModel.Task();
 			TasksList.Add(empltyTask);
-
+			await AddButton.RotateTo(400,300);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
+			AddButton.Rotation = 0;
 		}
 
 		protected override void OnAppearing()

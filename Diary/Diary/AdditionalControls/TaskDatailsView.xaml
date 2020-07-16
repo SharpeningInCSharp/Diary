@@ -85,9 +85,11 @@
             <StackLayout Orientation="Horizontal">
                 <Image Source="priority_icon.png"
                        Style="{StaticResource ImageStyle}"/>
-                <Picker x:Name="PriorityPicker"
-                        SelectedItem="{Binding Priority, Mode=TwoWay}"/>
-            </StackLayout>
+                    <Picker x:Name="PriorityPicker"
+                        SelectedItem="{Binding Priority, Mode=TwoWay}">
+                        
+                    </Picker>
+                </StackLayout>
         </StackLayout>
         </Grid>
     </ContentPage.Content>

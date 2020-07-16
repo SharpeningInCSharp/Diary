@@ -15,6 +15,8 @@
         <ToolbarItem x:Name="SortBut" Text="Ordering" IconImageSource="sort_accending_icon.png" Clicked="Ordering_Click"/>
     </ContentPage.ToolbarItems>
     
+    
+    
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <Grid BackgroundColor="{StaticResource PaletteGrayBlue}">
             <CollectionView x:Name="ItemsCollectionView"
@@ -26,25 +28,29 @@
                             <Label Text="{Binding Path= Header, Mode=Default}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
+                                FontSize="20" TextColor="{StaticResource PaletteBeige}"
+                                    />
+
 
                             <Label Text="{Binding Path=Note, Mode=Default}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="12" TextColor="{StaticResource PaletteDarkBeige}"
-                                />
+                                FontSize="12" TextColor="{StaticResource PaletteDarkBeige}"                                   
+                                    />
 
+                           
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
                             </StackLayout.GestureRecognizers>
+
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
             <Button  WidthRequest="80" HeightRequest="80" ImageSource="plus.png" 
                      VerticalOptions="End" Margin="0,0,30,80" HorizontalOptions="End"
-                     BackgroundColor="Transparent" Clicked="AddItem_Clicked"/>
+                     BackgroundColor="Transparent" Clicked="AddItem_Clicked"
+                     x:Name="AddButton"/>
             
         </Grid>
         
