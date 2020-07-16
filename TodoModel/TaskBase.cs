@@ -55,12 +55,6 @@ namespace TodoModel
 		public event TaskHandler TaskCompleted;
 		public event TaskHandler TaskSetAside;
 
-		public TaskBase()
-		{
-			noteData = "";
-			headerData = "";
-		}
-
 		/// <summary>
 		/// Completes task
 		/// </summary>

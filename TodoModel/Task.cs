@@ -10,10 +10,6 @@ namespace TodoModel
 
 		public DateTime? InitialDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public DateTime? FinalDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-		public Task() : base()
-		{
-		}
 	}
 
 	public partial class Task : IEnumerable<TaskBase>, IDatesRange
