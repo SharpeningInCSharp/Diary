@@ -30,6 +30,10 @@ namespace Diary.Views
 			{
 				switch (id)
 				{
+					case (int)MenuItemType.Account:
+						MenuPages.Add(id, new NavigationPage(new AccountPage()));
+						break;
+
 					case (int)MenuItemType.Browse:
 						MenuPages.Add(id, new NavigationPage(new ItemsPage()));
 						break;

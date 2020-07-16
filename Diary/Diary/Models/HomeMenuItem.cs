@@ -6,6 +6,7 @@ namespace Diary.Models
 {
 	public enum MenuItemType
 	{
+		Account,
 		Browse,
 		About
 	}
