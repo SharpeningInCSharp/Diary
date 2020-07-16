@@ -23,13 +23,12 @@
                 <Setter Property="Margin" Value="2"/>
             </Style>
 
-            <Style TargetType="ImageButton" x:Key="ImageButtonStyle">
+            <Style TargetType="Button" x:Key="TransparentButton">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="WidthRequest" Value="50"/>
-                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Margin" Value="10,6"/>
             </Style>
-            
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -60,17 +59,22 @@
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
-                <ImageButton x:Name="SelectDatesRangeButton"
-                             Source="calendar_icon.png"
-                             Clicked="SelectDatesRangeButton_Clicked"
-                             Style="{StaticResource ImageButtonStyle}"/>
+                <Image Source="calendar_icon.png"
+                       Style="{StaticResource ImageStyle}"/>
+                <Button x:Name="SelectDatesRangeButton"
+                        Text="Dates range"
+                        WidthRequest="120"
+                        Style="{StaticResource TransparentButton}"
+                        Clicked="SelectDatesRangeButton_Clicked"/>
 
-                <ImageButton x:Name="RepeatButton"
-                             Clicked="RepeatButton_Clicked"
-                             Style="{StaticResource ImageButtonStyle}"
-                             Source="repeat_icon.png"/>
+                <Image Source="repeat_icon.png"
+                       Style="{StaticResource ImageStyle}"/>
+                <Button x:Name="RepeatButton"
+                        Text="Repeat"
+                        Style="{StaticResource TransparentButton}"
+                        Clicked="RepeatButton_Clicked"/>
             </StackLayout>
-            
+
             <StackLayout Orientation="Horizontal">
                 <Image Source="priority_icon.png"
                        Style="{StaticResource ImageStyle}"/>
