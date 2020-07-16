@@ -37,19 +37,24 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource PaletteGrayBlue}">
         <StackLayout Margin="10">
 
             <Label Text="Task title" 
-                   Style="{StaticResource NotationLabel}"/>
+                   Style="{StaticResource NotationLabel}"
+                   TextColor="{StaticResource PaletteDarkBeige}"/>
             <Entry x:Name="HeaderEntry"
                    Style="{StaticResource InputItem}"
-                   Text="{Binding Header, Mode=TwoWay}"/>
+                   Text="{Binding Header, Mode=TwoWay}"
+                   TextColor="{StaticResource PaletteBeige}"/>
 
             <Label Text="Add details"
-                   Style="{StaticResource NotationLabel}"/>
+                   Style="{StaticResource NotationLabel}"
+                   TextColor="{StaticResource PaletteDarkBeige}"/>
             <Editor x:Name="NoteEditor"
                     Style="{StaticResource InputItem}"
-                    Text="{Binding Note, Mode=TwoWay}"/>
+                    Text="{Binding Note, Mode=TwoWay}"
+                    TextColor="{StaticResource PaletteBeige}"/>
 
             <StackLayout Orientation="Horizontal">
                 <Image Source="items_list_icon.png"
@@ -64,6 +69,7 @@
                 <Button x:Name="SelectDatesRangeButton"
                         Text="Dates range"
                         WidthRequest="120"
+                        TextColor="{StaticResource PaletteDarkBeige}"
                         Style="{StaticResource TransparentButton}"
                         Clicked="SelectDatesRangeButton_Clicked"/>
 
@@ -71,6 +77,7 @@
                        Style="{StaticResource ImageStyle}"/>
                 <Button x:Name="RepeatButton"
                         Text="Repeat"
+                        TextColor="{StaticResource PaletteDarkBeige}"
                         Style="{StaticResource TransparentButton}"
                         Clicked="RepeatButton_Clicked"/>
             </StackLayout>
@@ -82,5 +89,6 @@
                     SelectedIndexChanged="PriorityPicker_SelectedIndexChanged"/>
             </StackLayout>
         </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

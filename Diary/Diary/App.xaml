@@ -11,12 +11,15 @@
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#FF0000</Color>
 
-            <Color x:Key="PaletteDarkBlue">#116094</Color>
-            <Color x:Key="PaletteBeige">#FFEDE3</Color>
-            <Color x:Key="PaletteSkyBlue">#40DBE6</Color>
+            <Color x:Key="PaletteDarkBlue">#011526</Color>
+            <Color x:Key="PaletteGrayBlue">#273440</Color>
+            <Color x:Key="PaletteLightBeige">#F2E7DC</Color>
+            <Color x:Key="PaletteBeige">#D9C7B8</Color>
+            <Color x:Key="PaletteDarkBeige">#A69286</Color>
+
             <Color x:Key="PaletteRed">#FF5C42</Color>
             <Color x:Key="PaletteGreen">#B3FFC4</Color>
-            
+
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource PaletteDarkBlue}" />
                 <Setter Property="BarTextColor" Value="{StaticResource PaletteBeige}" />
