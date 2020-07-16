@@ -66,11 +66,7 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			var empltyTask = new TodoModel.Task()
-			{
-				//Header = "",
-				//Note = "",
-			};
+			var empltyTask = new TodoModel.Task();
 
 			TasksList.Add(empltyTask);
 
@@ -80,7 +76,7 @@ namespace Diary.Views
 			AddButton.Rotation = 0;
 		}
 
-		
+
 
 		protected override void OnAppearing()
 		{
@@ -89,7 +85,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)

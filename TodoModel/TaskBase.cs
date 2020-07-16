@@ -54,6 +54,18 @@ namespace TodoModel
 		public event TaskHandler TaskDeleted;
 		public event TaskHandler TaskCompleted;
 		public event TaskHandler TaskSetAside;
+		public event TaskHandler TaskMoved;
+
+		public TaskBase()
+		{ }
+
+		public TaskBase(TaskBase taskBase)
+		{
+			headerData = taskBase.headerData;
+			noteData = taskBase.noteData;
+			priority = taskBase.priority;
+			IsCompleted = taskBase.IsCompleted;
+		}
 
 		/// <summary>
 		/// Completes task
@@ -78,6 +90,12 @@ namespace TodoModel
 		public void SetAside()
 		{
 			TaskSetAside?.Invoke(this);
+		}
+
+		//TODO: what's with moving
+		public void MoveTo()
+		{
+			TaskMoved?.Invoke(this);
 		}
 	}
 
