@@ -23,6 +23,8 @@ namespace Diary.Views
 	{
 		TaskList TasksList;
 
+		bool order = true;
+
 		public ItemsPage()
 		{
 			InitializeComponent();
@@ -48,6 +50,8 @@ namespace Diary.Views
 			});
 
 			BindingContext = TasksList;
+
+			
 		}
 
 		private void TasksList_CollectionChanged()
@@ -73,8 +77,9 @@ namespace Diary.Views
 			};
 
 			TasksList.Add(empltyTask);
-
+			await AddButton.RotateTo(400,300);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
+			AddButton.Rotation = 0;
 		}
 
 		protected override void OnAppearing()
@@ -84,7 +89,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
@@ -99,6 +104,9 @@ namespace Diary.Views
 			{
 
 			}
+			if (order) SortBut.IconImageSource = "sort_descending_icon.png";
+			else SortBut.IconImageSource = "sort_accending_icon.png";
+			order = !order;
 		}
 	}
 }
