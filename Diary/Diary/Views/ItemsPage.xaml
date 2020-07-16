@@ -16,7 +16,7 @@
     </ContentPage.ToolbarItems>
     
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
-        <Grid>
+        <Grid BackgroundColor="{StaticResource PaletteGrayBlue}">
             <CollectionView x:Name="ItemsCollectionView"
                 ItemsSource="{Binding Tasks}">
                 <CollectionView.ItemTemplate>
@@ -26,12 +26,12 @@
                             <Label Text="{Binding Path= Header, Mode=Default}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
+                                FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
 
                             <Label Text="{Binding Path=Note, Mode=Default}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
+                                FontSize="12" TextColor="{StaticResource PaletteDarkBeige}"/>
 
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>

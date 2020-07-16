@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using TodoModel;
+using TodoModel.Database;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,11 +12,22 @@ namespace Diary.AdditionalControls
 	{
 		public TaskBase Task { get; }
 
+		//TOOD: should pick out ViewModel with access to DB
+		private ITodoStorage storage;
 		public TaskDatailsView(TaskBase task)
 		{
 			InitializeComponent();
 
 			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
+			//storage = DependencyService.Get<ITodoStorage>();
+
+			//InitializeCB();
+		}
+
+		private void InitializeCB()
+		{
+			PriorityPicker.ItemsSource = storage.Get<IPriority>().ToList();
+			TasksListPicker.ItemsSource = storage.Get<IPriority>().ToList();
 		}
 
 		private void RemoveButton_Clicked(object sender, EventArgs e)
