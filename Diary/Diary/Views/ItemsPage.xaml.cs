@@ -75,7 +75,7 @@ namespace Diary.Views
 			TasksList.Add(empltyTask);
 
 
-			await AddButton.RotateTo(-90, 300, Easing.CubicInOut);
+			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 			AddButton.Rotation = 0;
 		}
@@ -94,8 +94,6 @@ namespace Diary.Views
 
 		private void Ordering_Click(object seder, EventArgs e)
 		{
-			TasksList.OrderByPriority();
-
 			if (TasksList.Ascending)
 			{
 				SortBut.IconImageSource = "sort_accending_icon.png";
@@ -104,6 +102,9 @@ namespace Diary.Views
 			{
 				SortBut.IconImageSource = "sort_descending_icon.png";
 			}
+
+			TasksList.OrderByPriority();
+
 		}
 	}
 }
