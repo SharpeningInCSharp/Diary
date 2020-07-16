@@ -23,7 +23,7 @@ namespace Diary.Views
 	{
 		TaskList TasksList;
 
-		bool order = false;
+		bool order = true;
 
 		public ItemsPage()
 		{
