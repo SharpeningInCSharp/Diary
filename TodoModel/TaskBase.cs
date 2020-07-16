@@ -34,8 +34,8 @@ namespace TodoModel
 		}
 
 		private Priority priority = Priority.Normal;
-		private string noteData;
-		private string headerData;
+		private string noteData = "";
+		private string headerData = "";
 
 		/// <summary>
 		/// Task Priority
@@ -57,6 +57,8 @@ namespace TodoModel
 
 		public TaskBase()
 		{
+			noteData = "";
+			headerData = "";
 		}
 
 		/// <summary>

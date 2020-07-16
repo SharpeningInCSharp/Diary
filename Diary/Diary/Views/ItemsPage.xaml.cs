@@ -27,8 +27,6 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
-			
-
 			TasksList = new TaskList("Today");
 
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
@@ -70,8 +68,8 @@ namespace Diary.Views
 		{
 			var empltyTask = new TodoModel.Task()
 			{
-				Header = "",
-				Note = "",
+				//Header = "",
+				//Note = "",
 			};
 
 			TasksList.Add(empltyTask);

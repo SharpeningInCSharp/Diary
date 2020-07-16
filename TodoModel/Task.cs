@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TodoModel
 {
-	public class Task : TaskBase
+	public partial class Task : TaskBase
 	{
 		private List<Task> innerTasks = null;
 
@@ -15,16 +15,17 @@ namespace TodoModel
 		{
 		}
 	}
-	//public partial class Task : IEnumerable<TaskBase>, IDatesRange
-	//{
-	//	public IEnumerator<TaskBase> GetEnumerator()
-	//	{
-	//		return innerTasks.GetEnumerator();
-	//	}
 
-	//	IEnumerator IEnumerable.GetEnumerator()
-	//	{
-	//		return innerTasks.GetEnumerator();
-	//	}
-	//}
+	public partial class Task : IEnumerable<TaskBase>, IDatesRange
+	{
+		public IEnumerator<TaskBase> GetEnumerator()
+		{
+			return innerTasks.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return innerTasks.GetEnumerator();
+		}
+	}
 }
