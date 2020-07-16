@@ -25,6 +25,7 @@ namespace Diary
 
 		protected override void OnSleep()
 		{
+			//TODO: save changes in db here
 		}
 
 		protected override void OnResume()
