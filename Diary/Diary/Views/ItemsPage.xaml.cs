@@ -73,10 +73,14 @@ namespace Diary.Views
 			};
 
 			TasksList.Add(empltyTask);
-			await AddButton.RotateTo(400,300);
+
+
+			await AddButton.RotateTo(-90, 300, Easing.CubicInOut);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 			AddButton.Rotation = 0;
 		}
+
+		
 
 		protected override void OnAppearing()
 		{
@@ -100,8 +104,6 @@ namespace Diary.Views
 			{
 				SortBut.IconImageSource = "sort_descending_icon.png";
 			}
-
-			
 		}
 	}
 }
