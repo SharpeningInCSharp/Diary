@@ -21,8 +21,8 @@
             <Color x:Key="PaletteGreen">#B3FFC4</Color>
 
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource PaletteDarkBlue}" />
-                <Setter Property="BarTextColor" Value="{StaticResource PaletteBeige}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PaletteDarkBlue}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource PaletteBeige}"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
