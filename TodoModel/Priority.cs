@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace TodoModel
 {
@@ -36,14 +35,14 @@ namespace TodoModel
 		public static Priority Hight => new Priority("Hight", 8);
 	}
 
-	public partial class Priority : ModelNotifier, IComparable<Priority>, IEquatable<Priority>
+	public partial class Priority : ModelNotifier, IPriority
 	{
 		/// <summary>
 		/// Comparsion for ordering
 		/// </summary>
 		/// <param name="other">Compared object of <see cref="Priority"/></param>
 		/// <returns> this before other -> -1 this==other -> 0 this after other -> 1</returns>
-		public int CompareTo(Priority other)
+		public int CompareTo(IPriority other)
 		{
 			return Value.CompareTo(other.Value);
 		}
@@ -53,7 +52,7 @@ namespace TodoModel
 		/// </summary>
 		/// <param name="other">Compared object of <see cref="Priority"/></param>
 		/// <returns>true - objects are equal, otherwise - false</returns>
-		public bool Equals(Priority other)
+		public bool Equals(IPriority other)
 		{
 			return Name.Equals(other.Name) && Value.Equals(other.Value);
 		}
