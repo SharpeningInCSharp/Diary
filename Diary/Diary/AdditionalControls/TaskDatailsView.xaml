@@ -86,7 +86,7 @@
                 <Image Source="priority_icon.png"
                        Style="{StaticResource ImageStyle}"/>
                 <Picker x:Name="PriorityPicker"
-                    SelectedIndexChanged="PriorityPicker_SelectedIndexChanged"/>
+                        SelectedItem="{Binding Priority, Mode=TwoWay}"/>
             </StackLayout>
         </StackLayout>
         </Grid>
