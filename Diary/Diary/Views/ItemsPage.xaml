@@ -12,7 +12,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Calendar" IconImageSource="calendar_icon.png" Clicked="SearchDate_Clicked"/>
-        <ToolbarItem Text="Ordering" IconImageSource="sort_accending_icon.png" Clicked="Ordering_Click"/>
+        <ToolbarItem Text="Ordering" x:Name="accendingButton" IconImageSource="sort_accending_icon.png" Clicked="Ordering_Click"/>
     </ContentPage.ToolbarItems>
     
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">

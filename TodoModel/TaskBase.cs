@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace TodoModel
 {
@@ -39,7 +37,7 @@ namespace TodoModel
 			}
 		}
 
-		private Priority priority;
+		private Priority priority = Priority.Normal;
 
 		/// <summary>
 		/// Task Priority

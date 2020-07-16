@@ -44,7 +44,7 @@ namespace Diary.Views
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "WALK",
-				Note = "Alone",
+				Note = "With dog",
 			});
 
 			BindingContext = TasksList;
@@ -84,7 +84,16 @@ namespace Diary.Views
 
 		private void Ordering_Click(object seder, EventArgs e)
 		{
+			TasksList.OrderByPriority();
 
+			if(TasksList.Ascending)
+			{
+
+			}
+			else
+			{
+
+			}
 		}
 	}
 }
