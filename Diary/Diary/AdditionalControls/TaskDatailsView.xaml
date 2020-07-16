@@ -7,47 +7,76 @@
              x:Class="Diary.AdditionalControls.TaskDatailsView"
              BackgroundColor="{StaticResource PaletteBeige}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="Label" x:Key="NotationLabel">
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+
+            <Style TargetType="IndicatorView" x:Key="InputItem">
+                <Setter Property="Margin" Value="6,4,2,4"/>
+            </Style>
+
+            <Style TargetType="Image" x:Key="ImageStyle">
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+
+            <Style TargetType="ImageButton" x:Key="ImageButtonStyle">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Margin" Value="10,6"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Remove" IconImageSource="delete_icon.png" Clicked="RemoveButton_Clicked"/>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
-        <Grid Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <StackLayout Margin="10">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
+            <Label Text="Task title" 
+                   Style="{StaticResource NotationLabel}"/>
             <Entry x:Name="HeaderEntry"
-                   Text="{Binding Header, Mode=TwoWay}"
-                   Grid.Row="0"
-                   Grid.Column="0"/>
+                   Style="{StaticResource InputItem}"
+                   Text="{Binding Header, Mode=TwoWay}"/>
 
+            <Label Text="Add details"
+                   Style="{StaticResource NotationLabel}"/>
             <Editor x:Name="NoteEditor"
-                    Text="{Binding Note, Mode=TwoWay}"
-                    Grid.Row="1"
-                    Grid.Column="0"/>
+                    Style="{StaticResource InputItem}"
+                    Text="{Binding Note, Mode=TwoWay}"/>
 
-            
-
-            <Picker x:Name="TasksListPicker"
-                    Grid.Row="2"
-                    Grid.Column="0"
+            <StackLayout Orientation="Horizontal">
+                <Image Source="items_list_icon.png"
+                       Style="{StaticResource ImageStyle}"/>
+                <Picker x:Name="TasksListPicker"
                     SelectedIndexChanged="TasksListPicker_SelectedIndexChanged"/>
+            </StackLayout>
 
-            <Picker x:Name="PriorityPicker"
-                    Grid.Row="3"
-                    Grid.Column="0"
+            <StackLayout Orientation="Horizontal">
+                <ImageButton x:Name="SelectDatesRangeButton"
+                             Source="calendar_icon.png"
+                             Clicked="SelectDatesRangeButton_Clicked"
+                             Style="{StaticResource ImageButtonStyle}"/>
+
+                <ImageButton x:Name="RepeatButton"
+                             Clicked="RepeatButton_Clicked"
+                             Style="{StaticResource ImageButtonStyle}"
+                             Source="repeat_icon.png"/>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                <Image Source="priority_icon.png"
+                       Style="{StaticResource ImageStyle}"/>
+                <Picker x:Name="PriorityPicker"
                     SelectedIndexChanged="PriorityPicker_SelectedIndexChanged"/>
-
-        </Grid>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -42,7 +42,7 @@
             </CollectionView>
 
             <Button  WidthRequest="80" HeightRequest="80" ImageSource="plus.png" 
-                     VerticalOptions="End" Margin="0,0,20,100" HorizontalOptions="End"
+                     VerticalOptions="End" Margin="0,0,30,80" HorizontalOptions="End"
                      BackgroundColor="Transparent" Clicked="AddItem_Clicked"/>
             
         </Grid>
