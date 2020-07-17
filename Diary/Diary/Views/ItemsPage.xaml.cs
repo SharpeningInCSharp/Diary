@@ -56,7 +56,7 @@ namespace Diary.Views
 			var layout = (BindableObject)sender;
 			var item = (TaskBase)layout.BindingContext;
 
-			await Navigation.PushAsync(new TaskDatailsView(item));
+			await Navigation.PushAsync(new TaskDatailsView(item), false);
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace Diary.Views
 			TasksList.Add(empltyTask);
 
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
-			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
+			await Navigation.PushAsync(new TaskDatailsView(empltyTask), false);
 			AddButton.Rotation = 0;
 		}
 
@@ -78,7 +78,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
