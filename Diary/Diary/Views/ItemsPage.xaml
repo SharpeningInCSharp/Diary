@@ -46,7 +46,7 @@
                                          VerticalOptions="Center"
                                          Grid.Row="0"
                                          Grid.Column="0"
-                                         WidthRequest="22"
+                                         WidthRequest="25"
                                          HeightRequest="25"
                                          BackgroundColor="Transparent"/>
                             
