@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TodoModel.Database
 {
-    class PriorityEntity : RealmObject
+    public class PriorityEntity : RealmObject
     {
         [PrimaryKey]
         public string Name { get; set; }

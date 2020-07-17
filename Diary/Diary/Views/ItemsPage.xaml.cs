@@ -12,9 +12,11 @@ using Diary.Views;
 using Diary.ViewModels;
 
 using TodoModel;
+using TodoModel.Database;
 using Diary.AdditionalControls;
 using Xamarin.Forms.Shapes;
 using System.Threading;
+using Realms;
 
 namespace Diary.Views
 {
@@ -24,14 +26,30 @@ namespace Diary.Views
 	public partial class ItemsPage : ContentPage
 	{
 		private const int OnTaskCompletionMsTimeout = 200;
+
 		TaskList TasksList;
 
 		public ItemsPage()
 		{
 			InitializeComponent();
 
+			/// временное, пример записи в бд
+			//var realm = Realm.GetInstance();
+			//realm.Write(() =>
+			//{
+   //             var newNote = new PriorityEntity
+   //             {
+   //                 Name = "Rex",
+   //                 Value = 10
+   //             };
+   //             realm.Add(newNote);
+			//});
+			///
+
 			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
+
+
 
 			TasksList.Add(new TodoModel.Task
 			{
