@@ -6,6 +6,8 @@ namespace TodoModel
 {
 	public partial class Task : TaskBase
 	{
+		public bool HasInners => innerTasks.Count != 0;
+
 		private List<Task> innerTasks = new List<Task>();
 
 		public DateTime? InitialDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
