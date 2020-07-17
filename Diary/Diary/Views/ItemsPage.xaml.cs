@@ -13,6 +13,7 @@ using Diary.ViewModels;
 
 using TodoModel;
 using Diary.AdditionalControls;
+using Xamarin.Forms.Shapes;
 
 namespace Diary.Views
 {
@@ -28,8 +29,6 @@ namespace Diary.Views
 			InitializeComponent();
 
 			TasksList = new TaskList("Today");
-
-			//TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 			TasksList.Add(new TodoModel.Task
 			{
@@ -51,11 +50,6 @@ namespace Diary.Views
 			BindingContext = TasksList;
 		}
 
-		private void TasksList_CollectionChanged()
-		{
-			BindingContext = null;
-			BindingContext = TasksList;
-		}
 
 		async void OnItemSelected(object sender, EventArgs args)
 		{
@@ -71,7 +65,6 @@ namespace Diary.Views
 
 			TasksList.Add(empltyTask);
 
-
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 			AddButton.Rotation = 0;
@@ -85,7 +78,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
@@ -100,7 +93,20 @@ namespace Diary.Views
 			}
 
 			TasksList.OrderByPriority();
+		}
 
+		//TODO: fix problem with double click
+		private void CompleteButton_Clicked(object sender, EventArgs e)
+		{
+			((ImageButton)sender).Source = "tick_icon.png";
+		}
+
+		private void OnItemComleted(object sender, EventArgs e)
+		{
+			var layout = (BindableObject)sender;
+			var item = (TaskBase)layout.BindingContext;
+
+			item.Complete();
 		}
 	}
 }

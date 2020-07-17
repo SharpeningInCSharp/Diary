@@ -59,5 +59,10 @@ namespace Diary.AdditionalControls
 		{
 
 		}
+
+		private void CloseButton_Clicked(object sender, EventArgs e)
+		{
+			Navigation.PopAsync();
+		}
 	}
 }
