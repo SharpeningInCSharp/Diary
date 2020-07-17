@@ -6,11 +6,12 @@ using System.Text;
 
 namespace TodoModel.Database
 {
-    //class PriorityEntity : RealmObject
-    //{
-    //    [PrimaryKey]
-    //    string Name { get; set; }
-    //    int Value { get; set; }
-    //    int Color { get; set; }
-    //}
+    class PriorityEntity : RealmObject
+    {
+        [PrimaryKey]
+        public string Name { get; set; }
+        public int Value { get; set; }
+        public int Color { get; set; }
+        public IList<TodoNote> TodoNotes { get; }
+    }
 }

@@ -18,7 +18,7 @@ namespace TodoModel.Database
 		/// <typeparam name="TData">Required data type</typeparam>
 		/// <returns>Set of <typeparamref name="TData"/></returns>
 		IEnumerable<TData> Get<TData>();
-		//TODO: check is this method can be async after imp
+		//TODO: check if this method can be async after imp
 
 		/// <summary>
 		/// Add data to DB
