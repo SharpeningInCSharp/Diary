@@ -30,6 +30,7 @@ namespace Diary.Views
 			TasksList = new TaskList("Today");
 
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
+
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "Мыть попу",
@@ -75,7 +76,6 @@ namespace Diary.Views
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 			AddButton.Rotation = 0;
 		}
-
 
 
 		protected override void OnAppearing()

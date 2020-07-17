@@ -54,7 +54,7 @@ namespace TodoModel
 		public event TaskHandler TaskDeleted;
 		public event TaskHandler TaskCompleted;
 		public event TaskHandler TaskSetAside;
-		public event TaskHandler TaskMoved;
+		public event TaskHandler TaskMovedOut;
 
 		public TaskBase()
 		{ }
@@ -92,10 +92,12 @@ namespace TodoModel
 			TaskSetAside?.Invoke(this);
 		}
 
-		//TODO: what's with moving
-		public void MoveTo()
+		/// <summary>
+		/// Move out from current tasks list
+		/// </summary>
+		public void MoveOut()
 		{
-			TaskMoved?.Invoke(this);
+			TaskMovedOut?.Invoke(this);
 		}
 	}
 

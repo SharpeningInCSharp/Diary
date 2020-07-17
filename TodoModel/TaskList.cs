@@ -29,6 +29,7 @@ namespace TodoModel
 		{
 			task.TaskCompleted += Task_TaskCompleted;
 			task.TaskDeleted += Task_TaskDeleted;
+			task.TaskMovedOut += Task_TaskDeleted;
 
 			Tasks.Add(task);
 
