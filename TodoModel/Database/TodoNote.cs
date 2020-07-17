@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TodoModel.Database
 {
-    class TodoNote : RealmObject
+    public class TodoNote : RealmObject
     {
         [PrimaryKey]
         public int Id { get; set; }
