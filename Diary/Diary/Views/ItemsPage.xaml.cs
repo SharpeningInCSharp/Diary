@@ -132,9 +132,11 @@ namespace Diary.Views
 			var image = (Image)layout.Children[1];
 			image.Source = "tick_icon.png";
 
+			await layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
+			
 			var item = (TaskBase)layout.BindingContext;
-
-			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
+			item.Complete();
+			//await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
 		}
 
 		/// <summary>
