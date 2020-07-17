@@ -25,7 +25,7 @@ namespace Diary.Views
 	[DesignTimeVisible(false)]
 	public partial class ItemsPage : ContentPage
 	{
-		private const int OnTaskCompletionMsTimeout = 200;
+		private const int OnTaskCompletionMsTimeout = 350;
 
 		TaskList TasksList;
 
@@ -132,11 +132,11 @@ namespace Diary.Views
 			var image = (Image)layout.Children[1];
 			image.Source = "tick_icon.png";
 
-			await layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
+			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
 			
 			var item = (TaskBase)layout.BindingContext;
-			item.Complete();
-			//await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
+			//item.Complete();
+			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
 		}
 
 		/// <summary>
