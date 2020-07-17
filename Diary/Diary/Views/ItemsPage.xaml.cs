@@ -29,7 +29,7 @@ namespace Diary.Views
 
 			TasksList = new TaskList("Today");
 
-			TasksList.CollectionChanged += TasksList_CollectionChanged;
+			//TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 			TasksList.Add(new TodoModel.Task
 			{

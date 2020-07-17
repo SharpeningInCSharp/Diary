@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace TodoModel
 {
@@ -33,7 +34,8 @@ namespace TodoModel
 
 			Tasks.Add(task);
 
-			CollectionChanged?.Invoke();
+			//CollectionChanged?.Invoke();
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 
 		private void Task_TaskDeleted(TaskBase task)
@@ -41,7 +43,8 @@ namespace TodoModel
 			Tasks.Remove(task);
 			completedTasks.Remove(task);
 
-			CollectionChanged?.Invoke();
+			//CollectionChanged?.Invoke();
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 
 		private void Task_TaskCompleted(TaskBase task)
@@ -64,12 +67,13 @@ namespace TodoModel
 
 			Ascending = !Ascending;
 
-			CollectionChanged?.Invoke();
+			//CollectionChanged?.Invoke();
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 	}
 
-	public partial class TaskList
+	public partial class TaskList : INotifyPropertyChanged
 	{
-
+		public event PropertyChangedEventHandler PropertyChanged;
 	}
 }
