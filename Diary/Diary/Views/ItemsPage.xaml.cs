@@ -33,7 +33,7 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
-            /// временное, пример записи в бд
+            /// временное, пример записи в бд // я допишу не трогайте :)))))
 			//  var realm = Realm.GetInstance();
 			//realm.Write(() =>
 			//{
