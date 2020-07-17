@@ -60,9 +60,10 @@ namespace Diary.AdditionalControls
 
 		}
 
-		private void CloseButton_Clicked(object sender, EventArgs e)
+		async private void CloseButton_Clicked(object sender, EventArgs e)
 		{
-			Navigation.PopAsync();
+			await CloseButton.RotateTo(0, 200, Easing.CubicInOut);
+			Navigation.PopAsync(false);
 		}
 	}
 }

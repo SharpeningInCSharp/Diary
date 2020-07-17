@@ -102,7 +102,7 @@
                     ImageSource="plus.png"
                     Clicked="CloseButton_Clicked"
                     Style="{StaticResource LeftBottomButton}"
-                    Rotation="135"/>
+                    Rotation="-135"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

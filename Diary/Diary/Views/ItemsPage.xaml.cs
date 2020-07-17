@@ -14,6 +14,7 @@ using Diary.ViewModels;
 using TodoModel;
 using Diary.AdditionalControls;
 using Xamarin.Forms.Shapes;
+using System.Threading;
 
 namespace Diary.Views
 {
@@ -22,6 +23,7 @@ namespace Diary.Views
 	[DesignTimeVisible(false)]
 	public partial class ItemsPage : ContentPage
 	{
+		private const int OnTaskCompletionMsTimeout = 200;
 		TaskList TasksList;
 
 		public ItemsPage()
@@ -29,6 +31,7 @@ namespace Diary.Views
 			InitializeComponent();
 
 			TasksList = new TaskList("Today");
+			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 			TasksList.Add(new TodoModel.Task
 			{
@@ -50,23 +53,32 @@ namespace Diary.Views
 			BindingContext = TasksList;
 		}
 
+		private void TasksList_CollectionChanged()
+		{
+			Dispatcher.BeginInvokeOnMainThread(() =>
+			{
+				BindingContext = null;
+				BindingContext = TasksList;
+			});
+		}
 
 		async void OnItemSelected(object sender, EventArgs args)
 		{
 			var layout = (BindableObject)sender;
 			var item = (TaskBase)layout.BindingContext;
 
-			await Navigation.PushAsync(new TaskDatailsView(item));
+			await Navigation.PushAsync(new TaskDatailsView(item), false);
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			var empltyTask = new TodoModel.Task();
+			var empltyTask = new TodoModel.Task();			
+
+			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
+			await Navigation.PushAsync(new TaskDatailsView(empltyTask), false);
 
 			TasksList.Add(empltyTask);
 
-			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
-			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 			AddButton.Rotation = 0;
 		}
 
@@ -78,7 +90,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
@@ -95,16 +107,25 @@ namespace Diary.Views
 			TasksList.OrderByPriority();
 		}
 
-		//TODO: fix problem with double click
-		private void CompleteButton_Clicked(object sender, EventArgs e)
+		private async void OnItemCompleted(object sender, EventArgs e)
 		{
-			((ImageButton)sender).Source = "tick_icon.png";
+			var layout = (Grid)sender;
+
+			var image = (Image)layout.Children[1];
+			image.Source = "tick_icon.png";
+
+			var item = (TaskBase)layout.BindingContext;
+
+			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
 		}
 
-		private void OnItemComleted(object sender, EventArgs e)
+		/// <summary>
+		/// Task completion animation
+		/// </summary>
+		/// <param name="item"></param>
+		private void OnTaskCompletion(TaskBase item)
 		{
-			var layout = (BindableObject)sender;
-			var item = (TaskBase)layout.BindingContext;
+			Thread.Sleep(OnTaskCompletionMsTimeout);
 
 			item.Complete();
 		}
