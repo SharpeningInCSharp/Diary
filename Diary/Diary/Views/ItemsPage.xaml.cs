@@ -72,12 +72,13 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			var empltyTask = new TodoModel.Task();
-
-			TasksList.Add(empltyTask);
+			var empltyTask = new TodoModel.Task();			
 
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask), false);
+
+			TasksList.Add(empltyTask);
+
 			AddButton.Rotation = 0;
 		}
 
@@ -106,7 +107,7 @@ namespace Diary.Views
 			TasksList.OrderByPriority();
 		}
 
-		private async void OnItemComleted(object sender, EventArgs e)
+		private async void OnItemCompleted(object sender, EventArgs e)
 		{
 			var layout = (Grid)sender;
 

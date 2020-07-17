@@ -76,7 +76,7 @@
                                      Grid.ColumnSpan="2"/>
 
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemComleted"/>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
                             </Grid.GestureRecognizers>
                             
                             <!--<CollectionView x:Name="InnerTasks">
