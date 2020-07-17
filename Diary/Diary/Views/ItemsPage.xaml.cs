@@ -33,20 +33,24 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
-			/// временное, пример записи в бд
-			//var realm = Realm.GetInstance();
+            /// временное, пример записи в бд // я допишу не трогайте :)))))
+			//  var realm = Realm.GetInstance();
 			//realm.Write(() =>
 			//{
-   //             var newNote = new PriorityEntity
-   //             {
-   //                 Name = "Rex",
-   //                 Value = 10
-   //             };
-   //             realm.Add(newNote);
-			//});
-			///
+			//	Color a = new Color();
+			//	a = Color.Crimson;
+			//  var newNote = new PriorityEntity
+			//  {
+			//   Name = "GlavniyPriotitet",
+			//   Value = 10,
+			//	Color = a.,
 
-			TasksList = new TaskList("Today");
+			//  };
+			//   realm.Add(newNote);
+			//  });
+            ///
+
+            TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 
