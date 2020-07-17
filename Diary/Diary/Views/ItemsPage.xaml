@@ -21,32 +21,78 @@
                 ItemsSource="{Binding Tasks}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10">
+                        <Grid Margin="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Path= Header, Mode=Default}" 
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                            <Label Text="{Binding Path=Note, Mode=Default}" 
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="12" TextColor="{StaticResource PaletteDarkBeige}"/>
+                            <Ellipse Stroke="{StaticResource PaletteBeige}"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Grid.Column="0"
+                                     Grid.Row="0"
+                                     WidthRequest="25"
+                                     HeightRequest="25"
+                                     StrokeThickness="1"/>
 
-                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="#1690F4"/>
+                            <ImageButton Clicked="CompleteButton_Clicked"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center"
+                                         Grid.Row="0"
+                                         Grid.Column="0"
+                                         WidthRequest="30"
+                                         HeightRequest="30"
+                                         BackgroundColor="Transparent"/>
+                            
+                            <!--Style="{DynamicResource ListItemTextStyle}"-->
+                            <StackLayout Grid.Row="0"
+                                        Grid.Column="1">
+                                <Label Text="{Binding Path= Header}" 
+                                        LineBreakMode="NoWrap" 
+                       
+                                        FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
 
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
-                            </StackLayout.GestureRecognizers>
+                                <!--Style="{DynamicResource ListItemDetailTextStyle}"-->
+                                <Label Text="{Binding Path=Note}" 
+                                        LineBreakMode="NoWrap"
+                      
+                                        FontSize="12" TextColor="{StaticResource PaletteDarkBeige}"/>
 
-                        </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
+                                </StackLayout.GestureRecognizers>
+
+                            </StackLayout>
+
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="{StaticResource PaletteDarkBeige}"
+                                     Grid.Row="1"
+                                     Margin="10,2,4,2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemComleted"/>
+                            </Grid.GestureRecognizers>
+                            <!--<Path Data="M0,0 l10,20 a5,5 0 1 1 5,5" Stroke="White"/>-->
+                            <!--<CollectionView x:Name="InnerTasks">
+                                
+                            </CollectionView>-->
+
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button  WidthRequest="80" HeightRequest="80" ImageSource="plus.png" 
-                     VerticalOptions="End" Margin="0,0,30,80" HorizontalOptions="End"
-                     BackgroundColor="Transparent" Clicked="AddItem_Clicked"
-                     x:Name="AddButton" CornerRadius="40"/>
+
+            <Button ImageSource="plus.png" 
+                    Style="{StaticResource LeftBottomButton}"
+                    Clicked="AddItem_Clicked"
+                    x:Name="AddButton" />
 
         </Grid>
 

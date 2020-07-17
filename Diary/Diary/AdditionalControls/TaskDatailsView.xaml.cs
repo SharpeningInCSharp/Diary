@@ -19,7 +19,6 @@ namespace Diary.AdditionalControls
 		{
 			InitializeComponent();
 
-			//storage = DependencyService.Get<ITodoStorage>();
 			//InitializeCB();
 			PriorityPicker.ItemsSource = new List<IPriority>
 			{ Priority.Low, Priority.Hight, Priority.Normal};
@@ -30,7 +29,7 @@ namespace Diary.AdditionalControls
 		private void InitializeCB()
 		{
 			PriorityPicker.ItemsSource = storage.Get<IPriority>().ToList();
-			TasksListPicker.ItemsSource = storage.Get<IPriority>().ToList();
+			TasksListPicker.ItemsSource = storage.Get<ITodoStorage>().ToList();
 		}
 
 		private void RemoveButton_Clicked(object sender, EventArgs e)
@@ -39,14 +38,17 @@ namespace Diary.AdditionalControls
 			Navigation.PopAsync();
 		}
 
-		private void TasksListPicker_SelectedIndexChanged(object sender, EventArgs e)
+		private async void TasksListPicker_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			var targetTasksList = ((Picker)sender).SelectedItem;
 
+			//TODO: should be await
+			Task.MoveOut();
+
+			await System.Threading.Tasks.Task.Run(() =>
+					storage.Get<TaskList>().SingleOrDefault(x => x.Equals(targetTasksList)).Add(Task));
 		}
 
-		private void PriorityPicker_SelectedIndexChanged(object sender, EventArgs e)
-		{
-		}
 
 		private void RepeatButton_Clicked(object sender, EventArgs e)
 		{
@@ -56,6 +58,11 @@ namespace Diary.AdditionalControls
 		private void SelectDatesRangeButton_Clicked(object sender, EventArgs e)
 		{
 
+		}
+
+		private void CloseButton_Clicked(object sender, EventArgs e)
+		{
+			Navigation.PopAsync();
 		}
 	}
 }
