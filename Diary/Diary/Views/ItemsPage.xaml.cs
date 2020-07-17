@@ -66,7 +66,7 @@ namespace Diary.Views
 			TasksList.Add(empltyTask);
 
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
-			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
+			await Navigation.PushAsync(new TaskDatailsView(empltyTask), false);
 			AddButton.Rotation = 0;
 		}
 
