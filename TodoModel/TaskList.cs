@@ -31,7 +31,8 @@ namespace TodoModel
 
 			Tasks.Add(task);
 
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
+			CollectionChanged?.Invoke();
+			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 
 		private void Task_TaskDeleted(TaskBase task)
@@ -39,7 +40,8 @@ namespace TodoModel
 			Tasks.Remove(task);
 			completedTasks.Remove(task);
 
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
+			CollectionChanged?.Invoke();
+			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 
 		private void Task_TaskCompleted(TaskBase task)
@@ -47,7 +49,8 @@ namespace TodoModel
 			Tasks.Remove(task);
 			completedTasks.Add(task);
 
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
+			CollectionChanged?.Invoke();
+			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 
 		public void OrderByPriority()
@@ -64,7 +67,8 @@ namespace TodoModel
 
 			Ascending = !Ascending;
 
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
+			CollectionChanged?.Invoke();
+			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 	}
 

@@ -29,6 +29,7 @@ namespace Diary.Views
 			InitializeComponent();
 
 			TasksList = new TaskList("Today");
+			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 			TasksList.Add(new TodoModel.Task
 			{
@@ -50,6 +51,11 @@ namespace Diary.Views
 			BindingContext = TasksList;
 		}
 
+		private void TasksList_CollectionChanged()
+		{
+			BindingContext = null;
+			BindingContext = TasksList;
+		}
 
 		async void OnItemSelected(object sender, EventArgs args)
 		{
