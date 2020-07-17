@@ -29,6 +29,7 @@ namespace Diary.Views
 			InitializeComponent();
 
 			TasksList = new TaskList("Today");
+			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 			TasksList.Add(new TodoModel.Task
 			{
@@ -50,13 +51,18 @@ namespace Diary.Views
 			BindingContext = TasksList;
 		}
 
+		private void TasksList_CollectionChanged()
+		{
+			BindingContext = null;
+			BindingContext = TasksList;
+		}
 
 		async void OnItemSelected(object sender, EventArgs args)
 		{
 			var layout = (BindableObject)sender;
 			var item = (TaskBase)layout.BindingContext;
 
-			await Navigation.PushAsync(new TaskDatailsView(item));
+			await Navigation.PushAsync(new TaskDatailsView(item), false);
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)
@@ -78,7 +84,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
