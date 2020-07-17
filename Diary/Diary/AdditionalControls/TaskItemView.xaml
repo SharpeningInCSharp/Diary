@@ -9,7 +9,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -45,9 +45,9 @@
             </StackLayout>
 
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="{StaticResource PaletteDarkBeige}"
-                         Grid.Row="1"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="2"/>
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"/>
 
         </Grid>
     </ContentView.Content>

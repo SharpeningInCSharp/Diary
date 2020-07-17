@@ -13,6 +13,7 @@ using Diary.ViewModels;
 
 using TodoModel;
 using Diary.AdditionalControls;
+using Xamarin.Forms.Shapes;
 
 namespace Diary.Views
 {
@@ -22,6 +23,9 @@ namespace Diary.Views
 	public partial class ItemsPage : ContentPage
 	{
 		TaskList TasksList;
+		///System.InvalidOperationException: 
+		///'The class, property, or method you are attempting to use ('.ctor') is part of Shape;
+		///to use it, you must opt-in by calling Forms.SetFlags("Shapes_Experimental") before calling Forms.Init().'
 
 		public ItemsPage()
 		{
@@ -49,6 +53,15 @@ namespace Diary.Views
 			});
 
 			BindingContext = TasksList;
+
+			OnInitialization();
+		}
+
+		private void OnInitialization()
+		{
+			//var e = new Ellipse();
+			//e.WidthRequest = 29;
+			//e.HeightRequest = 23;
 		}
 
 		private void TasksList_CollectionChanged()
@@ -71,7 +84,6 @@ namespace Diary.Views
 
 			TasksList.Add(empltyTask);
 
-
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask));
 			AddButton.Rotation = 0;
@@ -85,7 +97,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
