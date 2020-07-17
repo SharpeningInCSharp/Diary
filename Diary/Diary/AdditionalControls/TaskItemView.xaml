@@ -5,9 +5,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Diary.AdditionalControls.TaskItemView">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
+    <ContentView.Content>
+        <StackLayout>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="1"
+                             Grid.Column="1">
+                    <Label Text="{Binding Path= Header, Mode=Default}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
+
+                    <Label Text="{Binding Path=Note, Mode=Default}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="12" TextColor="{StaticResource PaletteDarkBeige}"/>
+                </StackLayout>
+
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="#1690F4"
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"/>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
 </ContentView>
