@@ -1,8 +1,5 @@
-﻿using TodoModel;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
 
 namespace TodoModel
@@ -34,7 +31,6 @@ namespace TodoModel
 
 			Tasks.Add(task);
 
-			//CollectionChanged?.Invoke();
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 
@@ -43,7 +39,6 @@ namespace TodoModel
 			Tasks.Remove(task);
 			completedTasks.Remove(task);
 
-			//CollectionChanged?.Invoke();
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 
@@ -51,6 +46,8 @@ namespace TodoModel
 		{
 			Tasks.Remove(task);
 			completedTasks.Add(task);
+
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 
 		public void OrderByPriority()
@@ -67,7 +64,6 @@ namespace TodoModel
 
 			Ascending = !Ascending;
 
-			//CollectionChanged?.Invoke();
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
 		}
 	}

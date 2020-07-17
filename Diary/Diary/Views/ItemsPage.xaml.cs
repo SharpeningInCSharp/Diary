@@ -23,17 +23,12 @@ namespace Diary.Views
 	public partial class ItemsPage : ContentPage
 	{
 		TaskList TasksList;
-		///System.InvalidOperationException: 
-		///'The class, property, or method you are attempting to use ('.ctor') is part of Shape;
-		///to use it, you must opt-in by calling Forms.SetFlags("Shapes_Experimental") before calling Forms.Init().'
 
 		public ItemsPage()
 		{
 			InitializeComponent();
 
 			TasksList = new TaskList("Today");
-
-			//TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 			TasksList.Add(new TodoModel.Task
 			{
@@ -53,22 +48,8 @@ namespace Diary.Views
 			});
 
 			BindingContext = TasksList;
-
-			OnInitialization();
 		}
 
-		private void OnInitialization()
-		{
-			//var e = new Ellipse();
-			//e.WidthRequest = 29;
-			//e.HeightRequest = 23;
-		}
-
-		private void TasksList_CollectionChanged()
-		{
-			BindingContext = null;
-			BindingContext = TasksList;
-		}
 
 		async void OnItemSelected(object sender, EventArgs args)
 		{
@@ -112,7 +93,20 @@ namespace Diary.Views
 			}
 
 			TasksList.OrderByPriority();
+		}
 
+		//TODO: fix problem with double click
+		private void CompleteButton_Clicked(object sender, EventArgs e)
+		{
+			((ImageButton)sender).Source = "tick_icon.png";
+		}
+
+		private void OnItemComleted(object sender, EventArgs e)
+		{
+			var layout = (BindableObject)sender;
+			var item = (TaskBase)layout.BindingContext;
+
+			item.Complete();
 		}
 	}
 }
