@@ -39,15 +39,15 @@
                                      Grid.Row="0"
                                      WidthRequest="25"
                                      HeightRequest="25"
-                                     StrokeThickness="1"/>
+                                     StrokeThickness="2"/>
 
                             <ImageButton Clicked="CompleteButton_Clicked"
                                          HorizontalOptions="Center"
                                          VerticalOptions="Center"
                                          Grid.Row="0"
                                          Grid.Column="0"
-                                         WidthRequest="30"
-                                         HeightRequest="30"
+                                         WidthRequest="22"
+                                         HeightRequest="25"
                                          BackgroundColor="Transparent"/>
                             
                             <!--Style="{DynamicResource ListItemTextStyle}"-->
