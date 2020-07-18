@@ -21,24 +21,27 @@ namespace Diary.AdditionalControls
 		{
 			InitializeComponent();
 
-			//InitializeCB();
-			//PriorityPicker.ItemsSource = new List<IPriority>
-			//{ Priority.Low, Priority.Hight, Priority.Normal};
-			
-			//reading priors from db 
-			var realm = Realm.GetInstance();
-			var priors = realm.All<PriorityEntity>().ToList();
-			List<IPriority> priorities = new List<IPriority>();
-			foreach(PriorityEntity pe in priors)
-            {
-				Priority savedOne = new Priority(pe.Name, pe.Value);
-				savedOne.Color = System.Drawing.Color.FromArgb(pe.Color);
-				priorities.Add(savedOne);
-            }
-			PriorityPicker.ItemsSource = priorities;
-			//
+            //InitializeCB();
 
-			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
+            //old priority adding
+
+            PriorityPicker.ItemsSource = new List<IPriority>
+            { Priority.Low, Priority.Hight, Priority.Normal};
+
+            //reading priors from db 
+            //var realm = Realm.GetInstance();
+            //var priors = realm.All<PriorityEntity>().ToList();
+            //List<IPriority> priorities = new List<IPriority>();
+            //foreach(PriorityEntity pe in priors)
+            //         {
+            //	Priority savedOne = new Priority(pe.Name, pe.Value);
+            //	savedOne.Color = System.Drawing.Color.FromArgb(pe.Color);
+            //	priorities.Add(savedOne);
+            //         }
+            //PriorityPicker.ItemsSource = priorities;
+            //
+
+            BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 		}
 
 		private void InitializeCB()

@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Firebase;
+using Realms;
+using Android.Provider;
 
 namespace Diary.Droid
 {
@@ -20,7 +22,7 @@ namespace Diary.Droid
 
             base.OnCreate(savedInstanceState);
 
-            FirebaseApp.InitializeApp(Application.Context);
+            FirebaseApp.InitializeApp(Application.Context); //надеюсь доделаю FireBase но пусть пока тут будет
 
             global::Xamarin.Forms.Forms.SetFlags("Shapes_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
