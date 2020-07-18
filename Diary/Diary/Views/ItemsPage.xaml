@@ -94,7 +94,8 @@
                     Style="{StaticResource LeftBottomButton}"
                     Clicked="AddItem_Clicked"
                     x:Name="AddButton" />
-
+            
+            
         </Grid>
 
     </RefreshView>
