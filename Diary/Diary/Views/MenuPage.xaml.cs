@@ -21,7 +21,7 @@ namespace Diary.Views
 			menuItems = new List<HomeMenuItem>
 			{
 				new HomeMenuItem {Id = MenuItemType.Account, Title="Account" },
-				new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
+				new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
 				new HomeMenuItem {Id = MenuItemType.About, Title="About" }
 			};
 

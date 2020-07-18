@@ -21,7 +21,7 @@ namespace Diary.Views
 
 			MasterBehavior = MasterBehavior.Popover;
 
-			MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+			MenuPages.Add((int)MenuItemType.Tasks, (NavigationPage)Detail);
 		}
 
 		public async Task NavigateFromMenu(int id)
@@ -34,7 +34,7 @@ namespace Diary.Views
 						MenuPages.Add(id, new NavigationPage(new AccountPage()));
 						break;
 
-					case (int)MenuItemType.Browse:
+					case (int)MenuItemType.Tasks:
 						MenuPages.Add(id, new NavigationPage(new ItemsPage()));
 						break;
 

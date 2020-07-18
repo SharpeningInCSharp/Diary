@@ -7,7 +7,7 @@ namespace Diary.Models
 	public enum MenuItemType
 	{
 		Account,
-		Browse,
+		Tasks,
 		About
 	}
 	public class HomeMenuItem
