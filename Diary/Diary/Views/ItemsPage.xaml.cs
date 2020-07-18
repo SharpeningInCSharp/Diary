@@ -94,9 +94,9 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			var empltyTask = new TodoModel.Task();			
-
+			var empltyTask = new TodoModel.Task();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
+
 			await Navigation.PushAsync(new TaskDatailsView(empltyTask), false);
 
 			TasksList.Add(empltyTask);

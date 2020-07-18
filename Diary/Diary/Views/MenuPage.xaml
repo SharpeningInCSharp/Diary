@@ -10,11 +10,12 @@
              
     <StackLayout VerticalOptions="FillAndExpand">
         <ListView x:Name="ListViewMenu"
-                    HasUnevenRows="True">
+                    HasUnevenRows="True"
+                  ItemSelected="ListViewMenu_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10">
+                        <Grid x:Name="opa" Padding="10">
                             <Label Text="{Binding Title}" FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
                         </Grid>                        
                     </ViewCell>

@@ -26,7 +26,7 @@ namespace Diary.Views
 			};
 
 			ListViewMenu.ItemsSource = menuItems;
-
+			
 			ListViewMenu.SelectedItem = menuItems[1];
 			ListViewMenu.ItemSelected += async (sender, e) =>
 			{
@@ -36,6 +36,11 @@ namespace Diary.Views
 				var id = (int)((HomeMenuItem)e.SelectedItem).Id;
 				await RootPage.NavigateFromMenu(id);
 			};
+		}
+
+		private void ListViewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+		{
+			((ListView)sender).SelectedItem = null;
 		}
 	}
 }
