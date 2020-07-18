@@ -103,6 +103,8 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
+			
+
 			var empltyTask = new TodoModel.Task();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 
@@ -121,7 +123,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
@@ -140,15 +142,15 @@ namespace Diary.Views
 
 		private async void OnItemCompleted(object sender, EventArgs e)
 		{
+			
 			var layout = (Grid)sender;
-
+			
 			var image = (Image)layout.Children[1];
 			image.Source = "tick_icon.png";
 
 			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
 			
 			var item = (TaskBase)layout.BindingContext;
-			//item.Complete();
 			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
 		}
 

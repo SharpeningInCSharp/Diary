@@ -4,20 +4,24 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Diary.Views.AccountPage">
+             x:Class="Diary.Views.AccountPage"
+             BackgroundColor="{StaticResource PaletteGrayBlue}">
     <ContentPage.Content>
         <StackLayout>
             <Entry WidthRequest="200" HeightRequest="80"
                      VerticalOptions="Start" Margin="0,50,0,0" HorizontalOptions="Center"
-                     BackgroundColor="Transparent"/>
+                     BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
+                     FontSize="20" HorizontalTextAlignment="Center"/>
 
             <Entry IsPassword="true" WidthRequest="200"
                      VerticalOptions="Start" Margin="0,100,0,0" HorizontalOptions="Center"
-                     BackgroundColor="Transparent"/>
+                     BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
+                     FontSize="20" HorizontalTextAlignment="Center"/>
 
-            <Button  x:Name="AuthButton" WidthRequest="80" HeightRequest="80" ImageSource="plus.png" 
-                     VerticalOptions="Start" Margin="0,150,0,0" HorizontalOptions="Center"
-                     BackgroundColor="Transparent" Clicked="AuthButton_Clicked"/>
+            <Button  x:Name="AuthButton" WidthRequest="150" HeightRequest="60" Text="LOGIN" TextColor="{StaticResource PaletteDarkBlue}"
+                     VerticalOptions="Start"  HorizontalOptions="Center" FontSize="20" FontAttributes="Bold"
+                     BackgroundColor="{StaticResource PaletteBeige}" Clicked="AuthButton_Clicked"
+                     CornerRadius="10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
