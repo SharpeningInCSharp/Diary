@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +18,7 @@ using Diary.AdditionalControls;
 using Xamarin.Forms.Shapes;
 using System.Threading;
 using Realms;
+using Xamarin.Forms.Internals;
 
 namespace Diary.Views
 {
@@ -34,30 +36,37 @@ namespace Diary.Views
 			InitializeComponent();
 
             /// временное, пример записи в бд // я допишу не трогайте :)))))
-			//  var realm = Realm.GetInstance();
-			//realm.Write(() =>
-			//{
-			//	Color a = new Color();
-			//	a = Color.Crimson;
-			//  var newNote = new PriorityEntity
-			//  {
-			//   Name = "GlavniyPriotitet",
-			//   Value = 10,
-			//	Color = a.,
+   //         var realm = Realm.GetInstance();
+   //         realm.Write(() =>
+   //         {
+   //             System.Drawing.Color a = new System.Drawing.Color();
+			//	a = System.Drawing.Color.Aqua;
+   //             var newNote = new PriorityEntity
+   //             {
+   //                 Name = "NuTakSebe",
+   //                 Value = 2,
+   //                 Color = a.ToArgb()
 
-			//  };
-			//   realm.Add(newNote);
-			//  });
-            ///
+   //             };
+   //             realm.Add(newNote);
+			//	a = System.Drawing.Color.Green;
+			//	var alsonewNote = new PriorityEntity
+			//	{
+			//		Name = "Normas",
+			//		Value = 5,
+			//		Color = a.ToArgb()
+
+			//	};
+			//	realm.Add(alsonewNote);
+			//});
 
             TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 
-
 			TasksList.Add(new TodoModel.Task
 			{
-				Header = "Мыть попу",
+				Header = "quwuwu",
 				Note = "с мылом",
 			});
 
@@ -89,7 +98,7 @@ namespace Diary.Views
 			var layout = (BindableObject)sender;
 			var item = (TaskBase)layout.BindingContext;
 
-			await Navigation.PushAsync(new TaskDatailsView(item), false);
+			await Navigation.PushAsync(new TaskDetailsView(item), false);
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)
@@ -97,7 +106,7 @@ namespace Diary.Views
 			var empltyTask = new TodoModel.Task();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 
-			await Navigation.PushAsync(new TaskDatailsView(empltyTask), false);
+			await Navigation.PushAsync(new TaskDetailsView(empltyTask), false);
 
 			TasksList.Add(empltyTask);
 

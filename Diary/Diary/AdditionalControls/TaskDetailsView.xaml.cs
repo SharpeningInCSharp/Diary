@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Realms;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using TodoModel;
 using TodoModel.Database;
@@ -9,19 +11,32 @@ using Xamarin.Forms.Xaml;
 namespace Diary.AdditionalControls
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TaskDatailsView : ContentPage
+	public partial class TaskDetailsView : ContentPage
 	{
 		public TaskBase Task { get; }
 
 		//TOOD: should pick out ViewModel with access to DB
 		private ITodoStorage storage;
-		public TaskDatailsView(TaskBase task)
+		public TaskDetailsView(TaskBase task)
 		{
 			InitializeComponent();
 
 			//InitializeCB();
-			PriorityPicker.ItemsSource = new List<IPriority>
-			{ Priority.Low, Priority.Hight, Priority.Normal};
+			//PriorityPicker.ItemsSource = new List<IPriority>
+			//{ Priority.Low, Priority.Hight, Priority.Normal};
+			
+			//reading priors from db 
+			var realm = Realm.GetInstance();
+			var priors = realm.All<PriorityEntity>().ToList();
+			List<IPriority> priorities = new List<IPriority>();
+			foreach(PriorityEntity pe in priors)
+            {
+				Priority savedOne = new Priority(pe.Name, pe.Value);
+				savedOne.Color = System.Drawing.Color.FromArgb(pe.Color);
+				priorities.Add(savedOne);
+            }
+			PriorityPicker.ItemsSource = priorities;
+			//
 
 			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 		}
