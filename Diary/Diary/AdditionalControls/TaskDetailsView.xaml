@@ -103,6 +103,7 @@
                     Clicked="CloseButton_Clicked"
                     Style="{StaticResource LeftBottomButton}"
                     Rotation="-135"/>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

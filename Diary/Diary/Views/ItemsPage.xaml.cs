@@ -35,20 +35,20 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
-            /// временное, пример записи в бд // я допишу не трогайте :)))))
-   //         var realm = Realm.GetInstance();
-   //         realm.Write(() =>
-   //         {
-   //             System.Drawing.Color a = new System.Drawing.Color();
+			/// временное, пример записи в бд // я допишу не трогайте :)))))
+			//var realm = Realm.GetInstance();
+			//realm.Write(() =>
+			//{
+			//	System.Drawing.Color a = new System.Drawing.Color();
 			//	a = System.Drawing.Color.Aqua;
-   //             var newNote = new PriorityEntity
-   //             {
-   //                 Name = "NuTakSebe",
-   //                 Value = 2,
-   //                 Color = a.ToArgb()
+			//	var newNote = new PriorityEntity
+			//	{
+			//		Name = "NuTakSebe",
+			//		Value = 2,
+			//		Color = a.ToArgb()
 
-   //             };
-   //             realm.Add(newNote);
+			//	};
+			//	realm.Add(newNote);
 			//	a = System.Drawing.Color.Green;
 			//	var alsonewNote = new PriorityEntity
 			//	{
@@ -60,7 +60,7 @@ namespace Diary.Views
 			//	realm.Add(alsonewNote);
 			//});
 
-            TasksList = new TaskList("Today");
+			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 

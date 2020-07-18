@@ -36,8 +36,6 @@ namespace Diary.AdditionalControls
 				priorities.Add(savedOne);
             }
 			PriorityPicker.ItemsSource = priorities;
-			//
-
 			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 		}
 

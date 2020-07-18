@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -26,6 +26,7 @@
     <Resource Include="Resources\TrashIcon.ico" />
   </ItemGroup>
 
+  
   <ItemGroup>
     <Compile Update="AdditionalControls\TaskDetailsView.xaml.cs">
       <DependentUpon>TaskDetailsView.xaml</DependentUpon>
