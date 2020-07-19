@@ -44,5 +44,9 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+        <Button ImageSource="plus.png" 
+                    Style="{StaticResource LeftBottomButton}"
+                    Clicked="AddItem_Clicked"
+                    x:Name="AddButton" />
     </Grid>
 </ContentPage>

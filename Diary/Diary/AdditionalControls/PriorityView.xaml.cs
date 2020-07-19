@@ -54,5 +54,10 @@ namespace Diary.AdditionalControls
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
+
+        private void AddItem_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
