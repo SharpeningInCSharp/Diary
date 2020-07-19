@@ -7,6 +7,7 @@
              Title="Priorities"
              x:Class="Diary.AdditionalControls.PriorityView"
              BackgroundColor="{StaticResource PaletteGrayBlue}">
+    <Grid>
   <ListView x:Name="MyListView"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement">
@@ -28,19 +29,20 @@
                             <ColumnDefinition Width="7*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
-
+                        
                         <Ellipse Grid.Column="0" HeightRequest="25" WidthRequest="25"
                                  Fill="{Binding Path=PriorityColor}" VerticalOptions="Center"
-                                     HorizontalOptions="Center"/>
+                                 HorizontalOptions="Center" Stroke="{StaticResource PaletteDarkBlue}"
+                                 StrokeThickness="5"/>
+                        
                         <Label Grid.Column="1" Text="{Binding Path=Name}" TextColor="{StaticResource PaletteBeige}"
                                FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center"/>
                         <Label Grid.Column="2" Text="{Binding Path=Value}" TextColor="{StaticResource PaletteBeige}"
-                               FontSize="20" VerticalTextAlignment="Center"/>
-                    
+                               FontSize="20" FontAttributes="Bold" VerticalTextAlignment="Center"/>
                     </Grid> 
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+    </Grid>
 </ContentPage>
