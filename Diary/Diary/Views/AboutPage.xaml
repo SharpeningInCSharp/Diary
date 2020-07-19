@@ -50,7 +50,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Эта штука разработана тремя пацанами из" ForegroundColor="{StaticResource PaletteBeige}"/>
+                                <Span x:Name="qwerty"  Text="Эта штука разработана тремя пацанами из" ForegroundColor="{StaticResource PaletteBeige}"/>
                                 <Span Text=" " />
                                 <Span Text="ДВГУПС" FontAttributes="Bold" ForegroundColor="{StaticResource PaletteBeige}"/>
                                 <Span Text="." ForegroundColor="{StaticResource PaletteBeige}"/>
