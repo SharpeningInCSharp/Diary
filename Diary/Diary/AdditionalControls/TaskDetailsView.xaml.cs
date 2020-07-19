@@ -83,5 +83,10 @@ namespace Diary.AdditionalControls
 			await CloseButton.RotateTo(0, 200, Easing.CubicInOut);
 			Navigation.PopAsync(false);
 		}
+
+		async private void PriorityBut_Clicked(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

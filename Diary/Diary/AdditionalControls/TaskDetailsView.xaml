@@ -91,6 +91,9 @@
                 <StackLayout Orientation="Horizontal">
                     <Image Source="priority_icon.png"
                        Style="{StaticResource ImageStyle}"/>
+
+                    <!--<Button BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
+                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority"/>-->
                     <Picker x:Name="PriorityPicker"
                             Style="{StaticResource InputPicker}"
                         ItemDisplayBinding="{Binding Name}"
