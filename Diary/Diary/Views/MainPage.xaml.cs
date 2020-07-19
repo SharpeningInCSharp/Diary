@@ -17,11 +17,15 @@ namespace Diary.Views
 		Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
 		public MainPage()
 		{
+
+			TodoModel.Database.SettingsInitialization.ParamsSetting(); //инициализация параметров в Realm
+
 			InitializeComponent();
 
 			MasterBehavior = MasterBehavior.Popover;
 
 			MenuPages.Add((int)MenuItemType.Tasks, (NavigationPage)Detail);
+
 		}
 
 		public async Task NavigateFromMenu(int id)
