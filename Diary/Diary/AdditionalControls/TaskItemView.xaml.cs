@@ -16,7 +16,6 @@ namespace Diary.AdditionalControls
 		public TaskItemView()
 		{
 			InitializeComponent();
-
 			BindingContext = Task;
 		}
 

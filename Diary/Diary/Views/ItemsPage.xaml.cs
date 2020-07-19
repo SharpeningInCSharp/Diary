@@ -60,7 +60,7 @@ namespace Diary.Views
             //    realm.Add(alsonewNote);
             //});
 
-            TasksList = new TaskList("Today");
+			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 
