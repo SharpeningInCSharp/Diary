@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Priorities"
+             x:Class="Diary.AdditionalControls.PriorityView"
+             BackgroundColor="{StaticResource PaletteGrayBlue}">
+  <ListView x:Name="MyListView"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement">
+    <!--Built in Cells-->
+    <!--<ListView.ItemTemplate>
+        <DataTemplate>
+            <TextCell Text="{Binding .}" d:Text="{Binding .}" />
+        </DataTemplate>
+    </ListView.ItemTemplate>-->
+    
+    <!--Custom View Cells-->
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Ellipse Grid.Column="0" HeightRequest="25" WidthRequest="25"
+                                 Fill="{Binding Path=PriorityColor}" VerticalOptions="Center"
+                                     HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Text="{Binding Path=Name}" TextColor="{StaticResource PaletteBeige}"
+                               FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center"/>
+                        <Label Grid.Column="2" Text="{Binding Path=Value}" TextColor="{StaticResource PaletteBeige}"
+                               FontSize="20" VerticalTextAlignment="Center"/>
+                    
+                    </Grid> 
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

@@ -25,8 +25,8 @@ namespace Diary.AdditionalControls
 
             //old priority adding
 
-            PriorityPicker.ItemsSource = new List<IPriority>
-            { Priority.Low, Priority.Hight, Priority.Normal};
+            //PriorityPicker.ItemsSource = new List<IPriority>
+            //{ Priority.Low, Priority.Hight, Priority.Normal};
 
             //reading priors from db 
             //var realm = Realm.GetInstance();
@@ -46,7 +46,7 @@ namespace Diary.AdditionalControls
 
 		private void InitializeCB()
 		{
-			PriorityPicker.ItemsSource = storage.Get<IPriority>().ToList();
+			//PriorityPicker.ItemsSource = storage.Get<IPriority>().ToList();
 			TasksListPicker.ItemsSource = storage.Get<ITodoStorage>().ToList();
 		}
 
@@ -84,9 +84,9 @@ namespace Diary.AdditionalControls
 			Navigation.PopAsync(false);
 		}
 
-		async private void PriorityBut_Clicked(object sender, EventArgs e)
+		private void PriorityBut_Clicked(object sender, EventArgs e)
 		{
-
+			Navigation.PushAsync(new PriorityView(), false);
 		}
 	}
 }

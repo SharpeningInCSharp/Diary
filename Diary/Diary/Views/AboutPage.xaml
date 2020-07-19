@@ -72,7 +72,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="Это просто кнопка"
+                <Button Margin="0,10,0,0" Text="Это просто кнопка (руки на стол)"
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource PaletteBeige}"
                         TextColor="{StaticResource PaletteGrayBlue}" />

@@ -92,12 +92,12 @@
                     <Image Source="priority_icon.png"
                        Style="{StaticResource ImageStyle}"/>
 
-                    <!--<Button BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
-                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority"/>-->
-                    <Picker x:Name="PriorityPicker"
+                    <Button BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
+                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority"/>
+                    <!--<Picker x:Name="PriorityPicker"
                             Style="{StaticResource InputPicker}"
                         ItemDisplayBinding="{Binding Name}"
-                        SelectedItem="{Binding Priority, Mode=TwoWay}"/>
+                        SelectedItem="{Binding Priority, Mode=TwoWay}"/>-->
                 </StackLayout>
             </StackLayout>
             
