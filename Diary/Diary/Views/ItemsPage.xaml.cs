@@ -67,7 +67,7 @@ namespace Diary.Views
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "quwuwu",
-			    Note = "qwe",
+				Note = realm.All<Settings>().First().value.ToString() 
 			}) ;
 
 			TasksList.Add(new TodoModel.Task

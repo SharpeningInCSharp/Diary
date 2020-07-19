@@ -10,7 +10,7 @@ namespace Diary.ViewModels
 		public AboutViewModel()
 		{
 			Title = "About";
-			OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
+			OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://rt.pornhub.com/"));
 		}
 
 		public ICommand OpenWebCommand { get; }
