@@ -19,7 +19,8 @@
 
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <Grid BackgroundColor="{StaticResource PaletteGrayBlue}">
-            <CollectionView x:Name="ItemsCollectionView"
+            <ctrl:OuterTaskCollection x:Name="TasksCollection" BindingContext="{Binding Tasks}"/>
+            <!--<CollectionView x:Name="ItemsCollectionView"
                 ItemsSource="{Binding Tasks}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -148,7 +149,7 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
 
             <Button ImageSource="plus.png" 
                     Style="{StaticResource LeftBottomButton}"

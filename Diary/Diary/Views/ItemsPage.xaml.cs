@@ -63,7 +63,6 @@ namespace Diary.Views
 			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
-
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "quwuwu",
@@ -105,8 +104,8 @@ namespace Diary.Views
 		{
 			Dispatcher.BeginInvokeOnMainThread(() =>
 			{
-				BindingContext = null;
-				BindingContext = TasksList;
+				TasksCollection.BindingContext = null;
+				TasksCollection.BindingContext = TasksList;
 			});
 		}
 
