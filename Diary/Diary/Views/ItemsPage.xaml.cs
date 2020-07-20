@@ -35,30 +35,30 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
-            /// временное, пример записи в бд // я допишу не трогайте :)))))
-            var realm = Realm.GetInstance();
-			realm.Write(() =>
-			{
-				System.Drawing.Color a = new System.Drawing.Color();
-				a = System.Drawing.Color.Aqua;
-				var newNote = new PriorityEntity
-				{
-					Name = "NuTakSebe",
-					Value = 2,
-					Color = a.ToArgb()
+			/// временное, пример записи в бд // я допишу не трогайте :)))))
+			var realm = Realm.GetInstance();
+			//realm.Write(() =>
+			//{
+			//	System.Drawing.Color a = new System.Drawing.Color();
+			//	a = System.Drawing.Color.Aqua;
+			//	var newNote = new PriorityEntity
+			//	{
+			//		Name = "NuTakSebe",
+			//		Value = 2,
+			//		Color = a.ToArgb()
 
-				};
-				realm.Add(newNote);
-				a = System.Drawing.Color.Green;
-				var alsonewNote = new PriorityEntity
-				{
-					Name = "Normas",
-					Value = 5,
-					Color = a.ToArgb()
+			//	};
+			//	realm.Add(newNote);
+			//	a = System.Drawing.Color.Green;
+			//	var alsonewNote = new PriorityEntity
+			//	{
+			//		Name = "Normas",
+			//		Value = 5,
+			//		Color = a.ToArgb()
 
-				};
-				realm.Add(alsonewNote);
-			});
+			//	};
+			//	realm.Add(alsonewNote);
+			//});
 
 			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
@@ -67,8 +67,8 @@ namespace Diary.Views
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "quwuwu",
-				Note = realm.All<Settings>().FirstOrDefault()?.value.ToString() 
-			}) ;
+				Note = realm.All<Settings>().FirstOrDefault()?.value.ToString()
+			});
 
 			TasksList.Add(new TodoModel.Task
 			{
@@ -103,7 +103,7 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			
+
 
 			var empltyTask = new TodoModel.Task();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
@@ -123,7 +123,7 @@ namespace Diary.Views
 
 		private void SearchDate_Clicked(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		private void Ordering_Click(object seder, EventArgs e)
@@ -142,14 +142,14 @@ namespace Diary.Views
 
 		private async void OnItemCompleted(object sender, EventArgs e)
 		{
-			
+
 			var layout = (Grid)sender;
-			
+
 			var image = (Image)layout.Children[1];
 			image.Source = "tick_icon.png";
 
 			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
-			
+
 			var item = (TaskBase)layout.BindingContext;
 			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
 		}
