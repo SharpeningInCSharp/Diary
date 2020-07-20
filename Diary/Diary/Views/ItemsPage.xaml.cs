@@ -37,28 +37,28 @@ namespace Diary.Views
 
             /// временное, пример записи в бд // я допишу не трогайте :)))))
             var realm = Realm.GetInstance();
-            //realm.Write(() =>
-            //{
-            //    System.Drawing.Color a = new System.Drawing.Color();
-            //    a = System.Drawing.Color.Aqua;
-            //    var newNote = new PriorityEntity
-            //    {
-            //        Name = "NuTakSebe",
-            //        Value = 2,
-            //        Color = a.ToArgb()
+			realm.Write(() =>
+			{
+				System.Drawing.Color a = new System.Drawing.Color();
+				a = System.Drawing.Color.Aqua;
+				var newNote = new PriorityEntity
+				{
+					Name = "NuTakSebe",
+					Value = 2,
+					Color = a.ToArgb()
 
-            //    };
-            //    realm.Add(newNote);
-            //    a = System.Drawing.Color.Green;
-            //    var alsonewNote = new PriorityEntity
-            //    {
-            //        Name = "Normas",
-            //        Value = 5,
-            //        Color = a.ToArgb()
+				};
+				realm.Add(newNote);
+				a = System.Drawing.Color.Green;
+				var alsonewNote = new PriorityEntity
+				{
+					Name = "Normas",
+					Value = 5,
+					Color = a.ToArgb()
 
-            //    };
-            //    realm.Add(alsonewNote);
-            //});
+				};
+				realm.Add(alsonewNote);
+			});
 
 			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
@@ -67,7 +67,7 @@ namespace Diary.Views
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "quwuwu",
-				Note = realm.All<Settings>().First().value.ToString() 
+				Note = realm.All<Settings>().FirstOrDefault()?.value.ToString() 
 			}) ;
 
 			TasksList.Add(new TodoModel.Task
