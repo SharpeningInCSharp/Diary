@@ -70,24 +70,27 @@ namespace Diary.Views
 				Note = realm.All<Settings>().FirstOrDefault()?.value.ToString()
 			});
 
-			TasksList.Add(new OuterTask
+			var outItem = new OuterTask
 			{
 				Header = "СПАТЬ",
-				InnerTasks = new List<TodoModel.Task>()
-				{
-					new TodoModel.Task()
-					{
-						Header = "Мыть попу",
-						Note = "С мылом",
-					},
+			};
 
-					new TodoModel.Task()
-					{
-						Header = "Чистить зубы",
-						Note = "Не с мылом",
-					},
-				},
+			outItem.Add(
+				new TodoModel.Task()
+				{
+					Header = "Мыть попу",
+					Note = "С мылом",
+				}
+				);
+
+			outItem.Add(
+				new TodoModel.Task()
+			{
+				Header = "Чистить зубы",
+				Note = "Не с мылом",
 			});
+
+			TasksList.Add(outItem);
 
 			TasksList.Add(new DailyTask
 			{

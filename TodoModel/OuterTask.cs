@@ -8,7 +8,12 @@ namespace TodoModel
 {
 	public partial class OuterTask : TaskBase
 	{
-		public List<Task> InnerTasks { get; set; }
+		private readonly List<Task> innerTasks = new List<Task>();
+
+		/// <summary>
+		/// This prop return only values, DON'T use it to change object!
+		/// </summary>
+		public IEnumerable<Task> InnerTasks => new List<Task>(innerTasks);
 
 		public DateTime? InitialDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		public DateTime? FinalDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -16,12 +21,9 @@ namespace TodoModel
 		public OuterTask() : base()
 		{ }
 
-		public OuterTask(TaskBase taskBase) : base(taskBase)
-		{ }
-
-		public void AddInner(Task task)
+		public void Add(Task task)
 		{
-			InnerTasks.Add(task ?? throw new ArgumentNullException(nameof(task)));
+			innerTasks.Add(task ?? throw new ArgumentNullException(nameof(task)));
 
 			OnPropertyChanged("InnerTasks");
 		}
@@ -31,12 +33,12 @@ namespace TodoModel
 	{
 		public IEnumerator<TaskBase> GetEnumerator()
 		{
-			return InnerTasks.GetEnumerator();
+			return innerTasks.GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return InnerTasks.GetEnumerator();
+			return innerTasks.GetEnumerator();
 		}
 	}
 }

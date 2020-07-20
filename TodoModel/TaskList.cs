@@ -17,11 +17,11 @@ namespace TodoModel
 
 		private readonly List<TaskBase> tasks = new List<TaskBase>();
 
-		public List<TaskBase> Tasks => new List<TaskBase>(tasks);
+		public IEnumerable<TaskBase> Tasks => new List<TaskBase>(tasks);
 
 		private readonly List<TaskBase> completedTasks = new List<TaskBase>();
 
-		public List<TaskBase> CompletedTasks => new List<TaskBase>(completedTasks);
+		public IEnumerable<TaskBase> CompletedTasks => new List<TaskBase>(completedTasks);
 
 		public TaskList(string name)
 		{
