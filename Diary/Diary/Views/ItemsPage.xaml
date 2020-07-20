@@ -14,8 +14,8 @@
         <ToolbarItem Text="Calendar" IconImageSource="calendar_icon.png" Clicked="SearchDate_Clicked"/>
         <ToolbarItem Text="Ordering" x:Name="SortBut" IconImageSource="sort_descending_icon.png" Clicked="Ordering_Click"/>
     </ContentPage.ToolbarItems>
-    
-    
+
+
 
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <Grid BackgroundColor="{StaticResource PaletteGrayBlue}">
@@ -30,6 +30,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
@@ -49,9 +50,7 @@
                                          Grid.Column="0"
                                          WidthRequest="25"
                                          HeightRequest="25"/>
-                            
-                            
-                            
+
                             <StackLayout Grid.Row="0"
                                         Grid.Column="1">
                                 <Label Text="{Binding Path= Header}" 
@@ -73,11 +72,74 @@
                                      Grid.Column="0"
                                      Grid.ColumnSpan="2"/>
 
+                            <CollectionView x:Name="InnerTasksCollectionView"
+                                            Margin="20,4,2,4"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            Grid.Row="2"
+                                            ItemsSource="{Binding InnerTasks}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="7*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Ellipse Stroke="{StaticResource PaletteBeige}"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center"
+                                                    Grid.Column="0"
+                                                    Grid.Row="0"
+                                                    WidthRequest="25"
+                                                    HeightRequest="25"
+                                                    StrokeThickness="2"/>
+
+                                            <Image HorizontalOptions="Center"
+                                                        VerticalOptions="Center"
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        WidthRequest="25"
+                                                        HeightRequest="25"/>
+
+                                            <StackLayout Grid.Row="0"
+                                                        Grid.Column="1">
+                                                <Label Text="{Binding Path= Header}" 
+                                                        LineBreakMode="NoWrap" 
+                                                        FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
+
+                                                <Label Text="{Binding Path=Note}" 
+                                                        LineBreakMode="NoWrap"
+                                                        FontSize="16" TextColor="{StaticResource PaletteDarkBeige}"/>
+
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+
+                                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="{StaticResource PaletteDarkBeige}"
+                                                    Grid.Row="1"
+                                                    Margin="10,2,4,2"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="2"/>
+
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
+                                            </Grid.GestureRecognizers>
+                                            
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
                             </Grid.GestureRecognizers>
-                            
-                            
 
                         </Grid>
                     </DataTemplate>
@@ -88,8 +150,8 @@
                     Style="{StaticResource LeftBottomButton}"
                     Clicked="AddItem_Clicked"
                     x:Name="AddButton" />
-            
-            
+
+
         </Grid>
 
     </RefreshView>
