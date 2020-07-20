@@ -53,11 +53,11 @@
 
                             <StackLayout Grid.Row="0"
                                         Grid.Column="1">
-                                <Label Text="{Binding Path= Header}" 
+                                <Label Text="{Binding Path = Header}" 
                                         LineBreakMode="NoWrap" 
                                         FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
 
-                                <Label Text="{Binding Path=Note}" 
+                                <Label Text="{Binding Path = Note}" 
                                         LineBreakMode="NoWrap"
                                         FontSize="16" TextColor="{StaticResource PaletteDarkBeige}"/>
 
