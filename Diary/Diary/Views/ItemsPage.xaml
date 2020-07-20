@@ -76,8 +76,10 @@
                                             Margin="20,4,2,4"
                                             Grid.Column="0"
                                             Grid.ColumnSpan="2"
+                                            MinimumHeightRequest="0"
                                             Grid.Row="2"
-                                            ItemsSource="{Binding InnerTasks}">
+                                            ItemsSource="{Binding InnerTasks}"
+                                            HorizontalOptions="Start" VerticalOptions="Start">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Margin="4">
