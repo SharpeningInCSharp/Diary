@@ -15,8 +15,13 @@ namespace TodoModel
 
 		public event Action CollectionChanged;
 
-		public List<TaskBase> Tasks { get; set; } = new List<TaskBase>();
-		private List<TaskBase> completedTasks = new List<TaskBase>();
+		private readonly List<TaskBase> tasks = new List<TaskBase>();
+
+		public List<TaskBase> Tasks => new List<TaskBase>(tasks);
+
+		private readonly List<TaskBase> completedTasks = new List<TaskBase>();
+
+		public List<TaskBase> CompletedTasks => new List<TaskBase>(completedTasks);
 
 		public TaskList(string name)
 		{
@@ -29,7 +34,7 @@ namespace TodoModel
 			task.TaskDeleted += Task_TaskDeleted;
 			task.TaskMovedOut += Task_TaskDeleted;
 
-			Tasks.Add(task);
+			tasks.Add(task);
 
 			CollectionChanged?.Invoke();
 			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tasks"));
@@ -37,7 +42,7 @@ namespace TodoModel
 
 		private void Task_TaskDeleted(TaskBase task)
 		{
-			Tasks.Remove(task);
+			tasks.Remove(task);
 			completedTasks.Remove(task);
 
 			CollectionChanged?.Invoke();
@@ -46,7 +51,7 @@ namespace TodoModel
 
 		private void Task_TaskCompleted(TaskBase task)
 		{
-			Tasks.Remove(task);
+			tasks.Remove(task);
 			completedTasks.Add(task);
 
 			CollectionChanged?.Invoke();
@@ -57,12 +62,12 @@ namespace TodoModel
 		{
 			if (Ascending)
 			{
-				Tasks.Sort();
+				tasks.Sort();
 			}
 			else
 			{
-				Tasks.Sort();
-				Tasks.Reverse();
+				tasks.Sort();
+				tasks.Reverse();
 			}
 
 			Ascending = !Ascending;
