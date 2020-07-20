@@ -19,9 +19,9 @@
 
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <Grid BackgroundColor="{StaticResource PaletteGrayBlue}">
-            <CollectionView x:Name="ItemsCollectionView"
+            <ListView x:Name="ItemsCollectionView"
                 ItemsSource="{Binding Tasks}">
-                <CollectionView.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="4">
                             <Grid.ColumnDefinitions>
@@ -72,15 +72,17 @@
                                      Grid.Column="0"
                                      Grid.ColumnSpan="2"/>
 
-                            <CollectionView x:Name="InnerTasksCollectionView"
+                            <ListView x:Name="InnerTasksCollectionView"
                                             Margin="20,4,2,4"
                                             Grid.Column="0"
+                                            BackgroundColor="Red"
                                             Grid.ColumnSpan="2"
                                             MinimumHeightRequest="0"
                                             Grid.Row="2"
                                             ItemsSource="{Binding InnerTasks}"
-                                            HorizontalOptions="Start" VerticalOptions="Start">
-                                <CollectionView.ItemTemplate>
+                                            HorizontalOptions="Center" 
+                                            VerticalOptions="Center">
+                                <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Margin="4">
                                             <Grid.ColumnDefinitions>
@@ -133,11 +135,11 @@
                                             <Grid.GestureRecognizers>
                                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
                                             </Grid.GestureRecognizers>
-                                            
+
                                         </Grid>
                                     </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
+                                </ListView.ItemTemplate>
+                            </ListView>
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
@@ -145,8 +147,8 @@
 
                         </Grid>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Button ImageSource="plus.png" 
                     Style="{StaticResource LeftBottomButton}"
