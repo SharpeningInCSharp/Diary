@@ -39,6 +39,8 @@
                                FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center"/>
                         <Label Grid.Column="2" Text="{Binding Path=Value}" TextColor="{StaticResource PaletteBeige}"
                                FontSize="20" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                            
+                        
                     </Grid> 
                 </ViewCell>
             </DataTemplate>

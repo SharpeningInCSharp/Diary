@@ -49,6 +49,6 @@ namespace Diary.AdditionalControls
         private void AddItem_Clicked(object sender, EventArgs e)
         {
 
-        }
+        }       
     }
 }
