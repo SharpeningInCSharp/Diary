@@ -30,7 +30,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <Ellipse Grid.Column="0" HeightRequest="25" WidthRequest="25"
+                        <Ellipse Grid.Column="0" HeightRequest="30" WidthRequest="30"
                                  Fill="{Binding Path=PriorityColor}" VerticalOptions="Center"
                                  HorizontalOptions="Center" Stroke="{StaticResource PaletteDarkBlue}"
                                  StrokeThickness="5"/>

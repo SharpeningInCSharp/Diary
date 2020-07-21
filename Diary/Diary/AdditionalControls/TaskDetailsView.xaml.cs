@@ -42,6 +42,8 @@ namespace Diary.AdditionalControls
             //
 
             BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
+			PriorityBut.Text = task.Priority.Name;
+			PriorityMarker.Fill = task.Priority.Color;
 		}
 
 		private void InitializeCB()

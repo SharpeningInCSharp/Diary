@@ -37,28 +37,40 @@ namespace Diary.Views
 
             /// временное, пример записи в бд // я допишу не трогайте :)))))
             var realm = Realm.GetInstance();
-            //realm.Write(() =>
-            //{
-            //    System.Drawing.Color a = new System.Drawing.Color();
-            //    a = System.Drawing.Color.Aqua;
-            //    var newNote = new PriorityEntity
-            //    {
-            //        Name = "NuTakSebe",
-            //        Value = 2,
-            //        Color = a.ToArgb()
+			//realm.Write(() =>
+			//{
+				//System.Drawing.Color a = new System.Drawing.Color();
+				//a = System.Drawing.Color.Chartreuse;
+				//var newNote = new PriorityEntity
+				//{
+				//	Name = "Low",
+				//	Value = 3,
+				//	Color = a.ToArgb()
 
-            //    };
-            //    realm.Add(newNote);
-            //    a = System.Drawing.Color.Green;
-            //    var alsonewNote = new PriorityEntity
-            //    {
-            //        Name = "Normas",
-            //        Value = 5,
-            //        Color = a.ToArgb()
+				//};
+				//realm.Add(newNote);
+				//a = System.Drawing.Color.Gold;
+				//var alsonewNote = new PriorityEntity
+				//{
+				//	Name = "Normal",
+				//	Value = 5,
+				//	Color = a.ToArgb()
 
-            //    };
-            //    realm.Add(alsonewNote);
-            //});
+				//};
+				//realm.Add(alsonewNote);
+				//a = System.Drawing.Color.Red;
+				//var alsoalsonewNote = new PriorityEntity
+				//{
+				//	Name = "Hight",
+				//	Value = 8,
+				//	Color = a.ToArgb()
+
+				//};
+				//realm.Add(alsoalsonewNote);
+
+				//realm.Remove(realm.All<PriorityEntity>().First(x => x.Name == "NuTakSebe"));
+				//realm.Remove(realm.All<PriorityEntity>().First(x => x.Name == "Normas"));
+			//});
 
 			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
@@ -67,18 +79,21 @@ namespace Diary.Views
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "quwuwu",
-				Note = realm.All<Settings>().First().value.ToString() 
+				Note = realm.All<Settings>().First().value.ToString(),
+				Priority = Priority.Low,
 			}) ;
 
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "RUN",
+				Priority = Priority.Normal,
 			});
 
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "WALK",
 				Note = "With dog",
+				Priority = Priority.Hight,
 			});
 
 			BindingContext = TasksList;

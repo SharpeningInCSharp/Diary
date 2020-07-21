@@ -46,6 +46,7 @@ namespace Diary.AdditionalControls
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            ((ListView)sender).SelectedItem = null;
             if (e.Item == null)
                 return;
 
