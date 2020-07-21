@@ -75,7 +75,7 @@ namespace TodoModel
 			IsCompleted = true;
 			TaskCompleted?.Invoke(this);
 		}
-
+EntryPointNotFoundException,hf
 		/// <summary>
 		/// Deletes task
 		/// </summary>

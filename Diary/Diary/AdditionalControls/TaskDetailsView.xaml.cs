@@ -22,45 +22,43 @@ namespace Diary.AdditionalControls
 		{
 			InitializeComponent();
 
-            //InitializeCB();
+			//InitializeCB();
 
-            //old priority adding
+			//old priority adding
 
-            //PriorityPicker.ItemsSource = new List<IPriority>
-            //{ Priority.Low, Priority.Hight, Priority.Normal};
+			//PriorityPicker.ItemsSource = new List<IPriority>
+			//{ Priority.Low, Priority.Hight, Priority.Normal};
 
-            //reading priors from db 
-            //var realm = Realm.GetInstance();
-            //var priors = realm.All<PriorityEntity>().ToList();
-            //List<IPriority> priorities = new List<IPriority>();
-            //foreach(PriorityEntity pe in priors)
-            //         {
-            //	Priority savedOne = new Priority(pe.Name, pe.Value);
-            //	savedOne.Color = System.Drawing.Color.FromArgb(pe.Color);
-            //	priorities.Add(savedOne);
-            //         }
-            //PriorityPicker.ItemsSource = priorities;
-            //
+			//reading priors from db 
+			//var realm = Realm.GetInstance();
+			//var priors = realm.All<PriorityEntity>().ToList();
+			//List<IPriority> priorities = new List<IPriority>();
+			//foreach(PriorityEntity pe in priors)
+			//         {
+			//	Priority savedOne = new Priority(pe.Name, pe.Value);
+			//	savedOne.Color = System.Drawing.Color.FromArgb(pe.Color);
+			//	priorities.Add(savedOne);
+			//         }
+			//PriorityPicker.ItemsSource = priorities;
+			//
 
+			//Task.PriorityChanged += Task_PriorityChanged;
             BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 
-			// определяем объект привязки: Source - источник, Path - его свойство
-			Binding bindingName = new Binding { Source = Task.Priority, Path = "Name" };
-			// установка привязки для свойства TextProperty
-			PriorityBut.SetBinding(Button.TextProperty, bindingName);
+			
 
-			// определяем объект привязки: Source - источник, Path - его свойство
-			Binding bindingColor = new Binding { Source = Task.Priority, Path = "Color" };
-			// установка привязки для свойства TextProperty
-			PriorityMarker.SetBinding(Ellipse.FillProperty, bindingColor);
-
-			//PriorityBut.Text = task.Priority.Name;
-			//PriorityMarker.Fill = task.Priority.Color;
+			PriorityBut.Text = task.Priority.Name;
+			PriorityMarker.Fill = task.Priority.Color;
 		}
+
+		//private void Task_PriorityChanged(TaskBase task)
+		//{
+		//	PriorityBut.Text = task.Priority.Name;
+		//	PriorityMarker.BackgroundColor = task.Priority.Color;
+		//}
 
 		private void InitializeCB()
 		{
-			//PriorityPicker.ItemsSource = storage.Get<IPriority>().ToList();
 			TasksListPicker.ItemsSource = storage.Get<ITodoStorage>().ToList();
 		}
 

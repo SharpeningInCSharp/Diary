@@ -49,8 +49,8 @@ namespace TodoModel
 
 	public partial class Priority
 	{
-		public static Priority Low => new Priority("Default", 0, Color.Chartreuse);
-		public static Priority Normal => new Priority("Normal", 4, Color.Gold);
+		public static Priority Low => new Priority("Low", 2, Color.Chartreuse);
+		public static Priority Normal => new Priority("Normal", 5, Color.Gold);
 		public static Priority Hight => new Priority("Hight", 8, Color.Red);
 	}
 
