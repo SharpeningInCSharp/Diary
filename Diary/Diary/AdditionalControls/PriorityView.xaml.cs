@@ -15,45 +15,35 @@ namespace Diary.AdditionalControls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PriorityView : ContentPage
     {
-        public List<PriorityModelView> ListPriority = new List<PriorityModelView>();
+        public TaskBase task;
+        public List<Priority> ListPriority = new List<Priority>();
 
-        public class PriorityModelView
-        {
-            public PriorityModelView(PriorityEntity entity)
-            {
-                Name = entity.Name;
-                Value = entity.Value;
-                System.Drawing.Color color1 = System.Drawing.Color.FromArgb(entity.Color);
-                PriorityColor = Color.FromRgb(color1.R, color1.G, color1.B);
-            }
-            public string Name { get; set; }
-            public int Value { get; set; }
-            public Color PriorityColor { get; set; }
-        }
+        
 
-        public PriorityView()
+        public PriorityView(TaskBase taskBase)
         {
             InitializeComponent();
-
+            task = taskBase;
             var realm = Realm.GetInstance();
             var priors = realm.All<PriorityEntity>().ToList();
 
             foreach(PriorityEntity priority in priors)
-                ListPriority.Add(new PriorityModelView(priority));
+                ListPriority.Add(new Priority(priority));
 
-            MyListView.ItemsSource = ListPriority;
+            MyListView.ItemsSource = ListPriority.OrderBy(i=>i.Value);
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            var pri = (Priority)MyListView.SelectedItem;
             ((ListView)sender).SelectedItem = null;
             if (e.Item == null)
                 return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+            task.Priority = new Priority(pri);
+            //await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
 
             //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            await Navigation.PopAsync(false);
         }
 
         private void AddItem_Clicked(object sender, EventArgs e)

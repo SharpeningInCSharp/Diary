@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 
+using TodoModel.Database;
+
 namespace TodoModel
 {
 	public partial class Priority
@@ -27,6 +29,22 @@ namespace TodoModel
 			Value = value;
 			Color = color;
 		}
+
+		public Priority(Priority priority)
+		{
+			Name = priority.Name;
+			Value = priority.Value;
+			Color = priority.Color;
+		}
+
+
+		public Priority(PriorityEntity entity)
+		{
+			Name = entity.Name;
+			Value = entity.Value;
+			Color = System.Drawing.Color.FromArgb(entity.Color);
+		}
+	
 	}
 
 	public partial class Priority

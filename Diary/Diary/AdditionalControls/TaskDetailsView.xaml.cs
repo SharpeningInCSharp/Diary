@@ -6,6 +6,7 @@ using System.Linq;
 using TodoModel;
 using TodoModel.Database;
 using Xamarin.Forms;
+using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
 
 namespace Diary.AdditionalControls
@@ -42,8 +43,19 @@ namespace Diary.AdditionalControls
             //
 
             BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
-			PriorityBut.Text = task.Priority.Name;
-			PriorityMarker.Fill = task.Priority.Color;
+
+			// определяем объект привязки: Source - источник, Path - его свойство
+			Binding bindingName = new Binding { Source = Task.Priority, Path = "Name" };
+			// установка привязки для свойства TextProperty
+			PriorityBut.SetBinding(Button.TextProperty, bindingName);
+
+			// определяем объект привязки: Source - источник, Path - его свойство
+			Binding bindingColor = new Binding { Source = Task.Priority, Path = "Color" };
+			// установка привязки для свойства TextProperty
+			PriorityMarker.SetBinding(Ellipse.FillProperty, bindingColor);
+
+			//PriorityBut.Text = task.Priority.Name;
+			//PriorityMarker.Fill = task.Priority.Color;
 		}
 
 		private void InitializeCB()
@@ -88,7 +100,7 @@ namespace Diary.AdditionalControls
 
 		private void PriorityBut_Clicked(object sender, EventArgs e)
 		{
-			Navigation.PushAsync(new PriorityView(), false);
+			Navigation.PushAsync(new PriorityView(Task), false);
 		}
 	}
 }

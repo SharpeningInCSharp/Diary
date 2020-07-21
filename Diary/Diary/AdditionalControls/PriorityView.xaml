@@ -31,7 +31,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <Ellipse Grid.Column="0" HeightRequest="30" WidthRequest="30"
-                                 Fill="{Binding Path=PriorityColor}" VerticalOptions="Center"
+                                 Fill="{Binding Path=Color}" VerticalOptions="Center"
                                  HorizontalOptions="Center" Stroke="{StaticResource PaletteDarkBlue}"
                                  StrokeThickness="5"/>
                         
