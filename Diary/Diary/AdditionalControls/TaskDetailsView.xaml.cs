@@ -101,5 +101,6 @@ namespace Diary.AdditionalControls
 		{
 			Navigation.PushAsync(new PriorityView(Task), false);
 		}
+
 	}
 }

@@ -57,7 +57,7 @@
                 HorizontalOptions="End" FontSize="20" FontAttributes="Bold"/>
 
             <Entry Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="0" TextColor="{StaticResource PaletteBeige}"
-                   FontSize="20"/>
+                   FontSize="20" x:Name="NameEntry"/>
 
             <Label Text="Value priority: " Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
                    FontSize="20" FontAttributes="Bold"

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Realms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TodoModel.Database;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
@@ -48,9 +49,23 @@ namespace Diary.AdditionalControls
             ValueLabel.Text = Value.ToString();
         }
 
-        private void SavePriority_Clicked(object sender, EventArgs e)
+        async private void SavePriority_Clicked(object sender, EventArgs e)
         {
-            
+            if (NameEntry.Text == "") return;
+            var realm = Realm.GetInstance();
+            realm.Write(() =>
+            {
+                System.Drawing.Color a = PriorityColor;
+                var newNote = new PriorityEntity
+                {
+                    Name = NameEntry.Text,
+                    Value = Value,
+                    Color = a.ToArgb()
+
+                };
+                realm.Add(newNote);
+            });
+            await Navigation.PopAsync(false);
         }
     }
 }
