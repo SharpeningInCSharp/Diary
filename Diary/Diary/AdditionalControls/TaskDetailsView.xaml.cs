@@ -99,8 +99,15 @@ namespace Diary.AdditionalControls
 
 		private void PriorityBut_Clicked(object sender, EventArgs e)
 		{
-			Navigation.PushAsync(new PriorityView(Task), false);
+			PriorityView priorityView = new PriorityView(Task);
+			priorityView.PriorityChanged += PriorityView_PriorityChanged;
+			Navigation.PushAsync(priorityView, false);
 		}
 
+		private void PriorityView_PriorityChanged()
+		{
+			PriorityBut.Text = Task.Priority.Name;
+			PriorityMarker.Fill = Task.Priority.Color;
+		}
 	}
 }

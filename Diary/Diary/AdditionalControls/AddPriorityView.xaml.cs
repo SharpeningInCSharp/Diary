@@ -18,6 +18,9 @@ namespace Diary.AdditionalControls
         public Color MainColor;
         public int Value { get; set; }
 
+        public delegate void UpdatePriorityList();
+        public event UpdatePriorityList PriorityListChanged;
+
         public AddPriorityView()
         {
             InitializeComponent();
@@ -65,6 +68,7 @@ namespace Diary.AdditionalControls
                 };
                 realm.Add(newNote);
             });
+            PriorityListChanged?.Invoke();
             await Navigation.PopAsync(false);
         }
     }
