@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="New priority"
+             x:Class="Diary.AdditionalControls.AddPriorityView"
+             BackgroundColor="{StaticResource PaletteGrayBlue}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="Ellipse" x:Key="PriorityColor">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="StrokeThickness" Value="4"/>
+                
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.Content>
+        
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Text="Name: " Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                VerticalOptions="CenterAndExpand" TextColor="{StaticResource PaletteBeige}"
+                HorizontalOptions="End" FontSize="20" FontAttributes="Bold"/>
+
+            <Entry Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="0" TextColor="{StaticResource PaletteBeige}"
+                   FontSize="20"/>
+
+            <Label Text="Value priority: " Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                   FontSize="20" FontAttributes="Bold"
+                   VerticalOptions="Center" HorizontalOptions="End" TextColor="{StaticResource PaletteBeige}"/>
+            <Label Text="{Binding Source={x:Reference Name=ValueStepper}, Path=Value}" Grid.Row="1" Grid.Column="2"
+                   FontSize="26" FontAttributes="Bold"
+                   VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource PaletteLightBeige}"/>
+            <Stepper Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"
+                    Minimum="0" Maximum="10" Increment="1" x:Name="ValueStepper"/>
+
+
+
+            <Grid x:Name="GridEllipse" Grid.Row="4" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="ForestGreen"
+                     Grid.Column="0" Grid.Row="0">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="DodgerBlue"
+                     Grid.Column="1" Grid.Row="0"> 
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Magenta"
+                     Grid.Column="2" Grid.Row="0">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Gold"
+                     Grid.Column="3" Grid.Row="0">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Red"
+                     Grid.Column="4" Grid.Row="0">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="LimeGreen"
+                     Grid.Column="0" Grid.Row="1">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Aqua"
+                     Grid.Column="1" Grid.Row="1">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="MediumOrchid"
+                     Grid.Column="2" Grid.Row="1">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Coral"
+                     Grid.Column="3" Grid.Row="1">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Crimson"
+                     Grid.Column="4" Grid.Row="1">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="MediumSeaGreen"
+                     Grid.Column="0" Grid.Row="2">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="LightSkyBlue"
+                     Grid.Column="1" Grid.Row="2">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="HotPink"
+                     Grid.Column="2" Grid.Row="2">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Peru"
+                     Grid.Column="3" Grid.Row="2">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Firebrick"
+                     Grid.Column="4" Grid.Row="2">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
+                    </Ellipse.GestureRecognizers>
+                </Ellipse>
+            </Grid>
+
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

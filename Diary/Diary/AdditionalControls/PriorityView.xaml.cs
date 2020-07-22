@@ -17,7 +17,7 @@ namespace Diary.AdditionalControls
     {
         public TaskBase task;
         public List<Priority> ListPriority = new List<Priority>();
-
+        
         
 
         public PriorityView(TaskBase taskBase)
@@ -48,7 +48,7 @@ namespace Diary.AdditionalControls
 
         private void AddItem_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new AddPriorityView(), false);
         }       
     }
 }

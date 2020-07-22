@@ -72,7 +72,7 @@ namespace Diary.Views
 			//	};
 			//	realm.Add(alsoalsonewNote);
 
-				
+			
 			//});
 
 			TasksList = new TaskList("Today");
