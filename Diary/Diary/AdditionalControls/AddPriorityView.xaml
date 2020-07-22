@@ -8,6 +8,10 @@
              x:Class="Diary.AdditionalControls.AddPriorityView"
              BackgroundColor="{StaticResource PaletteGrayBlue}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" IconImageSource="save_icon.png" Clicked="SavePriority_Clicked"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -58,11 +62,15 @@
             <Label Text="Value priority: " Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
                    FontSize="20" FontAttributes="Bold"
                    VerticalOptions="Center" HorizontalOptions="End" TextColor="{StaticResource PaletteBeige}"/>
-            <Label Text="{Binding Source={x:Reference Name=ValueStepper}, Path=Value}" Grid.Row="1" Grid.Column="2"
+            <Label x:Name="ValueLabel" Grid.Row="1" Grid.Column="2"
                    FontSize="26" FontAttributes="Bold"
                    VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource PaletteLightBeige}"/>
-            <Stepper Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"
-                    Minimum="0" Maximum="10" Increment="1" x:Name="ValueStepper"/>
+            <Button x:Name="SubValue" Grid.Row="1" Grid.Column="3" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="25"
+                    Text="-" BackgroundColor="{StaticResource PaletteBeige}" TextColor="{StaticResource PaletteDarkBlue}"
+                    Clicked="SubValue_Clicked" FontAttributes="Bold"/>
+            <Button x:Name="AddValue" Grid.Row="1" Grid.Column="4" HorizontalOptions="Fill" VerticalOptions="Fill" FontSize="25"
+                    Text="+" BackgroundColor="{StaticResource PaletteBeige}" TextColor="{StaticResource PaletteDarkBlue}"
+                    Clicked="AddValue_Clicked" FontAttributes="Bold"/>
 
 
 
@@ -104,8 +112,8 @@
                         <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
                     </Ellipse.GestureRecognizers>
                 </Ellipse>
-                <Ellipse Style="{StaticResource PriorityColor}" Fill="Red"
-                     Grid.Column="4" Grid.Row="0">
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Red" Stroke="{StaticResource PaletteBeige}"
+                     Grid.Column="4" Grid.Row="0" x:Name="Ell">
                     <Ellipse.GestureRecognizers>
                         <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
                     </Ellipse.GestureRecognizers>
@@ -129,13 +137,13 @@
                         <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
                     </Ellipse.GestureRecognizers>
                 </Ellipse>
-                <Ellipse Style="{StaticResource PriorityColor}" Fill="Coral"
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="Orange"
                      Grid.Column="3" Grid.Row="1">
                     <Ellipse.GestureRecognizers>
                         <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
                     </Ellipse.GestureRecognizers>
                 </Ellipse>
-                <Ellipse Style="{StaticResource PriorityColor}" Fill="Crimson"
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="IndianRed"
                      Grid.Column="4" Grid.Row="1">
                     <Ellipse.GestureRecognizers>
                         <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
@@ -166,7 +174,7 @@
                         <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>
                     </Ellipse.GestureRecognizers>
                 </Ellipse>
-                <Ellipse Style="{StaticResource PriorityColor}" Fill="Firebrick"
+                <Ellipse Style="{StaticResource PriorityColor}" Fill="DarkRed"
                      Grid.Column="4" Grid.Row="2">
                     <Ellipse.GestureRecognizers>
                         <TapGestureRecognizer Tapped="EllipseTapped" NumberOfTapsRequired="1"/>

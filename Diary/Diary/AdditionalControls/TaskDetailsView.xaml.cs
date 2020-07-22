@@ -93,6 +93,7 @@ namespace Diary.AdditionalControls
 		async private void CloseButton_Clicked(object sender, EventArgs e)
 		{
 			await CloseButton.RotateTo(0, 200, Easing.CubicInOut);
+			if (HeaderEntry.Text == "") Task.Delete();
 			Navigation.PopAsync(false);
 		}
 

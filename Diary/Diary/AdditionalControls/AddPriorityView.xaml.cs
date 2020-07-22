@@ -14,10 +14,15 @@ namespace Diary.AdditionalControls
     public partial class AddPriorityView : ContentPage
     {
         public Color PriorityColor = Color.Red;
+        public Color MainColor;
+        public int Value { get; set; }
 
         public AddPriorityView()
         {
             InitializeComponent();
+            MainColor = Ell.Stroke;
+            Value = 8;
+            ValueLabel.Text = Value.ToString();
         }
 
         private void EllipseTapped(object sender, EventArgs e)
@@ -25,8 +30,27 @@ namespace Diary.AdditionalControls
             foreach (Ellipse ellipse in GridEllipse.Children)
                 ellipse.Stroke = Color.Transparent;
 
-            ((Ellipse)sender).Stroke = new Color(217,199,184);
+            ((Ellipse)sender).Stroke = MainColor;
             PriorityColor = ((Ellipse)sender).Fill;
+        }
+
+        private void AddValue_Clicked(object sender, EventArgs e)
+        {
+            if (Value == 10) return;
+            Value++;
+            ValueLabel.Text = Value.ToString();
+        }
+
+        private void SubValue_Clicked(object sender, EventArgs e)
+        {
+            if (Value == 0) return;
+            Value--;
+            ValueLabel.Text = Value.ToString();
+        }
+
+        private void SavePriority_Clicked(object sender, EventArgs e)
+        {
+            
         }
     }
 }
