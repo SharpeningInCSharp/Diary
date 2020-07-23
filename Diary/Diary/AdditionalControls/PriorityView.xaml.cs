@@ -18,7 +18,8 @@ namespace Diary.AdditionalControls
         public TaskBase task;
         public List<Priority> ListPriority = new List<Priority>();
 
-        
+        public delegate void UpdatePriority();
+        public event UpdatePriority PriorityChanged;
 
         public PriorityView(TaskBase taskBase)
         {
@@ -43,12 +44,26 @@ namespace Diary.AdditionalControls
             //await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
 
             //Deselect Item
+            PriorityChanged?.Invoke();
             await Navigation.PopAsync(false);
         }
 
-        private void AddItem_Clicked(object sender, EventArgs e)
+        async private void AddItem_Clicked(object sender, EventArgs e)
         {
+            AddPriorityView AddPriority = new AddPriorityView();
+            AddPriority.PriorityListChanged += AddPriorityView_PriorityListChanged;
+            await Navigation.PushAsync(AddPriority, false);
+        }
 
-        }       
+        async private void AddPriorityView_PriorityListChanged()
+        {
+            var realm = Realm.GetInstance();
+            var priors = realm.All<PriorityEntity>().ToList();
+            ListPriority.Clear();
+            foreach (PriorityEntity priority in priors)
+                ListPriority.Add(new Priority(priority));
+
+            MyListView.ItemsSource = ListPriority.OrderBy(i => i.Value);
+        }
     }
 }

@@ -93,12 +93,21 @@ namespace Diary.AdditionalControls
 		async private void CloseButton_Clicked(object sender, EventArgs e)
 		{
 			await CloseButton.RotateTo(0, 200, Easing.CubicInOut);
+			if (HeaderEntry.Text == "") Task.Delete();
 			Navigation.PopAsync(false);
 		}
 
 		private void PriorityBut_Clicked(object sender, EventArgs e)
 		{
-			Navigation.PushAsync(new PriorityView(Task), false);
+			PriorityView priorityView = new PriorityView(Task);
+			priorityView.PriorityChanged += PriorityView_PriorityChanged;
+			Navigation.PushAsync(priorityView, false);
+		}
+
+		private void PriorityView_PriorityChanged()
+		{
+			PriorityBut.Text = Task.Priority.Name;
+			PriorityMarker.Fill = Task.Priority.Color;
 		}
 	}
 }
