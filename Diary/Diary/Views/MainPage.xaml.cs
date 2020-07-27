@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using Diary.Models;
+using Realms;
 
 namespace Diary.Views
 {
@@ -18,7 +19,7 @@ namespace Diary.Views
 		public MainPage()
 		{
 
-			//TodoModel.Database.SettingsInitialization.ParamsSetting(); //инициализация параметров в Realm
+			TodoModel.Database.SettingsInitialization.ParamsSetting(); //инициализация параметров в Realm
 
 			InitializeComponent();
 

@@ -6,6 +6,7 @@ using System.Linq;
 using TodoModel;
 using TodoModel.Database;
 using Xamarin.Forms;
+using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
 
 namespace Diary.AdditionalControls
@@ -21,32 +22,43 @@ namespace Diary.AdditionalControls
 		{
 			InitializeComponent();
 
-            //InitializeCB();
+			//InitializeCB();
 
-            //old priority adding
+			//old priority adding
 
-            //PriorityPicker.ItemsSource = new List<IPriority>
-            //{ Priority.Low, Priority.Hight, Priority.Normal};
+			//PriorityPicker.ItemsSource = new List<IPriority>
+			//{ Priority.Low, Priority.Hight, Priority.Normal};
 
-            //reading priors from db 
-            //var realm = Realm.GetInstance();
-            //var priors = realm.All<PriorityEntity>().ToList();
-            //List<IPriority> priorities = new List<IPriority>();
-            //foreach(PriorityEntity pe in priors)
-            //         {
-            //	Priority savedOne = new Priority(pe.Name, pe.Value);
-            //	savedOne.Color = System.Drawing.Color.FromArgb(pe.Color);
-            //	priorities.Add(savedOne);
-            //         }
-            //PriorityPicker.ItemsSource = priorities;
-            //
+			//reading priors from db 
+			//var realm = Realm.GetInstance();
+			//var priors = realm.All<PriorityEntity>().ToList();
+			//List<IPriority> priorities = new List<IPriority>();
+			//foreach(PriorityEntity pe in priors)
+			//         {
+			//	Priority savedOne = new Priority(pe.Name, pe.Value);
+			//	savedOne.Color = System.Drawing.Color.FromArgb(pe.Color);
+			//	priorities.Add(savedOne);
+			//         }
+			//PriorityPicker.ItemsSource = priorities;
+			//
 
+			//Task.PriorityChanged += Task_PriorityChanged;
             BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
+
+			
+
+			PriorityBut.Text = task.Priority.Name;
+			PriorityMarker.Fill = task.Priority.Color;
 		}
+
+		//private void Task_PriorityChanged(TaskBase task)
+		//{
+		//	PriorityBut.Text = task.Priority.Name;
+		//	PriorityMarker.BackgroundColor = task.Priority.Color;
+		//}
 
 		private void InitializeCB()
 		{
-			//PriorityPicker.ItemsSource = storage.Get<IPriority>().ToList();
 			TasksListPicker.ItemsSource = storage.Get<ITodoStorage>().ToList();
 		}
 
@@ -81,12 +93,21 @@ namespace Diary.AdditionalControls
 		async private void CloseButton_Clicked(object sender, EventArgs e)
 		{
 			await CloseButton.RotateTo(0, 200, Easing.CubicInOut);
+			if (HeaderEntry.Text == "") Task.Delete();
 			Navigation.PopAsync(false);
 		}
 
 		private void PriorityBut_Clicked(object sender, EventArgs e)
 		{
-			Navigation.PushAsync(new PriorityView(), false);
+			PriorityView priorityView = new PriorityView(Task);
+			priorityView.PriorityChanged += PriorityView_PriorityChanged;
+			Navigation.PushAsync(priorityView, false);
+		}
+
+		private void PriorityView_PriorityChanged()
+		{
+			PriorityBut.Text = Task.Priority.Name;
+			PriorityMarker.Fill = Task.Priority.Color;
 		}
 	}
 }

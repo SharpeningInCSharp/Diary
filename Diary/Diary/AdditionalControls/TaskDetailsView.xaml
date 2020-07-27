@@ -89,15 +89,13 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="priority_icon.png"
-                       Style="{StaticResource ImageStyle}"/>
+                    <Ellipse Grid.Column="0" HeightRequest="30" WidthRequest="30"
+                                 Fill="Transparent" VerticalOptions="Center"
+                                 HorizontalOptions="Center" Stroke="{StaticResource PaletteDarkBlue}"
+                                 StrokeThickness="5" x:Name="PriorityMarker"/>
 
                     <Button BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
-                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority"/>
-                    <!--<Picker x:Name="PriorityPicker"
-                            Style="{StaticResource InputPicker}"
-                        ItemDisplayBinding="{Binding Name}"
-                        SelectedItem="{Binding Priority, Mode=TwoWay}"/>-->
+                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority" FontAttributes="Bold"/>
                 </StackLayout>
             </StackLayout>
             

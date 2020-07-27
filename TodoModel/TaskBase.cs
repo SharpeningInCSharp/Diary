@@ -76,6 +76,7 @@ namespace TodoModel
 			TaskCompleted?.Invoke(this);
 		}
 
+
 		/// <summary>
 		/// Deletes task
 		/// </summary>

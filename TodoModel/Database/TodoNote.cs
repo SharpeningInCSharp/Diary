@@ -17,6 +17,7 @@ namespace TodoModel.Database
         public bool HasInners { get; set; }
         public IList<TodoNote> InnerNotes { get;  }
         public PriorityEntity Priority { get; set; }
-        
+        public TaskListEntity taskList { get; set; }
+
     }
 }

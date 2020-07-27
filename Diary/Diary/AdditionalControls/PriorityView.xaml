@@ -30,8 +30,8 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <Ellipse Grid.Column="0" HeightRequest="25" WidthRequest="25"
-                                 Fill="{Binding Path=PriorityColor}" VerticalOptions="Center"
+                        <Ellipse Grid.Column="0" HeightRequest="30" WidthRequest="30"
+                                 Fill="{Binding Path=Color}" VerticalOptions="Center"
                                  HorizontalOptions="Center" Stroke="{StaticResource PaletteDarkBlue}"
                                  StrokeThickness="5"/>
                         
@@ -39,6 +39,8 @@
                                FontAttributes="Bold" FontSize="20" VerticalTextAlignment="Center"/>
                         <Label Grid.Column="2" Text="{Binding Path=Value}" TextColor="{StaticResource PaletteBeige}"
                                FontSize="20" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+                            
+                        
                     </Grid> 
                 </ViewCell>
             </DataTemplate>
