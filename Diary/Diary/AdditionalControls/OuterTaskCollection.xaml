@@ -49,7 +49,7 @@
                                         FontSize="16" TextColor="{StaticResource PaletteDarkBeige}"/>
 
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped_1"/>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
 

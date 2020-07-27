@@ -21,5 +21,10 @@ namespace Diary.AdditionalControls
 		{
 
 		}
+
+		private void OnItemSelected(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
