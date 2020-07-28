@@ -27,8 +27,6 @@ namespace Diary.Views
 	[DesignTimeVisible(false)]
 	public partial class ItemsPage : ContentPage
 	{
-		private const int OnTaskCompletionMsTimeout = 350;
-
 		TaskList TasksList;
 
 		public ItemsPage()
@@ -109,18 +107,8 @@ namespace Diary.Views
 			});
 		}
 
-		async void OnItemSelected(object sender, EventArgs args)
-		{
-			var layout = (BindableObject)sender;
-			var item = (TaskBase)layout.BindingContext;
-
-			await Navigation.PushAsync(new TaskDetailsView(item), false);
-		}
-
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-
-
 			var empltyTask = new TodoModel.Task();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 
@@ -154,31 +142,6 @@ namespace Diary.Views
 			}
 
 			TasksList.OrderByPriority();
-		}
-
-		private async void OnItemCompleted(object sender, EventArgs e)
-		{
-
-			var layout = (Grid)sender;
-
-			var image = (Image)layout.Children[1];
-			image.Source = "tick_icon.png";
-
-			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
-
-			var item = (TaskBase)layout.BindingContext;
-			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
-		}
-
-		/// <summary>
-		/// Task completion animation
-		/// </summary>
-		/// <param name="item"></param>
-		private void OnTaskCompletion(TaskBase item)
-		{
-			Thread.Sleep(OnTaskCompletionMsTimeout);
-
-			item.Complete();
 		}
 	}
 }
