@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diary.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,44 +14,26 @@ namespace Diary.AdditionalControls
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class InnerTaskCollection : ContentView
 	{
-		private const int OnTaskCompletionMsTimeout = 350;
 		private const int SingleCollectionItemSize = 75;
+		private readonly TaskViewModel taskViewModel;
 
 		public InnerTaskCollection()
 		{
 			InitializeComponent();
+
+			taskViewModel = DependencyService.Get<TaskViewModel>();
 		}
 
-		private async void OnItemCompleted(object sender, EventArgs e)
+		private void OnItemCompleted(object sender, EventArgs e)
 		{
-			var layout = (Grid)sender;
-
-			var image = (Image)layout.Children[1];
-			image.Source = "tick_icon.png";
-
-			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(layout));
+			if(sender is Grid layout)
+				taskViewModel.ItemCompleted(layout);
 		}
 
-		/// <summary>
-		/// Task completion animation
-		/// </summary>
-		/// <param name="item"></param>
-		private void OnTaskCompletion(Grid layout)
+		private void OnItemSelected(object sender, EventArgs e)
 		{
-			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
-
-			Thread.Sleep(OnTaskCompletionMsTimeout);
-
-			var item = (TaskBase)layout.BindingContext;
-			item.Complete();
-		}
-
-		private async void OnItemSelected(object sender, EventArgs e)
-		{
-			var layout = (BindableObject)sender;
-			var item = (TaskBase)layout.BindingContext;
-
-			await Navigation.PushAsync(new TaskDetailsView(item), false);
+			if (sender is BindableObject layout)
+				taskViewModel.ItemSelected(Navigation, layout);
 		}
 
 		private void InnerColl_BindingContextChanged(object sender, EventArgs e)

@@ -1,4 +1,5 @@
-﻿using Realms;
+﻿using Diary.ViewModels;
+using Realms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,9 +19,13 @@ namespace Diary.AdditionalControls
 
 		//TOOD: should pick out ViewModel with access to DB
 		private ITodoStorage storage;
+		private readonly TaskViewModel taskViewModel;
+
 		public TaskDetailsView(TaskBase task)
 		{
 			InitializeComponent();
+
+			taskViewModel = DependencyService.Get<TaskViewModel>();
 
 			#region comm
 			//InitializeCB();
@@ -131,7 +136,8 @@ namespace Diary.AdditionalControls
 
 		private void OnItemCompleted(object sender, EventArgs e)
 		{
-
+			//if (sender is Grid layout)
+			//	taskViewModel.ItemCompleted(layout);
 		}
 	}
 }
