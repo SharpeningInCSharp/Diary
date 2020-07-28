@@ -109,5 +109,10 @@ namespace Diary.AdditionalControls
 			PriorityBut.Text = Task.Priority.Name;
 			PriorityMarker.Fill = Task.Priority.Color;
 		}
+
+		private void AddSubtaskButton_Clicked(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

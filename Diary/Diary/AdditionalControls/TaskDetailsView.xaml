@@ -12,6 +12,7 @@
 
             <Style TargetType="Label" x:Key="NotationLabel">
                 <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="{StaticResource PaletteDarkBeige}"/>
             </Style>
 
             <Style TargetType="Editor" x:Key="InputItem">
@@ -47,15 +48,13 @@
             <StackLayout Margin="10">
 
                 <Label Text="Task title" 
-                   Style="{StaticResource NotationLabel}"
-                   TextColor="{StaticResource PaletteDarkBeige}"/>
+                   Style="{StaticResource NotationLabel}"/>
                 <Editor x:Name="HeaderEntry"
                    Style="{StaticResource InputItem}"
                    Text="{Binding Header, Mode=TwoWay}"/>
 
                 <Label Text="Add details"
-                   Style="{StaticResource NotationLabel}"
-                   TextColor="{StaticResource PaletteDarkBeige}"/>
+                   Style="{StaticResource NotationLabel}"/>
                 <Editor x:Name="NoteEditor"
                     Style="{StaticResource InputItem}"
                     Text="{Binding Note, Mode=TwoWay}"/>
@@ -97,14 +96,33 @@
                     <Button BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
                             x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority" FontAttributes="Bold"/>
                 </StackLayout>
+
+                <StackLayout x:Name="InnerTasksGrid" 
+                             Margin="20,4,2,4">
+                    <StackLayout Orientation="Horizontal">
+
+                        <Image Source="items_list_icon.png"
+                               HeightRequest="30"
+                               Style="{StaticResource ImageStyle}"/>
+                        <Label Text="Subtasks:" Style="{StaticResource NotationLabel}"/>
+                        
+                    </StackLayout>
+                    
+                    <Button x:Name="AddSubtaskButton" Clicked="AddSubtaskButton_Clicked"
+                            Style="{StaticResource TransparentButton}"
+                            Text="Add subtask"/>
+                    <!--<CollectionView/>-->
+                </StackLayout>
+
+
             </StackLayout>
-            
+
             <Button x:Name="CloseButton"
                     ImageSource="plus.png"
                     Clicked="CloseButton_Clicked"
                     Style="{StaticResource LeftBottomButton}"
                     Rotation="-135"/>
-            
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
