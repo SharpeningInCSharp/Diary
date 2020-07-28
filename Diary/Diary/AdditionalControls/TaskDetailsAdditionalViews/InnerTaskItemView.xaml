@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Diary.AdditionalControls.TaskDetailsAdditionalViews.InnerTaskItemView">
+  <ContentView.Content>
+      <StackLayout Orientation="Horizontal"
+                   Margin="4"
+                   HorizontalOptions="Start" VerticalOptions="Start">
+          <!--Add click to complete item-->
+            <Ellipse HeightRequest="20" WidthRequest="20"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Stroke="Black"/>
+            <Editor Text="{Binding Title}"
+                    WidthRequest="250"
+                    Style="{StaticResource InputItem}"/>
+            <Button x:Name="CrossButton" Text="Cross" Clicked="CrossButton_Clicked"/>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>
