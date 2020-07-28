@@ -31,6 +31,13 @@
                 <Setter Property="Margin" Value="10,6"/>
             </Style>
 
+            <Style TargetType="View" x:Key="OnCompleteItem">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="WidthRequest" Value="20"/>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -92,6 +99,7 @@
                             x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority" FontAttributes="Bold"/>
                 </StackLayout>
 
+                <!--Extract this-->
                 <StackLayout x:Name="InnerTasksGrid" 
                              IsVisible="false"
                              Margin="20,4,2,4">
@@ -111,32 +119,54 @@
                                     ItemsSource="{Binding InnerTasks}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout Orientation="Horizontal"
-                                            Margin="4"
-                                            HorizontalOptions="Start" VerticalOptions="Start">
-                                    <!--Add click to complete item-->
+                                <Grid Margin="4"
+                                      HorizontalOptions="Start" VerticalOptions="Start">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
                                     <Ellipse HeightRequest="20" WidthRequest="20"
-                                                HorizontalOptions="Center"
-                                                 VerticalOptions="Center"
-                                                Stroke="Black"/>
+                                             Style="{StaticResource OnCompleteItem}"
+                                             Stroke="Black"/>
+
+                                    <Image x:Name="tipImage"
+                                            Grid.Column="0"
+                                           Grid.Row="0"
+                                            Style="{StaticResource OnCompleteItem}"/>
 
                                     <Editor Text="{Binding Header}"
                                              WidthRequest="150"
+                                             Grid.Column="1"
+                                            Grid.Row="0"
                                              Style="{StaticResource InputItem}"/>
 
                                     <ImageButton x:Name="CrossButton" 
                                              Source="cross_icon.png" 
                                             WidthRequest="40"
+                                                  Grid.Column="2"
+                                                 Grid.Row="0"
                                             HorizontalOptions="Center"
                                             VerticalOptions="Center"
                                             HeightRequest="40"
                                              Clicked="CrossButton_Clicked"/>
 
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
-                                    </StackLayout.GestureRecognizers>
+                                    <BoxView Style="{StaticResource LineSeparator}"
+                                                    Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="2"/>
 
-                                </StackLayout>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
+                                    </Grid.GestureRecognizers>
+
+                                </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>

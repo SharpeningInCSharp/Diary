@@ -26,7 +26,7 @@ namespace Diary.AdditionalControls
 
 		private void OnItemCompleted(object sender, EventArgs e)
 		{
-			if(sender is Grid layout)
+			if(sender is Layout<View> layout)
 				taskViewModel.ItemCompleted(layout);
 		}
 
