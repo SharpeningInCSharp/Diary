@@ -93,7 +93,7 @@
                 </StackLayout>
 
                 <StackLayout x:Name="InnerTasksGrid" 
-                             IsVisible="true"
+                             IsVisible="false"
                              Margin="20,4,2,4">
                     <StackLayout Orientation="Horizontal">
 
@@ -120,12 +120,16 @@
                                                  VerticalOptions="Center"
                                                 Stroke="Black"/>
 
-                                    <Editor Text="{Binding Title}"
-                                             WidthRequest="250"
+                                    <Editor Text="{Binding Header}"
+                                             WidthRequest="150"
                                              Style="{StaticResource InputItem}"/>
 
-                                    <Button x:Name="CrossButton" 
-                                             ImageSource="cross_icon.png" 
+                                    <ImageButton x:Name="CrossButton" 
+                                             Source="cross_icon.png" 
+                                            WidthRequest="40"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            HeightRequest="40"
                                              Clicked="CrossButton_Clicked"/>
 
                                     <StackLayout.GestureRecognizers>
