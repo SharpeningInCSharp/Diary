@@ -18,7 +18,7 @@ namespace Diary.ViewModels
 		/// Provides required animation and action to Complete <see cref="TaskBase"/> in <paramref name="layout"/>.BindingContext 
 		/// </summary>
 		/// <param name="layout">Grid with <see cref="TaskBase"/> in BindingContext prop</param>
-		public async void ItemCompleted(Grid layout)
+		public async void ItemCompleted(Layout<View> layout)
 		{
 			try
 			{
@@ -33,7 +33,7 @@ namespace Diary.ViewModels
 			}
 		}
 
-		private void OnTaskCompletion(Grid layout)
+		private void OnTaskCompletion(Layout<View> layout)
 		{
 			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
 
