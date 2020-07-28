@@ -20,8 +20,6 @@ namespace Diary.AdditionalControls
 		{
 			InitializeComponent();
 
-			//BindingContext = this;
-
 			//TODO: bind events
 			//TODO: extract some actions (OnItemCompleted, OnTaskCompleted) to separated Controller
 		}
@@ -33,20 +31,20 @@ namespace Diary.AdditionalControls
 			var image = (Image)layout.Children[1];
 			image.Source = "tick_icon.png";
 
-			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
-
-			var item = (TaskBase)layout.BindingContext;
-			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
+			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(layout));
 		}
 
 		/// <summary>
 		/// Task completion animation
 		/// </summary>
 		/// <param name="item"></param>
-		private void OnTaskCompletion(TaskBase item)
+		private void OnTaskCompletion(Grid layout)
 		{
+			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
+
 			Thread.Sleep(OnTaskCompletionMsTimeout);
 
+			var item = (TaskBase)layout.BindingContext;
 			item.Complete();
 		}
 
