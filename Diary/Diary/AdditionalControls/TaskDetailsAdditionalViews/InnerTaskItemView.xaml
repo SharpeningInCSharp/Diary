@@ -14,10 +14,19 @@
                      HorizontalOptions="Center"
                      VerticalOptions="Center"
                      Stroke="Black"/>
+          
             <Editor Text="{Binding Title}"
                     WidthRequest="250"
                     Style="{StaticResource InputItem}"/>
-            <Button x:Name="CrossButton" Text="Cross" Clicked="CrossButton_Clicked"/>
+          
+            <Button x:Name="CrossButton" 
+                    ImageSource="cross_icon.png" 
+                    Clicked="CrossButton_Clicked"/>
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTaskCompleted"/>
+            </StackLayout.GestureRecognizers>
+          
         </StackLayout>
   </ContentView.Content>
 </ContentView>

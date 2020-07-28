@@ -22,6 +22,7 @@ namespace Diary.AdditionalControls
 		{
 			InitializeComponent();
 
+			#region comm
 			//InitializeCB();
 
 			//old priority adding
@@ -43,9 +44,13 @@ namespace Diary.AdditionalControls
 			//
 
 			//Task.PriorityChanged += Task_PriorityChanged;
-            BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
+			#endregion
 
-			
+			if (task is OuterTask outerTask)
+				InnerTasksGrid.IsVisible = true;
+
+
+			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 
 			PriorityBut.Text = task.Priority.Name;
 			PriorityMarker.Fill = task.Priority.Color;
@@ -93,6 +98,7 @@ namespace Diary.AdditionalControls
 		async private void CloseButton_Clicked(object sender, EventArgs e)
 		{
 			await CloseButton.RotateTo(0, 200, Easing.CubicInOut);
+
 			if (HeaderEntry.Text == "") Task.Delete();
 			Navigation.PopAsync(false);
 		}
@@ -111,6 +117,19 @@ namespace Diary.AdditionalControls
 		}
 
 		private void AddSubtaskButton_Clicked(object sender, EventArgs e)
+		{
+			if (Task is OuterTask outerTask)
+			{
+				outerTask.Add(new Task());
+			}
+		}
+
+		private void CrossButton_Clicked(object sender, EventArgs e)
+		{
+
+		}
+
+		private void OnItemCompleted(object sender, EventArgs e)
 		{
 
 		}

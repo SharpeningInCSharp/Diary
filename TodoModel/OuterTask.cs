@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 
 namespace TodoModel
 {
@@ -23,10 +21,10 @@ namespace TodoModel
 
 		public void Add(Task task)
 		{
+			innerTasks.Add(task ?? throw new ArgumentNullException(nameof(task)));
+
 			task.TaskCompleted += Task_TaskCompleted;
 			task.TaskDeleted += Task_TaskDeleted;
-
-			innerTasks.Add(task ?? throw new ArgumentNullException(nameof(task)));
 
 			OnPropertyChanged("InnerTasks");
 		}

@@ -20,6 +20,11 @@ namespace Diary.AdditionalControls.TaskDetailsAdditionalViews
 			this.innerTask = innerTask;
 		}
 
+		private void OnTaskCompleted(object sender, EventArgs e)
+		{
+			innerTask.Complete();
+		}
+
 		private void CrossButton_Clicked(object sender, EventArgs e)
 		{
 			innerTask.Delete();

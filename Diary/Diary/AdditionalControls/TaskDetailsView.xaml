@@ -14,7 +14,7 @@
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="TextColor" Value="{StaticResource PaletteDarkBeige}"/>
             </Style>
-            
+
             <Style TargetType="Picker" x:Key="InputPicker">
                 <Setter Property="TextColor" Value="{StaticResource PaletteBeige}"/>
                 <Setter Property="WidthRequest" Value="150"/>
@@ -93,6 +93,7 @@
                 </StackLayout>
 
                 <StackLayout x:Name="InnerTasksGrid" 
+                             IsVisible="true"
                              Margin="20,4,2,4">
                     <StackLayout Orientation="Horizontal">
 
@@ -100,13 +101,41 @@
                                HeightRequest="30"
                                Style="{StaticResource ImageStyle}"/>
                         <Label Text="Subtasks:" Style="{StaticResource NotationLabel}"/>
-                        
+
                     </StackLayout>
-                    
+
                     <Button x:Name="AddSubtaskButton" Clicked="AddSubtaskButton_Clicked"
                             Style="{StaticResource TransparentButton}"
                             Text="Add subtask"/>
-                    <!--<CollectionView/>-->
+                    <CollectionView x:Name="SubtasksCollectionView" Margin="20,4,2,4"
+                                    ItemsSource="{Binding InnerTasks}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal"
+                                            Margin="4"
+                                            HorizontalOptions="Start" VerticalOptions="Start">
+                                    <!--Add click to complete item-->
+                                    <Ellipse HeightRequest="20" WidthRequest="20"
+                                                HorizontalOptions="Center"
+                                                 VerticalOptions="Center"
+                                                Stroke="Black"/>
+
+                                    <Editor Text="{Binding Title}"
+                                             WidthRequest="250"
+                                             Style="{StaticResource InputItem}"/>
+
+                                    <Button x:Name="CrossButton" 
+                                             ImageSource="cross_icon.png" 
+                                             Clicked="CrossButton_Clicked"/>
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
+                                    </StackLayout.GestureRecognizers>
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </StackLayout>
 
 
