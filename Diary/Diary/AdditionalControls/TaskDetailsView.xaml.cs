@@ -82,7 +82,7 @@ namespace Diary.AdditionalControls
 
 		private void RepeatButton_Clicked(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		private void SelectDatesRangeButton_Clicked(object sender, EventArgs e)
