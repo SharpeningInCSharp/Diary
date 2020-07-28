@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Diary.AdditionalControls.InnerTaskCollection"
+             x:Name="innerColl"
+             BindingContextChanged="InnerColl_BindingContextChanged">
+    
+    <ContentView.Content>
+        <CollectionView x:Name="InnerTasksCollectionView"
+                        Margin="30,4,2,4"
+                        Grid.Column="0"
+                        ItemSizingStrategy="MeasureAllItems"
+                        Grid.ColumnSpan="2"
+                        MinimumHeightRequest="0"
+                        HorizontalScrollBarVisibility="Always"
+                        Grid.Row="2">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="7*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Ellipse Stroke="{StaticResource PaletteBeige}"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center"
+                                                    Grid.Column="0"
+                                                    Grid.Row="0"
+                                                    WidthRequest="25"
+                                                    HeightRequest="25"
+                                                    StrokeThickness="2"/>
+
+                        <Image HorizontalOptions="Center"
+                                                        VerticalOptions="Center"
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        WidthRequest="25"
+                                                        HeightRequest="25"/>
+
+                        <StackLayout Grid.Row="0"
+                                                        Grid.Column="1">
+                            <Label Text="{Binding Path= Header}" 
+                                                        LineBreakMode="NoWrap" 
+                                                        FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
+
+                            <Label Text="{Binding Path=Note}" 
+                                                        LineBreakMode="NoWrap"
+                                                        FontSize="16" TextColor="{StaticResource PaletteDarkBeige}"/>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="{StaticResource PaletteDarkBeige}"
+                                                    Grid.Row="1"
+                                                    Margin="10,2,4,2"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="2"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
+                        </Grid.GestureRecognizers>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </ContentView.Content>
+</ContentView>

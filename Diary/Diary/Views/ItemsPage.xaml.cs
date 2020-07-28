@@ -27,8 +27,6 @@ namespace Diary.Views
 	[DesignTimeVisible(false)]
 	public partial class ItemsPage : ContentPage
 	{
-		private const int OnTaskCompletionMsTimeout = 350;
-
 		TaskList TasksList;
 
 		public ItemsPage()
@@ -75,7 +73,6 @@ namespace Diary.Views
             TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
-
 			TasksList.Add(new TodoModel.Task
 			{
 				Header = "quwuwu",
@@ -83,13 +80,29 @@ namespace Diary.Views
 				Priority = Priority.Low,
 			}) ;
 
-			TasksList.Add(new TodoModel.Task
+			var outItem = new OuterTask
 			{
-				Header = "RUN",
-				Priority = Priority.Normal,
+				Header = "СПАТЬ",
+			};
+
+			outItem.Add(
+				new TodoModel.Task()
+				{
+					Header = "Мыть попу",
+					Note = "С мылом",
+				}
+				);
+
+			outItem.Add(
+				new TodoModel.Task()
+			{
+				Header = "Чистить зубы",
+				Note = "Не с мылом",
 			});
 
-			TasksList.Add(new TodoModel.Task
+			TasksList.Add(outItem);
+
+			TasksList.Add(new DailyTask
 			{
 				Header = "WALK",
 				Note = "With dog",
@@ -103,23 +116,13 @@ namespace Diary.Views
 		{
 			Dispatcher.BeginInvokeOnMainThread(() =>
 			{
-				BindingContext = null;
-				BindingContext = TasksList;
+				TasksCollection.BindingContext = null;
+				TasksCollection.BindingContext = TasksList;
 			});
-		}
-
-		async void OnItemSelected(object sender, EventArgs args)
-		{
-			var layout = (BindableObject)sender;
-			var item = (TaskBase)layout.BindingContext;
-
-			await Navigation.PushAsync(new TaskDetailsView(item), false);
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			
-
 			var empltyTask = new TodoModel.Task();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 
@@ -153,31 +156,6 @@ namespace Diary.Views
 			}
 
 			TasksList.OrderByPriority();
-		}
-
-		private async void OnItemCompleted(object sender, EventArgs e)
-		{
-
-			var layout = (Grid)sender;
-
-			var image = (Image)layout.Children[1];
-			image.Source = "tick_icon.png";
-
-			layout.TranslateTo(Application.Current.MainPage.Width, 0, 350, Easing.CubicIn);
-
-			var item = (TaskBase)layout.BindingContext;
-			await System.Threading.Tasks.Task.Run(() => OnTaskCompletion(item));
-		}
-
-		/// <summary>
-		/// Task completion animation
-		/// </summary>
-		/// <param name="item"></param>
-		private void OnTaskCompletion(TaskBase item)
-		{
-			Thread.Sleep(OnTaskCompletionMsTimeout);
-
-			item.Complete();
 		}
 	}
 }

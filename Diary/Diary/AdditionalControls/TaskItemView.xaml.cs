@@ -24,8 +24,8 @@ namespace Diary.AdditionalControls
 			Task = task;
 
 			//TODO: develop Complete button
-			if (task.HasInners)
-				task.TaskCompleted += Task_TaskCompleted;
+			//if (task.HasInners)
+			//	task.TaskCompleted += Task_TaskCompleted;
 		}
 
 		private void Task_TaskCompleted(TaskBase task)
