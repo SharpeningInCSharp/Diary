@@ -35,6 +35,13 @@
                 <Setter Property="CornerRadius" Value="40"/>
             </Style>
 
+            <Style TargetType="BoxView" x:Key="LineSeparator">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="Color" Value="{StaticResource PaletteDarkBeige}"/>
+                <Setter Property="Margin" Value="10,2,4,2"/>
+            </Style>
+            
             <Style TargetType="Editor" x:Key="InputItem">
                 <Setter Property="Margin" Value="6,4,2,4"/>
                 <Setter Property="TextColor" Value="{StaticResource PaletteBeige}"/>

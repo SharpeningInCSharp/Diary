@@ -53,10 +53,9 @@
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
-                        
-                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="{StaticResource PaletteDarkBeige}"
+
+                        <BoxView Style="{StaticResource LineSeparator}"
                                      Grid.Row="1"
-                                     Margin="10,2,4,2"
                                      Grid.Column="0"
                                      Grid.ColumnSpan="2"/>
 
