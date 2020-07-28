@@ -62,7 +62,7 @@
                     Text="{Binding Note, Mode=TwoWay}"/>
 
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="items_list_icon.png"
+                    <Image Source="todo_list_icon.png"
                        Style="{StaticResource ImageStyle}"/>
                     <Picker x:Name="TasksListPicker"
                             Style="{StaticResource InputPicker}"
