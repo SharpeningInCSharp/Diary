@@ -34,7 +34,12 @@
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="CornerRadius" Value="40"/>
             </Style>
-            
+
+            <Style TargetType="Editor" x:Key="InputItem">
+                <Setter Property="Margin" Value="6,4,2,4"/>
+                <Setter Property="TextColor" Value="{StaticResource PaletteBeige}"/>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
     
