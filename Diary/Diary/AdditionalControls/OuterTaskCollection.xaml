@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ctrls="clr-namespace:Diary.AdditionalControls"
              mc:Ignorable="d"
              x:Class="Diary.AdditionalControls.OuterTaskCollection">
   <ContentView.Content>
@@ -52,13 +53,18 @@
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
-
+                        
                         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="{StaticResource PaletteDarkBeige}"
                                      Grid.Row="1"
                                      Margin="10,2,4,2"
                                      Grid.Column="0"
                                      Grid.ColumnSpan="2"/>
 
+                        <ctrls:InnerTaskCollection x:Name="InnerTasksCollectionView" 
+                                                   Grid.Column="0"
+                                                   Grid.Row="2"
+                                                   Grid.ColumnSpan="2"
+                                                   BindingContext="{Binding InnerTasks}"/>
                         <!--<CollectionView x:Name="InnerTasksCollectionView"
                                             Margin="20,4,2,4"
                                             Grid.Column="0"

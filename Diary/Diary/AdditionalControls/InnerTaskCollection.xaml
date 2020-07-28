@@ -5,19 +5,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Diary.AdditionalControls.InnerTaskCollection"
-             x:Name="innerColl">
+             x:Name="innerColl"
+             BindingContextChanged="InnerColl_BindingContextChanged">
     
     <ContentView.Content>
         <CollectionView x:Name="InnerTasksCollectionView"
-                        Margin="20,4,2,4"
+                        Margin="30,4,2,4"
                         Grid.Column="0"
-                        BackgroundColor="Red"
                         ItemSizingStrategy="MeasureAllItems"
                         Grid.ColumnSpan="2"
                         MinimumHeightRequest="0"
                         HorizontalScrollBarVisibility="Always"
-                        Grid.Row="2"
-                        ItemsSource="{Binding Source=innerColl, Path=BindingContext}">
+                        Grid.Row="2">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -70,7 +69,7 @@
                                                     Grid.ColumnSpan="2"/>
 
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped"/>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
                         </Grid.GestureRecognizers>
 
                     </Grid>

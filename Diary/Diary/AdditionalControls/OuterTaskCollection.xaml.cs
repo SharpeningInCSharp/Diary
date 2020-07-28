@@ -23,11 +23,11 @@ namespace Diary.AdditionalControls
 			//BindingContext = this;
 
 			//TODO: bind events
+			//TODO: extract some actions (OnItemCompleted, OnTaskCompleted) to separated Controller
 		}
 
 		private async void OnItemCompleted(object sender, EventArgs e)
 		{
-
 			var layout = (Grid)sender;
 
 			var image = (Image)layout.Children[1];
