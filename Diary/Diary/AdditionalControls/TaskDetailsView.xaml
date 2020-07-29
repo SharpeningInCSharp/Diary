@@ -91,12 +91,12 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Ellipse Grid.Column="0" HeightRequest="30" WidthRequest="30"
-                                 Fill="Transparent" VerticalOptions="Center"
+                                 VerticalOptions="Center"
                                  HorizontalOptions="Center" Stroke="{StaticResource PaletteDarkBlue}"
-                                 StrokeThickness="5" x:Name="PriorityMarker"/>
+                                 StrokeThickness="5" x:Name="PriorityMarker" Fill="{Binding Path=Priority.Color}"/>
 
                     <Button BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
-                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority" FontAttributes="Bold"/>
+                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="{Binding Path=Priority.Name}" FontAttributes="Bold"/>
                 </StackLayout>
 
                 <!--Extract this-->

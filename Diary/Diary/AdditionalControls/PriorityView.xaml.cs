@@ -25,7 +25,9 @@ namespace Diary.AdditionalControls
         {
             InitializeComponent();
             task = taskBase;
-            var realm = Realm.GetInstance();
+            RealmConfiguration realmConfiguration = new RealmConfiguration();
+            realmConfiguration.SchemaVersion = 3;
+            Realm realm = Realm.GetInstance(realmConfiguration);
             var priors = realm.All<PriorityEntity>().ToList();
 
             foreach(PriorityEntity priority in priors)

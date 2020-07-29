@@ -32,6 +32,7 @@ namespace Diary.Views
 		public ItemsPage()
 		{
 			InitializeComponent();
+			
 
             /// временное, пример записи в бд // я допишу не трогайте :)))))
             //var realm = Realm.GetInstance();

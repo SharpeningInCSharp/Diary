@@ -63,7 +63,7 @@
                                      Grid.Row="0"
                                      WidthRequest="30"
                                      HeightRequest="30"
-                                     StrokeThickness="4"/>
+                                     StrokeThickness="5"/>
                         
                         <BoxView Style="{StaticResource LineSeparator}"
                                      Grid.Row="1"
