@@ -51,7 +51,7 @@ namespace Diary.AdditionalControls
 			//Task.PriorityChanged += Task_PriorityChanged;
 			#endregion
 
-			if (task is OuterTask outerTask)
+			
 				InnerTasksGrid.IsVisible = true;
 
 

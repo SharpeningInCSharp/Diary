@@ -14,7 +14,7 @@ namespace Diary.AdditionalControls
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class InnerTaskCollection : ContentView
 	{
-		private const int SingleCollectionItemSize = 75;
+		private const int SingleCollectionItemSize = 60;
 		private readonly TaskViewModel taskViewModel;
 
 		public InnerTaskCollection()
