@@ -73,7 +73,7 @@
                         <ctrls:InnerTaskCollection x:Name="InnerTasksCollectionView" 
                                                    Grid.Column="0"
                                                    Grid.Row="2"
-                                                   Grid.ColumnSpan="2"
+                                                   Grid.ColumnSpan="3"
                                                    BindingContext="{Binding InnerTasks}"/>
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>
