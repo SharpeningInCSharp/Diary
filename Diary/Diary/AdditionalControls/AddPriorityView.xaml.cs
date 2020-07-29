@@ -55,7 +55,9 @@ namespace Diary.AdditionalControls
         async private void SavePriority_Clicked(object sender, EventArgs e)
         {
             if (NameEntry.Text == "") return;
-            var realm = Realm.GetInstance();
+            RealmConfiguration realmConfiguration = new RealmConfiguration();
+            realmConfiguration.SchemaVersion = 3;
+            Realm realm = Realm.GetInstance(realmConfiguration);
             realm.Write(() =>
             {
                 System.Drawing.Color a = PriorityColor;
