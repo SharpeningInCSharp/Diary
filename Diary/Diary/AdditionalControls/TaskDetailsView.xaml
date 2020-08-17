@@ -102,7 +102,7 @@
                 <!--Extract this-->
                 <StackLayout x:Name="InnerTasksGrid" 
                              IsVisible="false"
-                             Margin="20,4,2,4">
+                             Margin="0,4,2,4">
                     <StackLayout Orientation="Horizontal">
 
                         <Image Source="items_list_icon.png"
@@ -115,7 +115,7 @@
                     <Button x:Name="AddSubtaskButton" Clicked="AddSubtaskButton_Clicked"
                             Style="{StaticResource TransparentButton}"
                             Text="Add subtask" TextColor="{StaticResource PaletteBeige}"/>
-                    <CollectionView x:Name="SubtasksCollectionView" Margin="20,4,2,4"
+                    <CollectionView x:Name="SubtasksCollectionView" Margin="10,4,2,4"
                                     ItemsSource="{Binding InnerTasks}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>

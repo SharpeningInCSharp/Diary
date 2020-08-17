@@ -51,9 +51,10 @@ namespace Diary.AdditionalControls
 			//Task.PriorityChanged += Task_PriorityChanged;
 			#endregion
 
-			
+			if(task is OuterTask)
 				InnerTasksGrid.IsVisible = true;
-
+			else
+				InnerTasksGrid.IsVisible = false;
 
 			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 
