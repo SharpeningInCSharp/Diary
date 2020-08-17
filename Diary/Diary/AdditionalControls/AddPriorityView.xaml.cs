@@ -64,7 +64,6 @@ namespace Diary.AdditionalControls
                     Name = NameEntry.Text,
                     Value = Value,
                     Color = a.ToArgb()
-
                 };
                 realm.Add(newNote);
             });

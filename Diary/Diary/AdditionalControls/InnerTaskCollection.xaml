@@ -23,7 +23,8 @@
                     <Grid Margin="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -51,21 +52,31 @@
                                                         Grid.Column="1">
                             <Label Text="{Binding Path= Header}" 
                                                         LineBreakMode="NoWrap" 
-                                                        FontSize="20" TextColor="{StaticResource PaletteBeige}"/>
+                                                        FontSize="16" TextColor="{StaticResource PaletteBeige}"/>
 
                             <Label Text="{Binding Path=Note}" 
                                                         LineBreakMode="NoWrap"
-                                                        FontSize="16" TextColor="{StaticResource PaletteDarkBeige}"/>
+                                                        FontSize="12" TextColor="{StaticResource PaletteDarkBeige}"/>
 
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
 
+                        <Ellipse Stroke="{StaticResource PaletteDarkBlue}"
+                                 Fill="{Binding Path=Priority.Color}"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Grid.Column="2"
+                                     Grid.Row="0"
+                                     WidthRequest="30"
+                                     HeightRequest="30"
+                                     StrokeThickness="5"/>
+
                         <BoxView Style="{StaticResource LineSeparator}"
                                                     Grid.Row="1"
                                                     Grid.Column="0"
-                                                    Grid.ColumnSpan="2"/>
+                                                    Grid.ColumnSpan="3"/>
 
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemCompleted"/>

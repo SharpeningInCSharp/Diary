@@ -91,18 +91,18 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Ellipse Grid.Column="0" HeightRequest="30" WidthRequest="30"
-                                 Fill="Transparent" VerticalOptions="Center"
+                                 VerticalOptions="Center"
                                  HorizontalOptions="Center" Stroke="{StaticResource PaletteDarkBlue}"
-                                 StrokeThickness="5" x:Name="PriorityMarker"/>
+                                 StrokeThickness="5" x:Name="PriorityMarker" Fill="{Binding Path=Priority.Color}"/>
 
                     <Button BackgroundColor="Transparent" TextColor="{StaticResource PaletteBeige}"
-                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="Priority" FontAttributes="Bold"/>
+                            x:Name="PriorityBut" Clicked="PriorityBut_Clicked" Text="{Binding Path=Priority.Name}" FontAttributes="Bold"/>
                 </StackLayout>
 
                 <!--Extract this-->
                 <StackLayout x:Name="InnerTasksGrid" 
                              IsVisible="false"
-                             Margin="20,4,2,4">
+                             Margin="0,4,2,4">
                     <StackLayout Orientation="Horizontal">
 
                         <Image Source="items_list_icon.png"
@@ -114,8 +114,8 @@
 
                     <Button x:Name="AddSubtaskButton" Clicked="AddSubtaskButton_Clicked"
                             Style="{StaticResource TransparentButton}"
-                            Text="Add subtask"/>
-                    <CollectionView x:Name="SubtasksCollectionView" Margin="20,4,2,4"
+                            Text="Add subtask" TextColor="{StaticResource PaletteBeige}"/>
+                    <CollectionView x:Name="SubtasksCollectionView" Margin="10,4,2,4"
                                     ItemsSource="{Binding InnerTasks}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
@@ -149,6 +149,7 @@
 
                                     <ImageButton x:Name="CrossButton" 
                                              Source="cross_icon.png" 
+                                                 BackgroundColor="Transparent"
                                             WidthRequest="40"
                                                   Grid.Column="2"
                                                  Grid.Row="0"

@@ -32,6 +32,7 @@ namespace Diary.Views
 		public ItemsPage()
 		{
 			InitializeComponent();
+			
 
             /// временное, пример записи в бд // я допишу не трогайте :)))))
             //var realm = Realm.GetInstance();
@@ -73,7 +74,7 @@ namespace Diary.Views
             TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
-			TasksList.Add(new TodoModel.Task
+			TasksList.Add(new OuterTask
 			{
 				Header = "quwuwu",
 				Note = "123",
@@ -102,7 +103,7 @@ namespace Diary.Views
 
 			TasksList.Add(outItem);
 
-			TasksList.Add(new DailyTask
+			TasksList.Add(new OuterTask
 			{
 				Header = "WALK",
 				Note = "With dog",
@@ -123,7 +124,7 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			var empltyTask = new TodoModel.Task();
+			var empltyTask = new OuterTask();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 
 			await Navigation.PushAsync(new TaskDetailsView(empltyTask), false);
