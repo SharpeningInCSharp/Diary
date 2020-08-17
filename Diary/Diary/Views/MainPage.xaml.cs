@@ -44,7 +44,7 @@ namespace Diary.Views
 						break;
 
 					default:
-						//TODO: MenuPages.Add(id, new NavigationPage(new ItemsPage(id)));
+						//MenuPages.Add(id, new NavigationPage(new ItemsPage(id)));
 						MenuPages.Add(id, new NavigationPage(new ItemsPage()));
 						break;
 				}

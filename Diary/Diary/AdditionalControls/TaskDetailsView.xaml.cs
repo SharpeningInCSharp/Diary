@@ -56,9 +56,10 @@ namespace Diary.AdditionalControls
 			else
 				InnerTasksGrid.IsVisible = false;
 
-			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
+			//TODO: fill cb with TaskList titles
+			//InitializeCB();
 
-			
+			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 		}
 
 		private void InitializeCB()
