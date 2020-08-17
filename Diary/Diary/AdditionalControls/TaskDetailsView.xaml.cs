@@ -131,7 +131,12 @@ namespace Diary.AdditionalControls
 
 		private void CrossButton_Clicked(object sender, EventArgs e)
 		{
-			
+			var p = ((ImageButton)sender).Parent;
+			if (p is Layout<View> layout)
+			{
+				var task = (TaskBase)layout.BindingContext;
+				task.Delete();
+			}
 		}
 
 		private void OnItemCompleted(object sender, EventArgs e)
