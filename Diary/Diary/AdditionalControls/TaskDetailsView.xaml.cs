@@ -61,12 +61,6 @@ namespace Diary.AdditionalControls
 			
 		}
 
-		//private void Task_PriorityChanged(TaskBase task)
-		//{
-		//	PriorityBut.Text = task.Priority.Name;
-		//	PriorityMarker.BackgroundColor = task.Priority.Color;
-		//}
-
 		private void InitializeCB()
 		{
 			TasksListPicker.ItemsSource = storage.Get<ITodoStorage>().ToList();
