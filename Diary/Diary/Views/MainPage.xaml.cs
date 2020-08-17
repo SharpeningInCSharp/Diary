@@ -39,12 +39,13 @@ namespace Diary.Views
 						MenuPages.Add(id, new NavigationPage(new AccountPage()));
 						break;
 
-					case (int)MenuItemType.Tasks:
-						MenuPages.Add(id, new NavigationPage(new ItemsPage()));
-						break;
-
 					case (int)MenuItemType.About:
 						MenuPages.Add(id, new NavigationPage(new AboutPage()));
+						break;
+
+					default:
+						//TODO: MenuPages.Add(id, new NavigationPage(new ItemsPage(id)));
+						MenuPages.Add(id, new NavigationPage(new ItemsPage()));
 						break;
 				}
 			}
@@ -55,8 +56,8 @@ namespace Diary.Views
 			{
 				Detail = newPage;
 
-				if (Device.RuntimePlatform == Device.Android)
-					await Task.Delay(100);
+				//if (Device.RuntimePlatform == Device.Android)
+				//	await Task.Delay(100);
 
 				IsPresented = false;
 			}
