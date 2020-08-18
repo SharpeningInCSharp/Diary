@@ -29,49 +29,52 @@ namespace Diary.Views
 	{
 		TaskList TasksList;
 
-		public ItemsPage()
+		public ItemsPage(/*int listId*/)
 		{
 			InitializeComponent();
-			
 
-            /// временное, пример записи в бд // я допишу не трогайте :)))))
-            //var realm = Realm.GetInstance();
-            //realm.Write(() =>
-            //{
-                //realm.Remove(realm.All<PriorityEntity>().First(x => x.Name == "NuTakSebe"));
-                //realm.Remove(realm.All<PriorityEntity>().First(x => x.Name == "Normas"));
+			#region Realm com
+			/// временное, пример записи в бд // я допишу не трогайте :)))))
+			//var realm = Realm.GetInstance();
+			//realm.Write(() =>
+			//{
+			//realm.Remove(realm.All<PriorityEntity>().First(x => x.Name == "NuTakSebe"));
+			//realm.Remove(realm.All<PriorityEntity>().First(x => x.Name == "Normas"));
 
-            //    System.Drawing.Color a = new System.Drawing.Color();
-            //    a = System.Drawing.Color.Chartreuse;
-            //    var newNote = new PriorityEntity
-            //    {
-            //        Name = "Low",
-            //        Value = 2,
-            //        Color = a.ToArgb()
+			//    System.Drawing.Color a = new System.Drawing.Color();
+			//    a = System.Drawing.Color.Chartreuse;
+			//    var newNote = new PriorityEntity
+			//    {
+			//        Name = "Low",
+			//        Value = 2,
+			//        Color = a.ToArgb()
 
-            //    };
-            //    realm.Add(newNote);
-            //    a = System.Drawing.Color.Gold;
-            //    var alsonewNote = new PriorityEntity
-            //    {
-            //        Name = "Normal",
-            //        Value = 5,
-            //        Color = a.ToArgb()
+			//    };
+			//    realm.Add(newNote);
+			//    a = System.Drawing.Color.Gold;
+			//    var alsonewNote = new PriorityEntity
+			//    {
+			//        Name = "Normal",
+			//        Value = 5,
+			//        Color = a.ToArgb()
 
-            //    };
-            //    realm.Add(alsonewNote);
-            //    a = System.Drawing.Color.Red;
-            //    var alsoalsonewNote = new PriorityEntity
-            //    {
-            //        Name = "Hight",
-            //        Value = 8,
-            //        Color = a.ToArgb()
+			//    };
+			//    realm.Add(alsonewNote);
+			//    a = System.Drawing.Color.Red;
+			//    var alsoalsonewNote = new PriorityEntity
+			//    {
+			//        Name = "Hight",
+			//        Value = 8,
+			//        Color = a.ToArgb()
 
-            //    };
-            //    realm.Add(alsoalsonewNote);
-            //});
+			//    };
+			//    realm.Add(alsoalsonewNote);
+			//});
+			#endregion
 
-            TasksList = new TaskList("Today");
+			//TODO: get TasksList with Id==listId
+
+			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
 			TasksList.Add(new OuterTask

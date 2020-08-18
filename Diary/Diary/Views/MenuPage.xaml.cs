@@ -18,10 +18,12 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
+			///TODO: взять из БД все названия списков и их Id и добавить в список menuItems
+			///раскомментить кусок в default в MainPage.cs
 			menuItems = new List<HomeMenuItem>
 			{
 				new HomeMenuItem {Id = MenuItemType.Account, Title="Account" },
-				new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
+				//new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
 				new HomeMenuItem {Id = MenuItemType.About, Title="About" }
 			};
 

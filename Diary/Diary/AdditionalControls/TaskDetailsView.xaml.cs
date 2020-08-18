@@ -56,16 +56,11 @@ namespace Diary.AdditionalControls
 			else
 				InnerTasksGrid.IsVisible = false;
 
+			//TODO: fill cb with TaskList titles
+			//InitializeCB();
+
 			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
-
-			
 		}
-
-		//private void Task_PriorityChanged(TaskBase task)
-		//{
-		//	PriorityBut.Text = task.Priority.Name;
-		//	PriorityMarker.BackgroundColor = task.Priority.Color;
-		//}
 
 		private void InitializeCB()
 		{
