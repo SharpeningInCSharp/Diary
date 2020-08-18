@@ -7,6 +7,7 @@ namespace Diary.Models
 	public enum MenuItemType
 	{
 		Account,
+		TaskList,
 		Tasks,
 		About
 	}
