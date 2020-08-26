@@ -1,7 +1,10 @@
 ﻿using Diary.Models;
+using Realms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using TodoModel.Database;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,12 +21,30 @@ namespace Diary.Views
 		{
 			InitializeComponent();
 
-			menuItems = new List<HomeMenuItem>
-			{
-				new HomeMenuItem {Id = MenuItemType.Account, Title="Account" },
-				new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
+            ///TODO: взять из БД все названия списков и их Id и добавить в список menuItems
+            ///раскомментить кусок в default в MainPage.cs
+            menuItems = new List<HomeMenuItem>
+            {
+                new HomeMenuItem {Id = MenuItemType.Account, Title="Account" },
+				//new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
 				new HomeMenuItem {Id = MenuItemType.About, Title="About" }
-			};
+            };
+
+			var config = new RealmConfiguration() { SchemaVersion = 3 };
+			var realm = Realm.GetInstance(config);
+
+			//realm.Write(() => //пример добавления нового списка в бд
+			//{
+			//	var newSet = new TaskListEntity
+			//	{
+			//		Name = "Daily Tasks"
+			//	};
+			//	realm.Add(newSet);
+			//});
+
+			var lists = realm.All<TaskListEntity>().ToList();
+			foreach (TaskListEntity a in lists)
+				menuItems.Add(new HomeMenuItem {Id = MenuItemType.TaskList, Title = a.Name});
 
 			ListViewMenu.ItemsSource = menuItems;
 			

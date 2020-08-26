@@ -51,20 +51,16 @@ namespace Diary.AdditionalControls
 			//Task.PriorityChanged += Task_PriorityChanged;
 			#endregion
 
-			
+			if(task is OuterTask)
 				InnerTasksGrid.IsVisible = true;
+			else
+				InnerTasksGrid.IsVisible = false;
 
+			//TODO: fill cb with TaskList titles
+			//InitializeCB();
 
 			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
-
-			
 		}
-
-		//private void Task_PriorityChanged(TaskBase task)
-		//{
-		//	PriorityBut.Text = task.Priority.Name;
-		//	PriorityMarker.BackgroundColor = task.Priority.Color;
-		//}
 
 		private void InitializeCB()
 		{
@@ -130,7 +126,12 @@ namespace Diary.AdditionalControls
 
 		private void CrossButton_Clicked(object sender, EventArgs e)
 		{
-			
+			var p = ((ImageButton)sender).Parent;
+			if (p is Layout<View> layout)
+			{
+				var task = (TaskBase)layout.BindingContext;
+				task.Delete();
+			}
 		}
 
 		private void OnItemCompleted(object sender, EventArgs e)
