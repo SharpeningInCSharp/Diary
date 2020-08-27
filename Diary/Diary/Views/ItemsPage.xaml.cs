@@ -29,10 +29,13 @@ namespace Diary.Views
 	{
 		TaskList TasksList;
 
-		public ItemsPage(/*int listId*/)
+		public ItemsPage()
 		{
 			InitializeComponent();
+		}
 
+		public ItemsPage(string listId) : this()
+		{
 			#region Realm com
 			/// временное, пример записи в бд // я допишу не трогайте :)))))
 			//var realm = Realm.GetInstance();
@@ -72,6 +75,8 @@ namespace Diary.Views
 			//});
 			#endregion
 
+			//TODO: воложить обязаности работы с БД на контроллер. В специальный метод GetInstance, который возвращает объект реалма нужной версии
+			var l = Realm.GetInstance(new RealmConfiguration() { SchemaVersion = 3 }).All<TaskListEntity>().Single(x => x.Name == listId);
 			//TODO: get TasksList with Id==listId
 
 			TasksList = new TaskList("Today");
@@ -82,7 +87,7 @@ namespace Diary.Views
 				Header = "quwuwu",
 				Note = "123",
 				Priority = Priority.Low,
-			}) ;
+			});
 
 			var outItem = new OuterTask
 			{
@@ -99,10 +104,10 @@ namespace Diary.Views
 
 			outItem.Add(
 				new TodoModel.Task()
-			{
-				Header = "Чистить зубы",
-				Note = "Не с мылом",
-			});
+				{
+					Header = "Чистить зубы",
+					Note = "Не с мылом",
+				});
 
 			TasksList.Add(outItem);
 

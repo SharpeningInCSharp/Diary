@@ -25,9 +25,9 @@ namespace Diary.Views
             ///раскомментить кусок в default в MainPage.cs
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Account, Title="Account" },
+                new HomeMenuItem {Id = MenuItemType.Account.ToString(), Title="Account" },
 				//new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
-				new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+				new HomeMenuItem {Id = MenuItemType.About.ToString(), Title="About" }
             };
 
 			var config = new RealmConfiguration() { SchemaVersion = 3 };
@@ -43,8 +43,8 @@ namespace Diary.Views
 			//});
 
 			var lists = realm.All<TaskListEntity>().ToList();
-			foreach (TaskListEntity a in lists)
-				menuItems.Add(new HomeMenuItem {Id = MenuItemType.TaskList, Title = a.Name});
+			foreach (TaskListEntity list in lists)
+				menuItems.Add(new HomeMenuItem {Id = list.Name, Title = list.Name});
 
 			ListViewMenu.ItemsSource = menuItems;
 			
@@ -54,7 +54,7 @@ namespace Diary.Views
 				if (e.SelectedItem == null)
 					return;
 
-				var id = (int)((HomeMenuItem)e.SelectedItem).Id;
+				var id = ((HomeMenuItem)e.SelectedItem).Id;
 				await RootPage.NavigateFromMenu(id);
 			};
 		}
