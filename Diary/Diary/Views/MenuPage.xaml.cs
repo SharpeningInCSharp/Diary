@@ -1,4 +1,5 @@
 ﻿using Diary.Models;
+using Diary.ViewModels;
 using Realms;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,13 @@ namespace Diary.Views
 	{
 		MainPage RootPage { get => Application.Current.MainPage as MainPage; }
 		List<HomeMenuItem> menuItems;
+
+		private readonly RealmDbViewModel realmDb;
 		public MenuPage()
 		{
 			InitializeComponent();
+
+			realmDb = DependencyService.Get<RealmDbViewModel>();
 
             ///TODO: взять из БД все названия списков и их Id и добавить в список menuItems
             ///раскомментить кусок в default в MainPage.cs
@@ -31,8 +36,7 @@ namespace Diary.Views
 				new HomeMenuItem {Id = MenuItemType.About.ToString(), Title="About" }
             };
 
-			var config = new RealmConfiguration() { SchemaVersion = 3 };
-			var realm = Realm.GetInstance(config);
+			var realm = realmDb.GetDbInstance();
 
 			AddSample(realm);
 

@@ -28,10 +28,12 @@ namespace Diary.Views
 	public partial class ItemsPage : ContentPage
 	{
 		TaskList TasksList;
-
+		private readonly TaskItemsViewModel taskItemsViewModel;
 		public ItemsPage()
 		{
 			InitializeComponent();
+
+			taskItemsViewModel = DependencyService.Get<TaskItemsViewModel>();
 		}
 
 		public ItemsPage(string listId) : this()
@@ -76,7 +78,7 @@ namespace Diary.Views
 			#endregion
 
 			//TODO: воложить обязаности работы с БД на контроллер. В специальный метод GetInstance, который возвращает объект реалма нужной версии
-			var l = Realm.GetInstance(new RealmConfiguration() { SchemaVersion = 3 }).All<TaskListEntity>().Single(x => x.Name == listId);
+			var l = taskItemsViewModel.GetDbInstance().All<TaskListEntity>().Single(x => x.Name == listId);
 			//TODO: get TasksList with Id==listId
 
 			#region Sample items

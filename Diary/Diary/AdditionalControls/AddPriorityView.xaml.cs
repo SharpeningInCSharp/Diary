@@ -1,4 +1,5 @@
-﻿using Realms;
+﻿using Diary.ViewModels;
+using Realms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,20 @@ namespace Diary.AdditionalControls
     {
         public Color PriorityColor = Color.Red;
         public Color MainColor;
-        public int Value { get; set; }
+
+		public int Value { get; set; }
 
         public delegate void UpdatePriorityList();
         public event UpdatePriorityList PriorityListChanged;
 
+        private readonly RealmDbViewModel realmDb;
+
         public AddPriorityView()
         {
             InitializeComponent();
+
+            realmDb = DependencyService.Get<RealmDbViewModel>();
+
             MainColor = Ell.Stroke;
             Value = 8;
             ValueLabel.Text = Value.ToString();
@@ -55,7 +62,8 @@ namespace Diary.AdditionalControls
         async private void SavePriority_Clicked(object sender, EventArgs e)
         {
             if (NameEntry.Text == "") return;
-            var realm = Realm.GetInstance();
+
+            var realm = realmDb.GetDbInstance();
             realm.Write(() =>
             {
                 System.Drawing.Color a = PriorityColor;
