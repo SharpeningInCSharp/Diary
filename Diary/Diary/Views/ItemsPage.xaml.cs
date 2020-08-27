@@ -79,6 +79,7 @@ namespace Diary.Views
 			var l = Realm.GetInstance(new RealmConfiguration() { SchemaVersion = 3 }).All<TaskListEntity>().Single(x => x.Name == listId);
 			//TODO: get TasksList with Id==listId
 
+			#region Sample items
 			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
@@ -117,6 +118,7 @@ namespace Diary.Views
 				Note = "With dog",
 				Priority = Priority.Hight,
 			});
+			#endregion
 
 			BindingContext = TasksList;
 		}

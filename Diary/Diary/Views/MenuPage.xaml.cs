@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using TodoModel;
 using TodoModel.Database;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,6 +34,8 @@ namespace Diary.Views
 			var config = new RealmConfiguration() { SchemaVersion = 3 };
 			var realm = Realm.GetInstance(config);
 
+			AddSample(realm);
+
 			//realm.Write(() => //пример добавления нового списка в бд
 			//{
 			//	var newSet = new TaskListEntity
@@ -57,6 +60,47 @@ namespace Diary.Views
 				var id = ((HomeMenuItem)e.SelectedItem).Id;
 				await RootPage.NavigateFromMenu(id);
 			};
+		}
+
+		private void AddSample(Realm realm)
+		{
+			var list = new TaskList("Today");
+
+			list.Add(new OuterTask
+			{
+				Header = "quwuwu",
+				Note = "123",
+				Priority = Priority.Low,
+			});
+
+			var outItem = new OuterTask
+			{
+				Header = "СПАТЬ",
+			};
+
+			outItem.Add(
+				new TodoModel.Task()
+				{
+					Header = "Мыть попу",
+					Note = "С мылом",
+				}
+				);
+
+			outItem.Add(
+				new TodoModel.Task()
+				{
+					Header = "Чистить зубы",
+					Note = "Не с мылом",
+				});
+
+			list.Add(outItem);
+
+			list.Add(new OuterTask
+			{
+				Header = "WALK",
+				Note = "With dog",
+				Priority = Priority.Hight,
+			});
 		}
 
 		private void ListViewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)

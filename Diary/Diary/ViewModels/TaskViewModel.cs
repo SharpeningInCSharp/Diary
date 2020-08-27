@@ -10,7 +10,7 @@ namespace Diary.ViewModels
 	/// <summary>
 	/// Provides general UI for <see cref="TaskBase"/> completion and details managment
 	/// </summary>
-	internal class TaskViewModel
+	internal class TaskViewModel : RealmDbViewModel
 	{
 		private const int OnTaskCompletionMsTimeout = 350;
 
