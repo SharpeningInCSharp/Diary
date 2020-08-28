@@ -18,6 +18,8 @@ namespace Diary
 			///it automatically calls new() 
 			DependencyService.Register<MockDataStore>();
 			DependencyService.Register<TaskViewModel>();
+			DependencyService.Register<TaskItemsViewModel>();
+
 			MainPage = new MainPage();
 		}
 

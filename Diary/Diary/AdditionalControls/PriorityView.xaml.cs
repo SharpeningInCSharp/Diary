@@ -1,4 +1,5 @@
-﻿using Realms;
+﻿using Diary.ViewModels;
+using Realms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,13 +22,16 @@ namespace Diary.AdditionalControls
         public delegate void UpdatePriority();
         public event UpdatePriority PriorityChanged;
 
+        private readonly RealmDbViewModel realmDb;
+
         public PriorityView(TaskBase taskBase)
         {
             InitializeComponent();
             task = taskBase;
-            RealmConfiguration realmConfiguration = new RealmConfiguration();
-            realmConfiguration.SchemaVersion = 3;
-            Realm realm = Realm.GetInstance(realmConfiguration);
+
+            realmDb = DependencyService.Get<RealmDbViewModel>();
+
+            var realm = realmDb.GetDbInstance();
             var priors = realm.All<PriorityEntity>().ToList();
 
             foreach(PriorityEntity priority in priors)

@@ -28,11 +28,16 @@ namespace Diary.Views
 	public partial class ItemsPage : ContentPage
 	{
 		TaskList TasksList;
-
-		public ItemsPage(/*int listId*/)
+		private readonly TaskItemsViewModel taskItemsViewModel;
+		public ItemsPage()
 		{
 			InitializeComponent();
 
+			taskItemsViewModel = DependencyService.Get<TaskItemsViewModel>();
+		}
+
+		public ItemsPage(string listId) : this()
+		{
 			#region Realm com
 			/// временное, пример записи в бд // я допишу не трогайте :)))))
 			//var realm = Realm.GetInstance();
@@ -72,8 +77,11 @@ namespace Diary.Views
 			//});
 			#endregion
 
+			//TODO: воложить обязаности работы с БД на контроллер. В специальный метод GetInstance, который возвращает объект реалма нужной версии
+			var l = taskItemsViewModel.GetDbInstance().All<TaskListEntity>().Single(x => x.Name == listId);
 			//TODO: get TasksList with Id==listId
 
+			#region Sample items
 			TasksList = new TaskList("Today");
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 
@@ -82,7 +90,7 @@ namespace Diary.Views
 				Header = "quwuwu",
 				Note = "123",
 				Priority = Priority.Low,
-			}) ;
+			});
 
 			var outItem = new OuterTask
 			{
@@ -99,10 +107,10 @@ namespace Diary.Views
 
 			outItem.Add(
 				new TodoModel.Task()
-			{
-				Header = "Чистить зубы",
-				Note = "Не с мылом",
-			});
+				{
+					Header = "Чистить зубы",
+					Note = "Не с мылом",
+				});
 
 			TasksList.Add(outItem);
 
@@ -112,6 +120,7 @@ namespace Diary.Views
 				Note = "With dog",
 				Priority = Priority.Hight,
 			});
+			#endregion
 
 			BindingContext = TasksList;
 		}

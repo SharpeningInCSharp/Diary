@@ -15,7 +15,7 @@ namespace Diary.Views
 	[DesignTimeVisible(false)]
 	public partial class MainPage : MasterDetailPage
 	{
-		Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+		Dictionary<string, NavigationPage> MenuPages = new Dictionary<string, NavigationPage>();
 		public MainPage()
 		{
 
@@ -25,27 +25,27 @@ namespace Diary.Views
 
 			MasterBehavior = MasterBehavior.Popover;
 
-			MenuPages.Add((int)MenuItemType.Tasks, (NavigationPage)Detail);
+			MenuPages.Add(MenuItemType.Tasks.ToString(), (NavigationPage)Detail);
 
 		}
 
-		public async Task NavigateFromMenu(int id)
+		public async Task NavigateFromMenu(string id)
 		{
 			if (!MenuPages.ContainsKey(id))
 			{
 				switch (id)
 				{
-					case (int)MenuItemType.Account:
+					case "Account":
 						MenuPages.Add(id, new NavigationPage(new AccountPage()));
 						break;
 
-					case (int)MenuItemType.About:
+					case "About":
 						MenuPages.Add(id, new NavigationPage(new AboutPage()));
 						break;
 
 					default:
-						//MenuPages.Add(id, new NavigationPage(new ItemsPage(id)));
-						MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+						MenuPages.Add(id, new NavigationPage(new ItemsPage(id)));
+						//MenuPages.Add(id, new NavigationPage(new ItemsPage()));
 						break;
 				}
 			}

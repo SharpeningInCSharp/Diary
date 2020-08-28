@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using TodoModel.Database;
 
 namespace TodoModel
 {
@@ -26,6 +27,35 @@ namespace TodoModel
 		public TaskList(string name)
 		{
 			Title = name;
+		}
+
+		public TaskList(TaskListEntity listEntity)
+		{
+			Title = listEntity.Name;
+
+			foreach (var item in listEntity.notes)
+			{
+				var tb = new OuterTask
+				{
+					Header = item.header,
+					Note = item.Note,
+					Priority = new Priority(item.Priority),
+				};
+
+				if (item.InnerNotes != null)
+				{
+					foreach (var inItem in item.InnerNotes)
+					{
+						tb.Add(new Task
+						{
+							Header = inItem.header,
+							Note = inItem.Note,
+							Priority = new Priority(inItem.Priority),
+						});
+					}
+				}
+
+			}
 		}
 
 		public void Add(TaskBase task)
