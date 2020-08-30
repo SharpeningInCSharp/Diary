@@ -25,7 +25,8 @@ namespace Diary.Views
 
 			MasterBehavior = MasterBehavior.Popover;
 
-			MenuPages.Add(MenuItemType.Tasks.ToString(), (NavigationPage)Detail);
+            //MenuPages.Add(MenuItemType.Tasks.ToString(), (NavigationPage)Detail);
+            NavigateFromMenu("Account");
 
 		}
 
