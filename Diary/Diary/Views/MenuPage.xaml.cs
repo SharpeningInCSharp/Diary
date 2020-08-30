@@ -27,15 +27,14 @@ namespace Diary.Views
 
 			realmDb = DependencyService.Get<RealmDbViewModel>();
 
-            menuItems = new List<HomeMenuItem>
-            {
-                new HomeMenuItem {Id = MenuItemType.Account.ToString(), Title="Account" },
+			menuItems = new List<HomeMenuItem>
+			{
+				new HomeMenuItem {Id = MenuItemType.Account.ToString(), Title="Account" },
 				//new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
 				new HomeMenuItem {Id = MenuItemType.About.ToString(), Title="About" }
-            };
+			};
 
 			var realm = realmDb.GetDbInstance();
-
 			//AddSample(realm);
 
 			//realm.Write(() =>
@@ -47,15 +46,12 @@ namespace Diary.Views
 			//	realm.Add(newList);
 			//});
 
-
 			var lists = realm.All<TaskListEntity>().ToList();
 			foreach (TaskListEntity list in lists)
-				menuItems.Add(new HomeMenuItem {Id = list.Name, Title = list.Name });
+				menuItems.Add(new HomeMenuItem { Id = list.Name, Title = list.Name });
 
-			
-			
 			ListViewMenu.ItemsSource = menuItems;
-			
+
 			ListViewMenu.SelectedItem = menuItems[0];
 			ListViewMenu.ItemSelected += async (sender, e) =>
 			{
@@ -65,6 +61,7 @@ namespace Diary.Views
 				var id = ((HomeMenuItem)e.SelectedItem).Id;
 				await RootPage.NavigateFromMenu(id);
 			};
+
 		}
 
 		//private void AddSample(Realm realm)

@@ -26,7 +26,7 @@ namespace Diary.Views
 			MasterBehavior = MasterBehavior.Popover;
 
             //MenuPages.Add(MenuItemType.Tasks.ToString(), (NavigationPage)Detail);
-            NavigateFromMenu("Account");
+            NavigateFromMenu("About");
 
 		}
 
@@ -36,10 +36,6 @@ namespace Diary.Views
 			{
 				switch (id)
 				{
-					case "Account":
-						MenuPages.Add(id, new NavigationPage(new AccountPage()));
-						break;
-
 					case "About":
 						MenuPages.Add(id, new NavigationPage(new AboutPage()));
 						break;

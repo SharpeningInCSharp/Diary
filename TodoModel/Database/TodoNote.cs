@@ -19,5 +19,12 @@ namespace TodoModel.Database
         public PriorityEntity Priority { get; set; }
         public TaskListEntity taskList { get; set; }
 
+		public TodoNote()
+		{	}
+
+		public TodoNote(TaskBase taskBase)
+		{
+
+		}
     }
 }

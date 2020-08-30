@@ -12,72 +12,72 @@ using Xamarin.Forms.Xaml;
 
 namespace Diary.AdditionalControls
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddPriorityView : ContentPage
-    {
-        public Color PriorityColor = Color.Red;
-        public Color MainColor;
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class AddPriorityView : ContentPage
+	{
+		public Color PriorityColor = Color.Red;
+		public Color MainColor;
 
 		public int Value { get; set; }
 
-        public delegate void UpdatePriorityList();
-        public event UpdatePriorityList PriorityListChanged;
+		public delegate void UpdatePriorityList();
+		public event UpdatePriorityList PriorityListChanged;
 
-        private readonly RealmDbViewModel realmDb;
+		private readonly RealmDbViewModel realmDb;
 
-        public AddPriorityView()
-        {
-            InitializeComponent();
+		public AddPriorityView()
+		{
+			InitializeComponent();
 
-            realmDb = DependencyService.Get<RealmDbViewModel>();
+			realmDb = DependencyService.Get<RealmDbViewModel>();
 
-            MainColor = Ell.Stroke;
-            Value = 8;
-            ValueLabel.Text = Value.ToString();
-        }
+			MainColor = Ell.Stroke;
+			Value = 8;
+			ValueLabel.Text = Value.ToString();
+		}
 
-        private void EllipseTapped(object sender, EventArgs e)
-        {
-            foreach (Ellipse ellipse in GridEllipse.Children)
-                ellipse.Stroke = Color.Transparent;
+		private void EllipseTapped(object sender, EventArgs e)
+		{
+			foreach (Ellipse ellipse in GridEllipse.Children)
+				ellipse.Stroke = Color.Transparent;
 
-            ((Ellipse)sender).Stroke = MainColor;
-            PriorityColor = ((Ellipse)sender).Fill;
-        }
+			((Ellipse)sender).Stroke = MainColor;
+			PriorityColor = ((Ellipse)sender).Fill;
+		}
 
-        private void AddValue_Clicked(object sender, EventArgs e)
-        {
-            if (Value == 10) return;
-            Value++;
-            ValueLabel.Text = Value.ToString();
-        }
+		private void AddValue_Clicked(object sender, EventArgs e)
+		{
+			if (Value == 10) return;
+			Value++;
+			ValueLabel.Text = Value.ToString();
+		}
 
-        private void SubValue_Clicked(object sender, EventArgs e)
-        {
-            if (Value == 0) return;
-            Value--;
-            ValueLabel.Text = Value.ToString();
-        }
+		private void SubValue_Clicked(object sender, EventArgs e)
+		{
+			if (Value == 0) return;
+			Value--;
+			ValueLabel.Text = Value.ToString();
+		}
 
-        async private void SavePriority_Clicked(object sender, EventArgs e)
-        {
-            if (NameEntry.Text == "") return;
-            RealmConfiguration realmConfiguration = new RealmConfiguration();
-            realmConfiguration.SchemaVersion = 3;
-            Realm realm = Realm.GetInstance(realmConfiguration);
-            realm.Write(() =>
-            {
-                System.Drawing.Color a = PriorityColor;
-                var newNote = new PriorityEntity
-                {
-                    Name = NameEntry.Text,
-                    Value = Value,
-                    Color = a.ToArgb()
-                };
-                realm.Add(newNote);
-            });
-            PriorityListChanged?.Invoke();
-            await Navigation.PopAsync(false);
-        }
-    }
+		async private void SavePriority_Clicked(object sender, EventArgs e)
+		{
+			if (NameEntry.Text == "") return;
+
+			Realm realm = realmDb.GetDbInstance();
+			realm.Write(() =>
+			{
+				System.Drawing.Color a = PriorityColor;
+				var newNote = new PriorityEntity
+				{
+					Name = NameEntry.Text,
+					Value = Value,
+					Color = a.ToArgb()
+				};
+				realm.Add(newNote);
+			});
+			PriorityListChanged?.Invoke();
+
+			await Navigation.PopAsync(false);
+		}
+	}
 }

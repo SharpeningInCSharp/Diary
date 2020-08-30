@@ -83,9 +83,10 @@ namespace Diary.Views
 			var config = new RealmConfiguration() { SchemaVersion = 3 };
 			var realm = Realm.GetInstance(config);
 			var l = realm.All<TaskListEntity>().Single(x => x.Name == listId);
-			//#region Sample items
+
+			#region Sample items
 			//TasksList = new TaskList("Today");
-			//TasksList.CollectionChanged += TasksList_CollectionChanged;
+			//;
 
 			//TasksList.Add(new OuterTask
 			//{
@@ -122,10 +123,10 @@ namespace Diary.Views
 			//	Note = "With dog",
 			//	Priority = Priority.Hight,
 			//});
-			//#endregion
-
-			//BindingContext = TasksList;
-			BindingContext = l;
+			#endregion
+			TasksList = new TaskList(l);
+			TasksList.CollectionChanged += TasksList_CollectionChanged;
+			BindingContext = TasksList;
 		}
 
 		private void TasksList_CollectionChanged()
@@ -141,14 +142,9 @@ namespace Diary.Views
 		{
 			if (TasksList is null)
 			{
-				string input = "";
+				var inputName = await InputListName();
 
-				while (DataValidation.IsNameValid(input) == false)
-				{
-					input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
-				}
-
-
+				await AddNewList(inputName);
 
 				return;
 			}
@@ -163,6 +159,30 @@ namespace Diary.Views
 			AddButton.Rotation = 0;
 		}
 
+		private async System.Threading.Tasks.Task AddNewList(string inputName)
+		{
+			TasksList = new TaskList(inputName);
+
+			var db = taskItemsViewModel.GetDbInstance();
+			db.Write(() =>
+			{
+				db.Add(new TaskListEntity(TasksList));
+			});
+
+			await DisplayPromptAsync("Message", "New list successfuly created");
+		}
+
+		private async Task<string> InputListName()
+		{
+			string input = "";
+
+			while (DataValidation.IsNameValid(input) == false)
+			{
+				input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
+			}
+
+			return input;
+		}
 
 		protected override void OnAppearing()
 		{

@@ -60,11 +60,13 @@ namespace TodoModel.Database
                 BaseContentInitialization();
             }
             else
-                realm.Write(() =>
+			{
+				realm.Write(() =>
                 {
                     starts.value += 1;
                 });
-        }
+			}
+		}
 
         public static void BaseContentInitialization()
         {
