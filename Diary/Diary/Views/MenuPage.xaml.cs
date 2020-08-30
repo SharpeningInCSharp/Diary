@@ -27,8 +27,6 @@ namespace Diary.Views
 
 			realmDb = DependencyService.Get<RealmDbViewModel>();
 
-            ///TODO: взять из БД все названия списков и их Id и добавить в список menuItems
-            ///раскомментить кусок в default в MainPage.cs
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Account.ToString(), Title="Account" },
@@ -38,24 +36,27 @@ namespace Diary.Views
 
 			var realm = realmDb.GetDbInstance();
 
-			AddSample(realm);
+			//AddSample(realm);
 
-			//realm.Write(() => //пример добавления нового списка в бд
+			//realm.Write(() =>
 			//{
-			//	var newSet = new TaskListEntity
+			//	var newList = new TaskListEntity()
 			//	{
-			//		Name = "Daily Tasks"
+			//		Name = "Лист заданий"
 			//	};
-			//	realm.Add(newSet);
+			//	realm.Add(newList);
 			//});
+
 
 			var lists = realm.All<TaskListEntity>().ToList();
 			foreach (TaskListEntity list in lists)
-				menuItems.Add(new HomeMenuItem {Id = list.Name, Title = list.Name});
+				menuItems.Add(new HomeMenuItem {Id = list.Name, Title = list.Name });
 
+			
+			
 			ListViewMenu.ItemsSource = menuItems;
 			
-			ListViewMenu.SelectedItem = menuItems[1];
+			ListViewMenu.SelectedItem = menuItems[0];
 			ListViewMenu.ItemSelected += async (sender, e) =>
 			{
 				if (e.SelectedItem == null)
@@ -66,46 +67,46 @@ namespace Diary.Views
 			};
 		}
 
-		private void AddSample(Realm realm)
-		{
-			var list = new TaskList("Today");
+		//private void AddSample(Realm realm)
+		//{
+		//	var list = new TaskList("Today");
 
-			list.Add(new OuterTask
-			{
-				Header = "quwuwu",
-				Note = "123",
-				Priority = Priority.Low,
-			});
+		//	list.Add(new OuterTask
+		//	{
+		//		Header = "quwuwu",
+		//		Note = "123",
+		//		Priority = Priority.Low,
+		//	});
 
-			var outItem = new OuterTask
-			{
-				Header = "СПАТЬ",
-			};
+		//	var outItem = new OuterTask
+		//	{
+		//		Header = "СПАТЬ",
+		//	};
 
-			outItem.Add(
-				new TodoModel.Task()
-				{
-					Header = "Мыть попу",
-					Note = "С мылом",
-				}
-				);
+		//	outItem.Add(
+		//		new TodoModel.Task()
+		//		{
+		//			Header = "Мыть попу",
+		//			Note = "С мылом",
+		//		}
+		//		);
 
-			outItem.Add(
-				new TodoModel.Task()
-				{
-					Header = "Чистить зубы",
-					Note = "Не с мылом",
-				});
+		//	outItem.Add(
+		//		new TodoModel.Task()
+		//		{
+		//			Header = "Чистить зубы",
+		//			Note = "Не с мылом",
+		//		});
 
-			list.Add(outItem);
+		//	list.Add(outItem);
 
-			list.Add(new OuterTask
-			{
-				Header = "WALK",
-				Note = "With dog",
-				Priority = Priority.Hight,
-			});
-		}
+		//	list.Add(new OuterTask
+		//	{
+		//		Header = "WALK",
+		//		Note = "With dog",
+		//		Priority = Priority.Hight,
+		//	});
+		//}
 
 		private void ListViewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{

@@ -31,9 +31,9 @@ namespace Diary.Views
 		private readonly TaskItemsViewModel taskItemsViewModel;
 		public ItemsPage()
 		{
-			InitializeComponent();
-
 			taskItemsViewModel = DependencyService.Get<TaskItemsViewModel>();
+
+			InitializeComponent();
 		}
 
 		public ItemsPage(string listId) : this()
@@ -78,51 +78,54 @@ namespace Diary.Views
 			#endregion
 
 			//TODO: воложить обязаности работы с БД на контроллер. В специальный метод GetInstance, который возвращает объект реалма нужной версии
-			var l = taskItemsViewModel.GetDbInstance().All<TaskListEntity>().Single(x => x.Name == listId);
-			//TODO: get TasksList with Id==listId
+			//var l = taskItemsViewModel.GetDbInstance().All<TaskListEntity>().Single(x => x.Name == listId);
 
-			#region Sample items
-			TasksList = new TaskList("Today");
-			TasksList.CollectionChanged += TasksList_CollectionChanged;
+			var config = new RealmConfiguration() { SchemaVersion = 3 };
+			var realm = Realm.GetInstance(config);
+			var l = realm.All<TaskListEntity>().Single(x => x.Name == listId);
+			//#region Sample items
+			//TasksList = new TaskList("Today");
+			//TasksList.CollectionChanged += TasksList_CollectionChanged;
 
-			TasksList.Add(new OuterTask
-			{
-				Header = "quwuwu",
-				Note = "123",
-				Priority = Priority.Low,
-			});
+			//TasksList.Add(new OuterTask
+			//{
+			//	Header = "quwuwu",
+			//	Note = "123",
+			//	Priority = Priority.Low,
+			//});
 
-			var outItem = new OuterTask
-			{
-				Header = "СПАТЬ",
-			};
+			//var outItem = new OuterTask
+			//{
+			//	Header = "СПАТЬ",
+			//};
 
-			outItem.Add(
-				new TodoModel.Task()
-				{
-					Header = "Мыть попу",
-					Note = "С мылом",
-				}
-				);
+			//outItem.Add(
+			//	new TodoModel.Task()
+			//	{
+			//		Header = "Мыть попу",
+			//		Note = "С мылом",
+			//	}
+			//	);
 
-			outItem.Add(
-				new TodoModel.Task()
-				{
-					Header = "Чистить зубы",
-					Note = "Не с мылом",
-				});
+			//outItem.Add(
+			//	new TodoModel.Task()
+			//	{
+			//		Header = "Чистить зубы",
+			//		Note = "Не с мылом",
+			//	});
 
-			TasksList.Add(outItem);
+			//TasksList.Add(outItem);
 
-			TasksList.Add(new OuterTask
-			{
-				Header = "WALK",
-				Note = "With dog",
-				Priority = Priority.Hight,
-			});
-			#endregion
+			//TasksList.Add(new OuterTask
+			//{
+			//	Header = "WALK",
+			//	Note = "With dog",
+			//	Priority = Priority.Hight,
+			//});
+			//#endregion
 
-			BindingContext = TasksList;
+			//BindingContext = TasksList;
+			BindingContext = l;
 		}
 
 		private void TasksList_CollectionChanged()
