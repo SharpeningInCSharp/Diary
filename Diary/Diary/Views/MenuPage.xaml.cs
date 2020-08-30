@@ -18,23 +18,19 @@ namespace Diary.Views
 	public partial class MenuPage : ContentPage
 	{
 		MainPage RootPage { get => Application.Current.MainPage as MainPage; }
-		List<HomeMenuItem> menuItems;
 
 		private readonly RealmDbViewModel realmDb;
+		private readonly MenuViewModel menuViewModel;
+
 		public MenuPage()
 		{
 			InitializeComponent();
 
+			menuViewModel = DependencyService.Get<MenuViewModel>();
 			realmDb = DependencyService.Get<RealmDbViewModel>();
 
-			menuItems = new List<HomeMenuItem>
-			{
-				//new HomeMenuItem {Id = MenuItemType.Account.ToString(), Title="Account" },
-				//new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
-				new HomeMenuItem {Id = MenuItemType.About.ToString(), Title="About" }
-			};
-
 			var realm = realmDb.GetDbInstance();
+
 			//AddSample(realm);
 
 			//realm.Write(() =>
@@ -46,13 +42,15 @@ namespace Diary.Views
 			//	realm.Add(newList);
 			//});
 
-			var lists = realm.All<TaskListEntity>().ToList();
-			foreach (TaskListEntity list in lists)
-				menuItems.Add(new HomeMenuItem { Id = list.Name, Title = list.Name });
+			var lists = realm.All<TaskListEntity>().ToList().Select(x => new HomeMenuItem() { Id = x.Name, Title = x.Name });
+			menuViewModel.Add(lists);
 
-			ListViewMenu.ItemsSource = menuItems;
+			ListViewMenu.ItemsSource = menuViewModel.GetInstance();
 
-			ListViewMenu.SelectedItem = menuItems[0];
+			ListViewMenu.SelectedItem = menuViewModel.GetInstance()[0];
+
+			menuViewModel.Add(new HomeMenuItem { Id = MenuItemType.About.ToString(), Title = "About" });
+
 			ListViewMenu.ItemSelected += async (sender, e) =>
 			{
 				if (e.SelectedItem == null)

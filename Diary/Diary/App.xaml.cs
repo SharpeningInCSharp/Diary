@@ -14,8 +14,7 @@ namespace Diary
 		{
 			InitializeComponent();
 
-			///TODO: здесь добавить в DependencyService класс, имплементирующий <see cref="TodoModel.Database.ITodoStorage"/>
-			///it automatically calls new() 
+			DependencyService.Register<MenuViewModel>();
 			DependencyService.Register<MockDataStore>();
 			DependencyService.Register<TaskViewModel>();
 			DependencyService.Register<TaskItemsViewModel>();
@@ -29,7 +28,7 @@ namespace Diary
 
 		protected override void OnSleep()
 		{
-			//TODO: save changes in db here
+
 		}
 
 		protected override void OnResume()

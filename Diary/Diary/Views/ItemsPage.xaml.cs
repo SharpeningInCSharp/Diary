@@ -29,9 +29,12 @@ namespace Diary.Views
 	{
 		TaskList TasksList;
 		private readonly TaskItemsViewModel taskItemsViewModel;
+		private readonly MenuViewModel menuViewModel;
+
 		public ItemsPage()
 		{
 			taskItemsViewModel = DependencyService.Get<TaskItemsViewModel>();
+			menuViewModel = DependencyService.Get<MenuViewModel>();
 
 			InitializeComponent();
 		}
@@ -80,8 +83,7 @@ namespace Diary.Views
 			//TODO: воложить обязаности работы с БД на контроллер. В специальный метод GetInstance, который возвращает объект реалма нужной версии
 			//var l = taskItemsViewModel.GetDbInstance().All<TaskListEntity>().Single(x => x.Name == listId);
 
-			var config = new RealmConfiguration() { SchemaVersion = 3 };
-			var realm = Realm.GetInstance(config);
+			var realm = taskItemsViewModel.GetDbInstance();
 			var l = realm.All<TaskListEntity>().Single(x => x.Name == listId);
 
 			#region Sample items
