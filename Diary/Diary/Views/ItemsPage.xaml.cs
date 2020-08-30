@@ -136,6 +136,20 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
+			if (TasksList is null)
+			{
+				string input = "";
+
+				while (DataValidation.IsNameValid(input) == false)
+				{
+					input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
+				}
+
+
+
+				return;
+			}
+
 			var empltyTask = new OuterTask();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 
