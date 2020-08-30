@@ -29,7 +29,7 @@ namespace Diary.Views
 
 			menuItems = new List<HomeMenuItem>
 			{
-				new HomeMenuItem {Id = MenuItemType.Account.ToString(), Title="Account" },
+				//new HomeMenuItem {Id = MenuItemType.Account.ToString(), Title="Account" },
 				//new HomeMenuItem {Id = MenuItemType.Tasks, Title="Tasks" },
 				new HomeMenuItem {Id = MenuItemType.About.ToString(), Title="About" }
 			};
