@@ -57,20 +57,28 @@ namespace TodoModel.Database
                     };
                     realm.Add(newSet);
                 });
-                BaseContentInitialization();
+                realm.Write(() =>
+                {
+                    var newSet = new Settings
+                    {
+                        Param = "Notes",
+                        value = 1
+                    };
+                    realm.Add(newSet);
+                });
+                //BaseContentInitialization();
             }
             else
 			{
 				realm.Write(() =>
                 {
-                    starts.value += 1;
+                    starts.value = starts.value + 1;
                 });
 			}
 		}
 
         public static void BaseContentInitialization()
-        {
-
+        { 
             var config = new RealmConfiguration() { SchemaVersion = 3 };
             var realm = Realm.GetInstance(config);
 

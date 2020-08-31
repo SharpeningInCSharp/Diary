@@ -30,7 +30,7 @@ namespace Diary.Views
 			realmDb = DependencyService.Get<RealmDbViewModel>();
 
 			var realm = realmDb.GetDbInstance();
-
+			#region Лист заданий
 			//AddSample(realm);
 
 			//realm.Write(() =>
@@ -41,6 +41,7 @@ namespace Diary.Views
 			//	};
 			//	realm.Add(newList);
 			//});
+			#endregion
 
 			var lists = realm.All<TaskListEntity>().ToList().Select(x => new HomeMenuItem() { Id = x.Name, Title = x.Name });
 			menuViewModel.Add(lists);
@@ -62,6 +63,7 @@ namespace Diary.Views
 
 		}
 
+		#region AddSample
 		//private void AddSample(Realm realm)
 		//{
 		//	var list = new TaskList("Today");
@@ -102,6 +104,7 @@ namespace Diary.Views
 		//		Priority = Priority.Hight,
 		//	});
 		//}
+		#endregion
 
 		private void ListViewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{

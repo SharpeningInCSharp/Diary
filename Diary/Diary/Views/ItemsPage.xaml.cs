@@ -158,6 +158,21 @@ namespace Diary.Views
 
 			TasksList.Add(empltyTask);
 
+			var db = taskItemsViewModel.GetDbInstance();
+			db.Write(() =>
+			{
+				TodoNote newNote = new TodoNote();
+				int id = db.All<Settings>().First(x => x.Param == "Notes").value;
+				newNote.Id = id;
+				db.All<Settings>().First(x => x.Param == "Notes").value = db.All<Settings>().First(x => x.Param == "Notes").value + 1;
+				newNote.HasInners = false;
+				newNote.header = " ";
+				newNote.Note = " ";
+				newNote.IsCompleted = false;
+				newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
+				db.Add(newNote);
+			});
+
 			AddButton.Rotation = 0;
 		}
 
