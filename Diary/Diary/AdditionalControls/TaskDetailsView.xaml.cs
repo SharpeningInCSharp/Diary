@@ -67,7 +67,7 @@ namespace Diary.AdditionalControls
 			var collection = db.All<TaskListEntity>().ToList().Select(x => new TaskList(x)).ToList();
 
 			TasksListPicker.ItemsSource = collection;
-			TasksListPicker.SelectedIndex = collection.IndexOf(container);
+			//TasksListPicker.SelectedIndex = collection.IndexOf(container);
 			TasksListPicker.SelectedItem = container;
 		}
 
@@ -81,7 +81,7 @@ namespace Diary.AdditionalControls
 		{
 			var targetTasksList = ((Picker)sender).SelectedItem as TaskList ?? throw new ArgumentNullException("Picker selected item");
 
-			await System.Threading.Tasks.Task.Run(() => Task.MoveOut());
+			Task.MoveOut();
 
 			targetTasksList.Add(Task);
 

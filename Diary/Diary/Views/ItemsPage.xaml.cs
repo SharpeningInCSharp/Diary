@@ -128,6 +128,8 @@ namespace Diary.Views
 			#endregion
 
 			TasksList = new TaskList(l);
+			OuterTaskCollection.TaskList = TasksList;
+
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 			BindingContext = TasksList;
 		}

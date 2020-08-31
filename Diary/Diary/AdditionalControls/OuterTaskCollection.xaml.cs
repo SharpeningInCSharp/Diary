@@ -27,7 +27,12 @@ namespace Diary.AdditionalControls
 		private void OnItemSelected(object sender, EventArgs args)
 		{
 			if (sender is BindableObject layout)
-				taskViewModel.ItemSelected(Navigation, layout);
+				taskViewModel.ItemSelected(Navigation, layout, TaskList);
 		}
+	}
+
+	public partial class OuterTaskCollection
+	{
+		public static TodoModel.TaskList TaskList { private get; set; }
 	}
 }
