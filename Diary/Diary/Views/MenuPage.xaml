@@ -10,9 +10,9 @@
              
     <Grid VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Image Source="logo_pdf.png" Grid.Row="0"/>
         <ListView x:Name="ListViewMenu" Grid.Row="1"
@@ -28,7 +28,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="About" Grid.Row="2"/>
+        <Label Grid.Row="2" Text="About" Margin="15" TextColor="{StaticResource PaletteDarkBeige}"
+               HorizontalTextAlignment="Start" FontSize="30" FontAttributes="Bold">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AboutClick"/>
+            </Label.GestureRecognizers>
+        </Label>
 
     </Grid>
 

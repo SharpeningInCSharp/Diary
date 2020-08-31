@@ -50,7 +50,7 @@ namespace Diary.Views
 
 			ListViewMenu.SelectedItem = menuViewModel.GetInstance()[0];
 
-			menuViewModel.Add(new HomeMenuItem { Id = MenuItemType.About.ToString(), Title = "About" });
+			//menuViewModel.Add(new HomeMenuItem { Id = MenuItemType.About.ToString(), Title = "About" });
 
 			ListViewMenu.ItemSelected += async (sender, e) =>
 			{
@@ -108,6 +108,11 @@ namespace Diary.Views
 		private void ListViewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
 			((ListView)sender).SelectedItem = null;
+		}
+
+		private async void AboutClick(object sender, EventArgs e)
+		{
+			await RootPage.NavigateFromMenu("About");
 		}
 	}
 }

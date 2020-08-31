@@ -13,9 +13,6 @@ namespace TodoModel
 		/// </summary>
 		public IEnumerable<TaskBase> InnerTasks => new List<TaskBase>(innerTasks);
 
-		public DateTime? InitialDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public DateTime? FinalDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
 		public OuterTask() : base()
 		{ }
 
@@ -44,7 +41,7 @@ namespace TodoModel
 		}
 	}
 
-	public partial class OuterTask : IEnumerable<TaskBase>, IDatesRange
+	public partial class OuterTask : IEnumerable<TaskBase>
 	{
 		public IEnumerator<TaskBase> GetEnumerator()
 		{
