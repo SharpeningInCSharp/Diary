@@ -156,7 +156,7 @@ namespace Diary.Views
 			var empltyTask = new OuterTask();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 
-			await Navigation.PushAsync(new TaskDetailsView(empltyTask), false);
+			await Navigation.PushAsync(new TaskDetailsView(empltyTask, TasksList), false);
 
 			TasksList.Add(empltyTask);
 
