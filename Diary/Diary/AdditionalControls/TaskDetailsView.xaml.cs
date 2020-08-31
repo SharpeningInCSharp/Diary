@@ -17,8 +17,6 @@ namespace Diary.AdditionalControls
 	{
 		public TaskBase Task { get; }
 
-		//TOOD: should pick out ViewModel with access to DB
-		private ITodoStorage storage;
 		private readonly TaskViewModel taskViewModel;
 
 		public TaskDetailsView(TaskBase task)
@@ -57,14 +55,18 @@ namespace Diary.AdditionalControls
 				InnerTasksGrid.IsVisible = false;
 
 			//TODO: fill cb with TaskList titles
-			//InitializeCB();
+			InitializeCB();
 
 			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 		}
 
 		private void InitializeCB()
 		{
-			TasksListPicker.ItemsSource = storage.Get<ITodoStorage>().ToList();
+			var db = taskViewModel.GetDbInstance();
+
+			var collection = db.All<TaskListEntity>().ToList();
+			TasksListPicker.ItemsSource = collection;
+			//TasksListPicker.SelectedItem = collection.First(x=>x.Name == Task.)
 		}
 
 		private void RemoveButton_Clicked(object sender, EventArgs e)
@@ -80,8 +82,8 @@ namespace Diary.AdditionalControls
 			//TODO: should be await
 			Task.MoveOut();
 
-			await System.Threading.Tasks.Task.Run(() =>
-					storage.Get<TaskList>().SingleOrDefault(x => x.Equals(targetTasksList)).Add(Task));
+			//await System.Threading.Tasks.Task.Run(() =>
+			//		storage.Get<TaskList>().SingleOrDefault(x => x.Equals(targetTasksList)).Add(Task));
 		}
 
 

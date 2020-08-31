@@ -131,13 +131,15 @@ namespace Diary.Views
 			BindingContext = TasksList;
 		}
 
-		private void TasksList_CollectionChanged()
+		private async void TasksList_CollectionChanged()
 		{
 			Dispatcher.BeginInvokeOnMainThread(() =>
 			{
 				TasksCollection.BindingContext = null;
 				TasksCollection.BindingContext = TasksList;
 			});
+
+			//await System.Threading.Tasks.Task.Run(() =>);		//save changes in db
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)
