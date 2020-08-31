@@ -62,7 +62,7 @@ namespace TodoModel.Database
                     var newSet = new Settings
                     {
                         Param = "Notes",
-                        value = 1
+                        value = 3
                     };
                     realm.Add(newSet);
                 });
@@ -75,7 +75,7 @@ namespace TodoModel.Database
                     var newSet = new Settings
                     {
                         Param = "Starts",
-                        value = realm.All<Settings>().Where(p => p.Param == "Starts").FirstOrDefault().value + 1
+                        value = starts.value + 1
                     };
                     realm.Add(newSet, update: true);
                 });
@@ -91,7 +91,7 @@ namespace TodoModel.Database
             {
                 var newList = new TaskListEntity()
                 {
-                    Name = "Лист заданий"
+                    Name = "Лист"
                 };
                 realm.Add(newList);
                 var newtask1 = new TodoNote()
@@ -103,6 +103,7 @@ namespace TodoModel.Database
                     HasInners = false,
                     IsCompleted = false
                 };
+                newList.notes.Add(newtask1);
                 realm.Add(newtask1);
                 var subtask1 = new TodoNote()
                 {
@@ -113,6 +114,7 @@ namespace TodoModel.Database
                     HasInners = false,
                     IsCompleted = false
                 };
+                newList.notes.Add(subtask1);
                 var subtask2 = new TodoNote()
                 {
                     Id = 2,
@@ -122,6 +124,7 @@ namespace TodoModel.Database
                     HasInners = false,
                     IsCompleted = false
                 };
+                newList.notes.Add(subtask2);
                 realm.Add(subtask1);
                 realm.Add(subtask2);
                 var newtask2 = new TodoNote()
@@ -133,9 +136,11 @@ namespace TodoModel.Database
                     HasInners = true,
                     IsCompleted = false
                 };
+                newList.notes.Add(newtask2);
                 newtask2.InnerNotes.Add(subtask1);
                 newtask2.InnerNotes.Add(subtask2);
                 realm.Add(newtask2);
+                realm.Add(newList, update: true);
             });
 
         }
