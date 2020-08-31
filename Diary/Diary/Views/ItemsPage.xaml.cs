@@ -126,6 +126,7 @@ namespace Diary.Views
 			//	Priority = Priority.Hight,
 			//});
 			#endregion
+
 			TasksList = new TaskList(l);
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 			BindingContext = TasksList;

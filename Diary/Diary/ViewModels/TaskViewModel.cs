@@ -49,12 +49,12 @@ namespace Diary.ViewModels
 		/// </summary>
 		/// <param name="navigation">Abstraction to navigate to a <see cref="TaskDetailsView"/> page</param>
 		/// <param name="layout">An object with <see cref="TaskBase"/> in BindingContext</param>
-		public async void ItemSelected(INavigation navigation, BindableObject layout)
+		public async void ItemSelected(INavigation navigation, BindableObject layout, TaskList taskList = null)
 		{
 			try
 			{
 				var item = (TaskBase)layout.BindingContext;
-				await navigation.PushAsync(new TaskDetailsView(item), false);
+				await navigation.PushAsync(new TaskDetailsView(item, taskList), false);
 			}
 			catch (Exception ex)
 			{

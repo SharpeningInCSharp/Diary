@@ -107,8 +107,29 @@ namespace TodoModel
 		}
 	}
 
-	public partial class TaskList : INotifyPropertyChanged
+	public partial class TaskList : INotifyPropertyChanged, IEquatable<TaskList>, IComparable<TaskList>
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
+
+		public int CompareTo(TaskList other)
+		{
+			return Title.CompareTo(other.Title ?? throw new ArgumentNullException(nameof(other)));
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (obj is TaskList taskList)
+				return Equals(taskList);
+
+			return false;
+		}
+
+		public bool Equals(TaskList other)
+		{
+			if (other is null)
+				return false;
+
+			return Title.Equals(other.Title);
+		}
 	}
 }
