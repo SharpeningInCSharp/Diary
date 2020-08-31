@@ -17,11 +17,9 @@ namespace Diary.AdditionalControls
 	{
 		public TaskBase Task { get; }
 
-		//TOOD: should pick out ViewModel with access to DB
-		private ITodoStorage storage;
 		private readonly TaskViewModel taskViewModel;
 
-		public TaskDetailsView(TaskBase task)
+		public TaskDetailsView(TaskBase task, TaskList container = null)
 		{
 			InitializeComponent();
 
@@ -51,20 +49,26 @@ namespace Diary.AdditionalControls
 			//Task.PriorityChanged += Task_PriorityChanged;
 			#endregion
 
-			if(task is OuterTask)
+			if (task is OuterTask)
+			{
 				InnerTasksGrid.IsVisible = true;
+				InitializeCB(container);
+			}
 			else
 				InnerTasksGrid.IsVisible = false;
-
-			//TODO: fill cb with TaskList titles
-			//InitializeCB();
 
 			BindingContext = Task = task ?? throw new ArgumentNullException(nameof(task));
 		}
 
-		private void InitializeCB()
+		private void InitializeCB(TaskList container)
 		{
-			TasksListPicker.ItemsSource = storage.Get<ITodoStorage>().ToList();
+			var db = taskViewModel.GetDbInstance();
+
+			var collection = db.All<TaskListEntity>().ToList().Select(x => new TaskList(x)).ToList();
+
+			TasksListPicker.ItemsSource = collection;
+			TasksListPicker.SelectedIndex = collection.IndexOf(container);
+			TasksListPicker.SelectedItem = container;
 		}
 
 		private void RemoveButton_Clicked(object sender, EventArgs e)
@@ -75,13 +79,13 @@ namespace Diary.AdditionalControls
 
 		private async void TasksListPicker_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			var targetTasksList = ((Picker)sender).SelectedItem;
+			var targetTasksList = ((Picker)sender).SelectedItem as TaskList ?? throw new ArgumentNullException("Picker selected item");
 
-			//TODO: should be await
-			Task.MoveOut();
+			await System.Threading.Tasks.Task.Run(() => Task.MoveOut());
 
-			await System.Threading.Tasks.Task.Run(() =>
-					storage.Get<TaskList>().SingleOrDefault(x => x.Equals(targetTasksList)).Add(Task));
+			targetTasksList.Add(Task);
+
+			//TODO: save changes
 		}
 
 

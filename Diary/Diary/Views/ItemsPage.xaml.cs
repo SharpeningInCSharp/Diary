@@ -126,18 +126,21 @@ namespace Diary.Views
 			//	Priority = Priority.Hight,
 			//});
 			#endregion
+
 			TasksList = new TaskList(l);
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 			BindingContext = TasksList;
 		}
 
-		private void TasksList_CollectionChanged()
+		private async void TasksList_CollectionChanged()
 		{
 			Dispatcher.BeginInvokeOnMainThread(() =>
 			{
 				TasksCollection.BindingContext = null;
 				TasksCollection.BindingContext = TasksList;
 			});
+
+			//await System.Threading.Tasks.Task.Run(() =>);		//save changes in db
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)
@@ -154,7 +157,7 @@ namespace Diary.Views
 			var empltyTask = new OuterTask();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
 
-			await Navigation.PushAsync(new TaskDetailsView(empltyTask), false);
+			await Navigation.PushAsync(new TaskDetailsView(empltyTask, TasksList), false);
 
 			TasksList.Add(empltyTask);
 
