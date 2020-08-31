@@ -64,8 +64,10 @@ namespace Diary.AdditionalControls
 		{
 			var db = taskViewModel.GetDbInstance();
 
-			var collection = db.All<TaskListEntity>().Select(x => new TaskList(x)).ToList();
+			var collection = db.All<TaskListEntity>().ToList().Select(x => new TaskList(x)).ToList();
+
 			TasksListPicker.ItemsSource = collection;
+			TasksListPicker.SelectedIndex = collection.IndexOf(container);
 			TasksListPicker.SelectedItem = container;
 		}
 
