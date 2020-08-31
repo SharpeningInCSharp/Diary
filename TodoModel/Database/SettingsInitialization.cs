@@ -57,20 +57,33 @@ namespace TodoModel.Database
                     };
                     realm.Add(newSet);
                 });
+                realm.Write(() =>
+                {
+                    var newSet = new Settings
+                    {
+                        Param = "Notes",
+                        value = 3
+                    };
+                    realm.Add(newSet);
+                });
                 BaseContentInitialization();
             }
             else
 			{
 				realm.Write(() =>
                 {
-                    starts.value += 1;
+                    var newSet = new Settings
+                    {
+                        Param = "Starts",
+                        value = starts.value + 1
+                    };
+                    realm.Add(newSet, update: true);
                 });
 			}
 		}
 
         public static void BaseContentInitialization()
-        {
-
+        { 
             var config = new RealmConfiguration() { SchemaVersion = 3 };
             var realm = Realm.GetInstance(config);
 
@@ -78,7 +91,7 @@ namespace TodoModel.Database
             {
                 var newList = new TaskListEntity()
                 {
-                    Name = "Лист заданий"
+                    Name = "Лист"
                 };
                 realm.Add(newList);
                 var newtask1 = new TodoNote()
@@ -90,6 +103,7 @@ namespace TodoModel.Database
                     HasInners = false,
                     IsCompleted = false
                 };
+                newList.notes.Add(newtask1);
                 realm.Add(newtask1);
                 var subtask1 = new TodoNote()
                 {
@@ -100,6 +114,7 @@ namespace TodoModel.Database
                     HasInners = false,
                     IsCompleted = false
                 };
+                newList.notes.Add(subtask1);
                 var subtask2 = new TodoNote()
                 {
                     Id = 2,
@@ -109,6 +124,7 @@ namespace TodoModel.Database
                     HasInners = false,
                     IsCompleted = false
                 };
+                newList.notes.Add(subtask2);
                 realm.Add(subtask1);
                 realm.Add(subtask2);
                 var newtask2 = new TodoNote()
@@ -120,9 +136,11 @@ namespace TodoModel.Database
                     HasInners = true,
                     IsCompleted = false
                 };
+                newList.notes.Add(newtask2);
                 newtask2.InnerNotes.Add(subtask1);
                 newtask2.InnerNotes.Add(subtask2);
                 realm.Add(newtask2);
+                realm.Add(newList, update: true);
             });
 
         }

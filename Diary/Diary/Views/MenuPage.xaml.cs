@@ -30,7 +30,7 @@ namespace Diary.Views
 			realmDb = DependencyService.Get<RealmDbViewModel>();
 
 			var realm = realmDb.GetDbInstance();
-
+			#region Лист заданий
 			//AddSample(realm);
 
 			//realm.Write(() =>
@@ -41,6 +41,7 @@ namespace Diary.Views
 			//	};
 			//	realm.Add(newList);
 			//});
+			#endregion
 
 			var lists = realm.All<TaskListEntity>().ToList().Select(x => new HomeMenuItem() { Id = x.Name, Title = x.Name });
 			menuViewModel.Add(lists);
@@ -59,8 +60,50 @@ namespace Diary.Views
 				var id = ((HomeMenuItem)e.SelectedItem).Id;
 				await RootPage.NavigateFromMenu(id);
 			};
-
 		}
+
+		#region AddSample
+		//private void AddSample(Realm realm)
+		//{
+		//	var list = new TaskList("Today");
+
+		//	list.Add(new OuterTask
+		//	{
+		//		Header = "quwuwu",
+		//		Note = "123",
+		//		Priority = Priority.Low,
+		//	});
+
+		//	var outItem = new OuterTask
+		//	{
+		//		Header = "СПАТЬ",
+		//	};
+
+		//	outItem.Add(
+		//		new TodoModel.Task()
+		//		{
+		//			Header = "Мыть попу",
+		//			Note = "С мылом",
+		//		}
+		//		);
+
+		//	outItem.Add(
+		//		new TodoModel.Task()
+		//		{
+		//			Header = "Чистить зубы",
+		//			Note = "Не с мылом",
+		//		});
+
+		//	list.Add(outItem);
+
+		//	list.Add(new OuterTask
+		//	{
+		//		Header = "WALK",
+		//		Note = "With dog",
+		//		Priority = Priority.Hight,
+		//	});
+		//}
+		#endregion
 
 		private void ListViewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
@@ -71,5 +114,7 @@ namespace Diary.Views
 		{
 			await RootPage.NavigateFromMenu("About");
 		}
+
+
 	}
 }
