@@ -162,9 +162,13 @@ namespace Diary.Views
 			db.Write(() =>
 			{
 				TodoNote newNote = new TodoNote();
-				int id = db.All<Settings>().First(x => x.Param == "Notes").value;
-				newNote.Id = id;
-				db.All<Settings>().First(x => x.Param == "Notes").value = db.All<Settings>().First(x => x.Param == "Notes").value + 1;
+				Settings newSet = new Settings()
+				{
+					Param = "Notes",
+					value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
+				};
+				db.Add(newSet, update: true);
+				newNote.Id = db.All<Settings>().First(x => x.Param == "Notes").value;
 				newNote.HasInners = false;
 				newNote.header = " ";
 				newNote.Note = " ";

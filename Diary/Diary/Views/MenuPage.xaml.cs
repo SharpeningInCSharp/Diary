@@ -60,7 +60,6 @@ namespace Diary.Views
 				var id = ((HomeMenuItem)e.SelectedItem).Id;
 				await RootPage.NavigateFromMenu(id);
 			};
-
 		}
 
 		#region AddSample

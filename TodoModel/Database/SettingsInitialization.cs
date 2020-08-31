@@ -66,13 +66,18 @@ namespace TodoModel.Database
                     };
                     realm.Add(newSet);
                 });
-                //BaseContentInitialization();
+                BaseContentInitialization();
             }
             else
 			{
 				realm.Write(() =>
                 {
-                    starts.value = starts.value + 1;
+                    var newSet = new Settings
+                    {
+                        Param = "Starts",
+                        value = realm.All<Settings>().Where(p => p.Param == "Starts").FirstOrDefault().value + 1
+                    };
+                    realm.Add(newSet, update: true);
                 });
 			}
 		}
