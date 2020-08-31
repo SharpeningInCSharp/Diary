@@ -71,5 +71,7 @@ namespace Diary.Views
 		{
 			await RootPage.NavigateFromMenu("About");
 		}
+
+
 	}
 }
