@@ -18,12 +18,14 @@ namespace Diary.AdditionalControls
 		public TaskBase Task { get; }
 
 		private readonly TaskViewModel taskViewModel;
+		private readonly TaskList container;
 
 		public TaskDetailsView(TaskBase task, TaskList container = null)
 		{
 			InitializeComponent();
 
 			taskViewModel = DependencyService.Get<TaskViewModel>();
+			this.container = container;
 
 			#region comm
 			//InitializeCB();
@@ -81,11 +83,13 @@ namespace Diary.AdditionalControls
 		{
 			var targetTasksList = ((Picker)sender).SelectedItem as TaskList ?? throw new ArgumentNullException("Picker selected item");
 
-			Task.MoveOut();
+			if(container.Equals(targetTasksList) == false)
+			{
+				Task.MoveOut();
 
-			targetTasksList.Add(Task);
-
-			//TODO: save changes
+				targetTasksList.Add(Task);
+				//TODO: save changes
+			}
 		}
 
 
