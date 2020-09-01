@@ -42,7 +42,6 @@ namespace Diary.Views
 			//	realm.Add(newList);
 			//});
 			#endregion
-
 			var lists = realm.All<TaskListEntity>().ToList().Select(x => new HomeMenuItem() { Id = x.Name, Title = x.Name });
 			menuViewModel.Add(lists);
 

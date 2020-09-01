@@ -10,13 +10,20 @@
              
     <Grid VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
-        <Image Source="logo_pdf.png" Grid.Row="0"/>
-        <ListView x:Name="ListViewMenu" Grid.Row="1"
+        
+        <Image Source="logo_pdf.png" Grid.Row="0" Margin="5"/>
+
+        <BoxView Style="{StaticResource LineSeparator}" Margin="0"
+                                     Grid.Row="1"/>
+
+        <ListView x:Name="ListViewMenu" Grid.Row="2"
                     HasUnevenRows="True"
                   ItemSelected="ListViewMenu_ItemSelected">
             <ListView.ItemTemplate>
@@ -29,17 +36,19 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Grid.Row="2" Text="Add New TaskList" Margin="15" TextColor="{StaticResource PaletteDarkBeige}"
-               HorizontalTextAlignment="Start" FontSize="30" FontAttributes="Bold">
+
+        <BoxView Style="{StaticResource LineSeparator}" Margin="0"
+                                     Grid.Row="3"/>
+
+        <Label Grid.Row="4" Text="Add New TaskList" Margin="15" TextColor="{StaticResource PaletteDarkBeige}"
+               HorizontalTextAlignment="Start" FontSize="26" FontAttributes="Bold">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Tapped="AboutClick"/>
             </Label.GestureRecognizers>
         </Label>
-
         
-
-        <Label Grid.Row="3" Text="About" Margin="15" TextColor="{StaticResource PaletteDarkBeige}"
-               HorizontalTextAlignment="Start" FontSize="30" FontAttributes="Bold">
+        <Label Grid.Row="5" Text="About" Margin="15" TextColor="{StaticResource PaletteDarkBeige}"
+               HorizontalTextAlignment="Start" FontSize="26" FontAttributes="Bold">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Tapped="AboutClick"/>
             </Label.GestureRecognizers>

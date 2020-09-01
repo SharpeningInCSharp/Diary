@@ -1,4 +1,5 @@
-﻿using Android.Util;
+﻿using Android.Graphics;
+using Android.Util;
 using Realms;
 using Remotion.Linq.Parsing.Structure.IntermediateModel;
 using System;
@@ -69,8 +70,8 @@ namespace TodoModel.Database
                 BaseContentInitialization();
             }
             else
-			{
-				realm.Write(() =>
+            {
+                realm.Write(() =>
                 {
                     var newSet = new Settings
                     {
@@ -79,11 +80,11 @@ namespace TodoModel.Database
                     };
                     realm.Add(newSet, update: true);
                 });
-			}
-		}
+            }
+        }
 
         public static void BaseContentInitialization()
-        { 
+        {
             var config = new RealmConfiguration() { SchemaVersion = 3 };
             var realm = Realm.GetInstance(config);
 
@@ -94,54 +95,77 @@ namespace TodoModel.Database
                     Name = "Лист"
                 };
                 realm.Add(newList);
-                var newtask1 = new TodoNote()
+                //var newtask1 = new TodoNote()
+                //{
+                //    Id = 0,
+                //    header = "Задание без подзадач",
+                //    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
+                //    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
+                //    HasInners = false,
+                //    IsCompleted = false
+                //};
+                //newList.notes.Add(newtask1);
+                //realm.Add(newtask1);
+                //var subtask1 = new TodoNote()
+                //{
+                //    Id = 1,
+                //    header = "Подзадача 1",
+                //    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
+                //    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
+                //    HasInners = false,
+                //    IsCompleted = false
+                //};
+                //newList.notes.Add(subtask1);
+                //var subtask2 = new TodoNote()
+                //{
+                //    Id = 2,
+                //    header = "Подзадача 2",
+                //    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
+                //    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
+                //    HasInners = false,
+                //    IsCompleted = false
+                //};
+                //newList.notes.Add(subtask2);
+                //realm.Add(subtask1);
+                //realm.Add(subtask2);
+                //var newtask2 = new TodoNote()
+                //{
+                //    Id = 3,
+                //    header = "Задача с подзадачами",
+                //    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
+                //    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
+                //    HasInners = true,
+                //    IsCompleted = false
+                //};
+                //newList.notes.Add(newtask2);
+                //newtask2.InnerNotes.Add(subtask1);
+                //newtask2.InnerNotes.Add(subtask2);
+                //realm.Add(newtask2);
+                //realm.Add(newList, update: true);
+
+
+                realm.Add(new PriorityEntity()
                 {
-                    Id = 0,
-                    header = "Задание без подзадач",
-                    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
-                    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
-                    HasInners = false,
-                    IsCompleted = false
-                };
-                newList.notes.Add(newtask1);
-                realm.Add(newtask1);
-                var subtask1 = new TodoNote()
+                    Name = "Low",
+                    Value = 2,
+                    Color = Color.Chartreuse.ToArgb()
+                });
+
+                realm.Add(new PriorityEntity()
                 {
-                    Id = 1,
-                    header = "Подзадача 1",
-                    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
-                    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
-                    HasInners = false,
-                    IsCompleted = false
-                };
-                newList.notes.Add(subtask1);
-                var subtask2 = new TodoNote()
+                    Name = "Normal",
+                    Value = 5,
+                    Color = Color.Gold.ToArgb()
+                });
+
+                realm.Add(new PriorityEntity()
                 {
-                    Id = 2,
-                    header = "Подзадача 2",
-                    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
-                    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
-                    HasInners = false,
-                    IsCompleted = false
-                };
-                newList.notes.Add(subtask2);
-                realm.Add(subtask1);
-                realm.Add(subtask2);
-                var newtask2 = new TodoNote()
-                {
-                    Id = 3,
-                    header = "Задача с подзадачами",
-                    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
-                    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
-                    HasInners = true,
-                    IsCompleted = false
-                };
-                newList.notes.Add(newtask2);
-                newtask2.InnerNotes.Add(subtask1);
-                newtask2.InnerNotes.Add(subtask2);
-                realm.Add(newtask2);
-                realm.Add(newList, update: true);
+                    Name = "High",
+                    Value = 8,
+                    Color = Color.Red.ToArgb()
+                });
             });
+
 
         }
     }
