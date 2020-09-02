@@ -147,5 +147,10 @@ namespace Diary.AdditionalControls
 			if (sender is Layout<View> layout)
 				taskViewModel.ItemCompleted(layout);
 		}
-	}
+
+        private void SaveTaskButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

@@ -43,6 +43,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Remove" IconImageSource="delete_icon.png" Clicked="RemoveButton_Clicked"/>
+        <ToolbarItem Text="Save" IconImageSource="save_icon.png" Clicked="SaveTaskButton_Clicked"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
