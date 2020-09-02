@@ -39,97 +39,17 @@ namespace Diary.Views
 
 		public ItemsPage(string listId) : this()
 		{
-			#region Realm com
-			/// временное, пример записи в бд // я допишу не трогайте :)))))
-			//var realm = Realm.GetInstance();
-			//realm.Write(() =>
-			//{
-			//realm.Remove(realm.All<PriorityEntity>().First(x => x.Name == "NuTakSebe"));
-			//realm.Remove(realm.All<PriorityEntity>().First(x => x.Name == "Normas"));
 
-			//    System.Drawing.Color a = new System.Drawing.Color();
-			//    a = System.Drawing.Color.Chartreuse;
-			//    var newNote = new PriorityEntity
-			//    {
-			//        Name = "Low",
-			//        Value = 2,
-			//        Color = a.ToArgb()
-
-			//    };
-			//    realm.Add(newNote);
-			//    a = System.Drawing.Color.Gold;
-			//    var alsonewNote = new PriorityEntity
-			//    {
-			//        Name = "Normal",
-			//        Value = 5,
-			//        Color = a.ToArgb()
-
-			//    };
-			//    realm.Add(alsonewNote);
-			//    a = System.Drawing.Color.Red;
-			//    var alsoalsonewNote = new PriorityEntity
-			//    {
-			//        Name = "Hight",
-			//        Value = 8,
-			//        Color = a.ToArgb()
-
-			//    };
-			//    realm.Add(alsoalsonewNote);
-			//});
-			#endregion
-
-			//TODO: воложить обязаности работы с БД на контроллер. В специальный метод GetInstance, который возвращает объект реалма нужной версии
-			//var l = taskItemsViewModel.GetDbInstance().All<TaskListEntity>().Single(x => x.Name == listId);
 
 			var realm = taskItemsViewModel.GetDbInstance();
 			var l = realm.All<TaskListEntity>().Single(x => x.Name == listId);
-
-			#region Sample items
-			//TasksList = new TaskList("Today");
-			//;
-
-			//TasksList.Add(new OuterTask
-			//{
-			//	Header = "quwuwu",
-			//	Note = "123",
-			//	Priority = Priority.Low,
-			//});
-
-			//var outItem = new OuterTask
-			//{
-			//	Header = "СПАТЬ",
-			//};
-
-			//outItem.Add(
-			//	new TodoModel.Task()
-			//	{
-			//		Header = "Мыть попу",
-			//		Note = "С мылом",
-			//	}
-			//	);
-
-			//outItem.Add(
-			//	new TodoModel.Task()
-			//	{
-			//		Header = "Чистить зубы",
-			//		Note = "Не с мылом",
-			//	});
-
-			//TasksList.Add(outItem);
-
-			//TasksList.Add(new OuterTask
-			//{
-			//	Header = "WALK",
-			//	Note = "With dog",
-			//	Priority = Priority.Hight,
-			//});
-			#endregion
 			
 			TasksList = new TaskList(l);
 			OuterTaskCollection.TaskList = TasksList;
 
 			TasksList.CollectionChanged += TasksList_CollectionChanged;
 			BindingContext = TasksList;
+			TasksList_CollectionChanged();
 		}
 
 		private async void TasksList_CollectionChanged()
@@ -139,8 +59,6 @@ namespace Diary.Views
 				TasksCollection.BindingContext = null;
 				TasksCollection.BindingContext = TasksList;
 			});
-
-			//await System.Threading.Tasks.Task.Run(() =>);		//save changes in db
 		}
 
 		async void AddItem_Clicked(object sender, EventArgs e)
