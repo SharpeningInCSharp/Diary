@@ -53,6 +53,14 @@ namespace Diary.AdditionalControls
 
 		private void RemoveButton_Clicked(object sender, EventArgs e)
 		{
+			var db = (new RealmDbViewModel()).GetDbInstance();
+			db.Write(() =>
+				{
+					db.All<TodoNote>().First(x => x.header == Task.Header).taskList.notes.Remove(db.All<TodoNote>().First(x => x.header == Task.Header));
+					db.Remove(db.All<TodoNote>().First(x => x.header == Task.Header));
+				}
+			);
+
 			Task.Delete();
 			Navigation.PopAsync();
 		}
