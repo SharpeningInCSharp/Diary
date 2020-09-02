@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 using System.Drawing;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 using Diary.Models;
 using Diary.Views;
 using Diary.ViewModels;
-
 using TodoModel;
 using TodoModel.Database;
 using Diary.AdditionalControls;
