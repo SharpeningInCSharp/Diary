@@ -28,29 +28,6 @@ namespace Diary.AdditionalControls
 			taskViewModel = DependencyService.Get<TaskViewModel>();
 			this.container = container;
 
-			#region comm
-			//InitializeCB();
-
-			//old priority adding
-
-			//PriorityPicker.ItemsSource = new List<IPriority>
-			//{ Priority.Low, Priority.Hight, Priority.Normal};
-
-			//reading priors from db 
-			//var realm = Realm.GetInstance();
-			//var priors = realm.All<PriorityEntity>().ToList();
-			//List<IPriority> priorities = new List<IPriority>();
-			//foreach(PriorityEntity pe in priors)
-			//         {
-			//	Priority savedOne = new Priority(pe.Name, pe.Value);
-			//	savedOne.Color = System.Drawing.Color.FromArgb(pe.Color);
-			//	priorities.Add(savedOne);
-			//         }
-			//PriorityPicker.ItemsSource = priorities;
-			//
-
-			//Task.PriorityChanged += Task_PriorityChanged;
-			#endregion
 
 			if (task is OuterTask)
 			{
@@ -96,7 +73,7 @@ namespace Diary.AdditionalControls
 
 		private void RepeatButton_Clicked(object sender, EventArgs e)
 		{
-
+			 
 		}
 
 		private void SelectDatesRangeButton_Clicked(object sender, EventArgs e)

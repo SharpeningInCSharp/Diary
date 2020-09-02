@@ -30,26 +30,11 @@ namespace Diary.Views
 			realmDb = DependencyService.Get<RealmDbViewModel>();
 
 			var realm = realmDb.GetDbInstance();
-			#region Лист заданий
-			//AddSample(realm);
 
-			//realm.Write(() =>
-			//{
-			//	var newList = new TaskListEntity()
-			//	{
-			//		Name = "Лист заданий"
-			//	};
-			//	realm.Add(newList);
-			//});
-			#endregion
 			var lists = realm.All<TaskListEntity>().ToList().Select(x => new HomeMenuItem() { Id = x.Name, Title = x.Name });
 			menuViewModel.Add(lists);
 
 			ListViewMenu.ItemsSource = menuViewModel.GetInstance();
-
-			//ListViewMenu.SelectedItem = menuViewModel.GetInstance()[0];
-
-			//menuViewModel.Add(new HomeMenuItem { Id = MenuItemType.About.ToString(), Title = "About" });
 
 			ListViewMenu.ItemSelected += async (sender, e) =>
 			{
@@ -61,49 +46,6 @@ namespace Diary.Views
 			};
 		}
 
-		#region AddSample
-		//private void AddSample(Realm realm)
-		//{
-		//	var list = new TaskList("Today");
-
-		//	list.Add(new OuterTask
-		//	{
-		//		Header = "quwuwu",
-		//		Note = "123",
-		//		Priority = Priority.Low,
-		//	});
-
-		//	var outItem = new OuterTask
-		//	{
-		//		Header = "СПАТЬ",
-		//	};
-
-		//	outItem.Add(
-		//		new TodoModel.Task()
-		//		{
-		//			Header = "Мыть попу",
-		//			Note = "С мылом",
-		//		}
-		//		);
-
-		//	outItem.Add(
-		//		new TodoModel.Task()
-		//		{
-		//			Header = "Чистить зубы",
-		//			Note = "Не с мылом",
-		//		});
-
-		//	list.Add(outItem);
-
-		//	list.Add(new OuterTask
-		//	{
-		//		Header = "WALK",
-		//		Note = "With dog",
-		//		Priority = Priority.Hight,
-		//	});
-		//}
-		#endregion
-
 		private void ListViewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
 			((ListView)sender).SelectedItem = null;
@@ -114,6 +56,27 @@ namespace Diary.Views
 			await RootPage.NavigateFromMenu("About");
 		}
 
+		private async void AddNewTaskListClick(object sender, EventArgs e)
+		{
+			string input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
+			if (input != "")
+			{
+				TaskList newTaskList = new TaskList(input);
+				var realm = realmDb.GetDbInstance();
+				realm.Write(() =>
+				{
+					realm.Add(new TaskListEntity(newTaskList));
+				});
+				await DisplayAlert("Message", "New list successfuly created","OK");
 
-	}
+				
+				
+				menuViewModel.Add(new HomeMenuItem() { Id = newTaskList.Title, Title = newTaskList.Title });
+				ListViewMenu.ItemsSource = null;
+				ListViewMenu.ItemsSource = menuViewModel.GetInstance();
+			}
+		}
+
+
+    }
 }

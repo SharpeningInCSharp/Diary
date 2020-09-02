@@ -43,7 +43,7 @@
         <Label Grid.Row="4" Text="Add New TaskList" Margin="15" TextColor="{StaticResource PaletteDarkBeige}"
                HorizontalTextAlignment="Start" FontSize="26" FontAttributes="Bold">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="AboutClick"/>
+                <TapGestureRecognizer Tapped="AddNewTaskListClick"/>
             </Label.GestureRecognizers>
         </Label>
         

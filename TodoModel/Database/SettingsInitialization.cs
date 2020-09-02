@@ -119,7 +119,14 @@ namespace TodoModel.Database
                 {
                     Name = "Лист"
                 };
-                
+
+                var emptyList = new TaskListEntity()
+                {
+                    Name = "Пустой лист"
+                };
+
+                realm.Add(emptyList);
+
                 var newTask = new TodoNote()
                 {
                     Id = 0,
