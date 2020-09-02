@@ -124,7 +124,7 @@ namespace Diary.Views
 			//	Priority = Priority.Hight,
 			//});
 			#endregion
-
+			
 			TasksList = new TaskList(l);
 			OuterTaskCollection.TaskList = TasksList;
 
