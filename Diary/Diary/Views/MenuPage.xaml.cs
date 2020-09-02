@@ -56,6 +56,27 @@ namespace Diary.Views
 			await RootPage.NavigateFromMenu("About");
 		}
 
+		private async void AddNewTaskListClick(object sender, EventArgs e)
+		{
+			string input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
+			if (input != "")
+			{
+				TaskList newTaskList = new TaskList(input);
+				var realm = realmDb.GetDbInstance();
+				realm.Write(() =>
+				{
+					realm.Add(new TaskListEntity(newTaskList));
+				});
+				await DisplayAlert("Message", "New list successfuly created","OK");
 
-	}
+				
+				
+				menuViewModel.Add(new HomeMenuItem() { Id = newTaskList.Title, Title = newTaskList.Title });
+				ListViewMenu.ItemsSource = null;
+				ListViewMenu.ItemsSource = menuViewModel.GetInstance();
+			}
+		}
+
+
+    }
 }
