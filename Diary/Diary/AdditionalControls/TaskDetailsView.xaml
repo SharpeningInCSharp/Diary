@@ -62,33 +62,7 @@
                     Style="{StaticResource InputItem}"
                     Text="{Binding Note, Mode=TwoWay}"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Image Source="todo_list_icon.png"
-                       Style="{StaticResource ImageStyle}"/>
-                    <Picker x:Name="TasksListPicker"
-                            Style="{StaticResource InputPicker}"
-                            ItemDisplayBinding="{Binding Title}"
-                            SelectedIndexChanged="TasksListPicker_SelectedIndexChanged"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Image Source="calendar_icon.png"
-                       Style="{StaticResource ImageStyle}"/>
-                    <Button x:Name="SelectDatesRangeButton"
-                        Text="Dates range"
-                        WidthRequest="120"
-                        TextColor="{StaticResource PaletteDarkBeige}"
-                        Style="{StaticResource TransparentButton}"
-                        Clicked="SelectDatesRangeButton_Clicked"/>
-
-                    <Image Source="repeat_icon.png"
-                       Style="{StaticResource ImageStyle}"/>
-                    <Button x:Name="RepeatButton"
-                        Text="Repeat"
-                        TextColor="{StaticResource PaletteDarkBeige}"
-                        Style="{StaticResource TransparentButton}"
-                        Clicked="RepeatButton_Clicked"/>
-                </StackLayout>
+                
 
                 <StackLayout Orientation="Horizontal">
                     <Ellipse Grid.Column="0" HeightRequest="30" WidthRequest="30"

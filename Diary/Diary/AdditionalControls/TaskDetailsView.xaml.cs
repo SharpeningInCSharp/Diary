@@ -16,17 +16,18 @@ namespace Diary.AdditionalControls
 	public partial class TaskDetailsView : ContentPage
 	{
 		public TaskBase Task { get; }
+		public TaskList TasksList { get; }
 
 		private readonly TaskViewModel taskViewModel;
 		private readonly TaskList container;
 		public delegate void UpdateList(Task a);
 		public event UpdateList list_changed;
-		public TaskDetailsView(TaskBase task, TaskList container = null)
+		public TaskDetailsView(TaskBase task, TaskList container)
 		{
 			InitializeComponent();
 
 			taskViewModel = DependencyService.Get<TaskViewModel>();
-			this.container = container;
+			TasksList = container;
 
 
 			if (task is OuterTask)
@@ -44,11 +45,7 @@ namespace Diary.AdditionalControls
 		{
 			var db = taskViewModel.GetDbInstance();
 
-			var collection = db.All<TaskListEntity>().ToList().Select(x => new TaskList(x)).ToList();
-
-			TasksListPicker.ItemsSource = collection;
-			//TasksListPicker.SelectedIndex = collection.IndexOf(container);
-			TasksListPicker.SelectedItem = container;
+			
 		}
 
 		private void RemoveButton_Clicked(object sender, EventArgs e)
@@ -152,11 +149,11 @@ namespace Diary.AdditionalControls
 				newNote.Note = NoteEditor.Text;
 				newNote.Priority = db.All<PriorityEntity>().First(x => x.Name == PriorityBut.Text);
 				newNote.IsCompleted = false;
-				newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == ((TaskList)TasksListPicker.SelectedItem).Title);
+				newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
 				newNote.HasInners = false;
 				db.Add(newNote);
 
-				TaskListEntity a = db.All<TaskListEntity>().First(x => x.Name == ((TaskList)TasksListPicker.SelectedItem).Title);
+				TaskListEntity a = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
 				a.notes.Add(newNote);
 
 				Task b = new Task();
@@ -166,6 +163,7 @@ namespace Diary.AdditionalControls
 				list_changed?.Invoke(b);
 			});
 			DisplayAlert("Сохранение", "Успешно", "Ок");
+			Navigation.PopAsync();
 		}
     }
 }

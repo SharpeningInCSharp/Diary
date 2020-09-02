@@ -14,33 +14,6 @@ namespace TodoModel.Database
     {
         public static void ParamsSetting()
         {
-            //var realmm = Realm.GetInstance();
-            //realmm.Write(() =>
-            //{
-            //    var newSet = new TaskListEntity
-            //    {
-            //        Name = "Main"
-            //    };
-            //    realmm.Add(newSet);
-            //});
-
-            //var config = new RealmConfiguration //пример миграции
-            //{
-            //    SchemaVersion = 3,
-            //    MigrationCallback = (migration, oldSchemaVersion) =>
-            //    {
-            //        var newTasks = migration.NewRealm.All<TodoNote>();
-
-            //        // Use the dynamic api for oldPeople so we can access
-            //        // .FirstName and .LastName even though they no longer
-            //        // exist in the class definition.
-
-            //        for (var i = 0; i < newTasks.Count(); i++)
-            //        {
-            //            newTasks.ElementAt(i).taskList = null;
-            //        }
-            //    }
-            //};
 
             var config = new RealmConfiguration() { SchemaVersion = 3 };
 

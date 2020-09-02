@@ -119,10 +119,6 @@ namespace Diary.Views
 			base.OnAppearing();
 		}
 
-		private void SearchDate_Clicked(object sender, EventArgs e)
-		{
-
-		}
 
 		private void Ordering_Click(object seder, EventArgs e)
 		{

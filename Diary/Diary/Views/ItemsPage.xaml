@@ -11,7 +11,6 @@
              BackgroundColor="{StaticResource PaletteBeige}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Calendar" IconImageSource="calendar_icon.png" Clicked="SearchDate_Clicked"/>
         <ToolbarItem Text="Ordering" x:Name="SortBut" IconImageSource="sort_descending_icon.png" Clicked="Ordering_Click"/>
     </ContentPage.ToolbarItems>
 
