@@ -63,7 +63,7 @@ namespace Diary.AdditionalControls
 
 		async private void AddPriorityView_PriorityListChanged()
 		{
-			var realm = Realm.GetInstance();
+			var realm = realmDb.GetDbInstance();
 			var priors = realm.All<PriorityEntity>().ToList();
 
 			ListPriority.Clear();

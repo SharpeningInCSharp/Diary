@@ -61,7 +61,7 @@ namespace Diary.AdditionalControls
 
 		async private void SavePriority_Clicked(object sender, EventArgs e)
 		{
-			if (NameEntry.Text == "") return;
+			if (NameEntry.Text == "" || NameEntry.Text == null) return;
 
 			Realm realm = realmDb.GetDbInstance();
 			realm.Write(() =>
