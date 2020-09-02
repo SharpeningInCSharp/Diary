@@ -156,59 +156,47 @@ namespace Diary.Views
 
 			var empltyTask = new OuterTask();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
+			TaskDetailsView qwerty = new TaskDetailsView(empltyTask, TasksList);
+            qwerty.list_changed += Qwerty_list_changed; ;
+			await Navigation.PushAsync(qwerty, false);
 
-			await Navigation.PushAsync(new TaskDetailsView(empltyTask, TasksList), false);
-
-			TasksList.Add(empltyTask);
-
-			var db = taskItemsViewModel.GetDbInstance();
-            db.Write(() =>
-            {
-                TodoNote newNote = new TodoNote();
-                Settings newSet = new Settings()
-                {
-                    Param = "Notes",
-                    value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
-                };
-                db.Add(newSet, update: true);
-                newNote.Id = db.All<Settings>().First(x => x.Param == "Notes").value;
-                newNote.HasInners = false;
-                newNote.header = " ";
-                newNote.Note = " ";
-                newNote.IsCompleted = false;
-                newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
-                db.Add(newNote);
-            });
+			//TasksList.Add(empltyTask);
 
             AddButton.Rotation = 0;
 		}
 
-		//private async System.Threading.Tasks.Task AddNewList(string inputName)
-		//{
-		//	TasksList = new TaskList(inputName);
+        private void Qwerty_list_changed(TodoModel.Task a)
+        {
+			TasksList.Add(a);
+			TasksList_CollectionChanged();
+		}
 
-		//	var db = taskItemsViewModel.GetDbInstance();
-		//	db.Write(() =>
-		//	{
-		//		db.Add(new TaskListEntity(TasksList));
-		//	});
+        //private async System.Threading.Tasks.Task AddNewList(string inputName)
+        //{
+        //	TasksList = new TaskList(inputName);
 
-		//	await DisplayPromptAsync("Message", "New list successfuly created");
-		//}
+        //	var db = taskItemsViewModel.GetDbInstance();
+        //	db.Write(() =>
+        //	{
+        //		db.Add(new TaskListEntity(TasksList));
+        //	});
 
-		//private async Task<string> InputListName()
-		//{
-		//	string input = "";
+        //	await DisplayPromptAsync("Message", "New list successfuly created");
+        //}
 
-		//	while (DataValidation.IsNameValid(input) == false)
-		//	{
-		//		input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
-		//	}
+        //private async Task<string> InputListName()
+        //{
+        //	string input = "";
 
-		//	return input;
-		//}
+        //	while (DataValidation.IsNameValid(input) == false)
+        //	{
+        //		input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
+        //	}
 
-		protected override void OnAppearing()
+        //	return input;
+        //}
+
+        protected override void OnAppearing()
 		{
 			base.OnAppearing();
 		}

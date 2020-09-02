@@ -19,7 +19,8 @@ namespace Diary.AdditionalControls
 
 		private readonly TaskViewModel taskViewModel;
 		private readonly TaskList container;
-
+		public delegate void UpdateList(Task a);
+		public event UpdateList list_changed;
 		public TaskDetailsView(TaskBase task, TaskList container = null)
 		{
 			InitializeComponent();
@@ -150,7 +151,36 @@ namespace Diary.AdditionalControls
 
         private void SaveTaskButton_Clicked(object sender, EventArgs e)
         {
+			var db = (new RealmDbViewModel()).GetDbInstance();
+			db.Write(() =>
+			{
+				Settings newSet = new Settings()
+				{
+					Param = "Notes",
+					value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
+				};
+				db.Add(newSet, update: true);
 
-        }
+				TodoNote newNote = new TodoNote();
+				newNote.Id = db.All<Settings>().First(x => x.Param == "Notes").value;
+				newNote.header = HeaderEntry.Text;
+				newNote.Note = NoteEditor.Text;
+				newNote.Priority = db.All<PriorityEntity>().First(x => x.Name == PriorityBut.Text);
+				newNote.IsCompleted = false;
+				newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == ((TaskList)TasksListPicker.SelectedItem).Title);
+				newNote.HasInners = false;
+				db.Add(newNote);
+
+				TaskListEntity a = db.All<TaskListEntity>().First(x => x.Name == ((TaskList)TasksListPicker.SelectedItem).Title);
+				a.notes.Add(newNote);
+
+				Task b = new Task();
+				b.Header = newNote.header;
+				b.Note = newNote.Note;
+				b.Priority = new Priority(newNote.Priority); 
+				list_changed?.Invoke(b);
+			});
+			DisplayAlert("Сохранение", "Успешно", "Ок");
+		}
     }
 }
