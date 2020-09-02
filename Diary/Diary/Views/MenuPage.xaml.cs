@@ -48,7 +48,7 @@ namespace Diary.Views
 
 			ListViewMenu.ItemsSource = menuViewModel.GetInstance();
 
-			ListViewMenu.SelectedItem = menuViewModel.GetInstance()[0];
+			//ListViewMenu.SelectedItem = menuViewModel.GetInstance()[0];
 
 			//menuViewModel.Add(new HomeMenuItem { Id = MenuItemType.About.ToString(), Title = "About" });
 
