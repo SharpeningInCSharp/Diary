@@ -173,11 +173,8 @@ namespace TodoModel.Database
 
                 realm.Add(newTask);
                 realm.Add(newtask2);
-                realm.Add(newList);
-                
+                realm.Add(newList);  
             });
-
-
         }
     }
 }

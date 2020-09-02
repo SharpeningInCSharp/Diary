@@ -80,25 +80,25 @@ namespace Diary.Views
 			TasksList.Add(empltyTask);
 
 			var db = taskItemsViewModel.GetDbInstance();
-			db.Write(() =>
-			{
-				TodoNote newNote = new TodoNote();
-				Settings newSet = new Settings()
-				{
-					Param = "Notes",
-					value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
-				};
-				db.Add(newSet, update: true);
-				newNote.Id = db.All<Settings>().First(x => x.Param == "Notes").value;
-				newNote.HasInners = false;
-				newNote.header = " ";
-				newNote.Note = " ";
-				newNote.IsCompleted = false;
-				newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
-				db.Add(newNote);
-			});
+            db.Write(() =>
+            {
+                TodoNote newNote = new TodoNote();
+                Settings newSet = new Settings()
+                {
+                    Param = "Notes",
+                    value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
+                };
+                db.Add(newSet, update: true);
+                newNote.Id = db.All<Settings>().First(x => x.Param == "Notes").value;
+                newNote.HasInners = false;
+                newNote.header = " ";
+                newNote.Note = " ";
+                newNote.IsCompleted = false;
+                newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
+                db.Add(newNote);
+            });
 
-			AddButton.Rotation = 0;
+            AddButton.Rotation = 0;
 		}
 
 		//private async System.Threading.Tasks.Task AddNewList(string inputName)
