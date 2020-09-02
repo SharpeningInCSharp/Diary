@@ -132,83 +132,48 @@ namespace TodoModel.Database
                 newList.notes.Add(newTask);
 
 
-                //var subtask1 = new TodoNote()
-                //{
-                //    Id = 1,
-                //    header = "Подзадача 1",
-                //    Priority = HighPriority,
-                //    taskList = newList,
-                //    HasInners = false,
-                //    IsCompleted = false
-                //};
+                var subtask1 = new TodoNote()
+                {
+                    Id = 1,
+                    header = "Подзадача 1",
+                    Priority = HighPriority,
+                    taskList = newList,
+                    HasInners = false,
+                    IsCompleted = false
+                };
 
 
-                //var subtask2 = new TodoNote()
-                //{
-                //    Id = 2,
-                //    header = "Подзадача 2",
-                //    Priority = HighPriority,
-                //    taskList = newList,
-                //    HasInners = false,
-                //    IsCompleted = false
-                //};
+                var subtask2 = new TodoNote()
+                {
+                    Id = 2,
+                    header = "Подзадача 2",
+                    Priority = HighPriority,
+                    taskList = newList,
+                    HasInners = false,
+                    IsCompleted = false
+                };
 
-                //var newtask2 = new TodoNote()
-                //{
-                //    Id = 3,
-                //    header = "Задача с подзадачами",
-                //    Priority = HighPriority,
-                //    taskList = newList,
-                //    HasInners = true,
-                //    IsCompleted = false
-                //};
+                var newtask2 = new TodoNote()
+                {
+                    Id = 3,
+                    header = "Задача с подзадачами",
+                    Priority = HighPriority,
+                    taskList = newList,
+                    HasInners = true,
+                    IsCompleted = false
+                };
 
-                //newtask2.InnerNotes.Add(subtask1);
+                realm.Add(subtask1);
+                realm.Add(subtask2);
 
-                //newList.notes.Add(newtask2);
+                newtask2.InnerNotes.Add(subtask1);
+                newtask2.InnerNotes.Add(subtask2);
 
+                newList.notes.Add(newtask2);
 
-                realm.Add(newList);
                 realm.Add(newTask);
-                
-                //var subtask1 = new TodoNote()
-                //{
-                //    Id = 1,
-                //    header = "Подзадача 1",
-                //    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
-                //    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
-                //    HasInners = false,
-                //    IsCompleted = false
-                //};
-                //newList.notes.Add(subtask1);
-                //var subtask2 = new TodoNote()
-                //{
-                //    Id = 2,
-                //    header = "Подзадача 2",
-                //    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
-                //    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
-                //    HasInners = false,
-                //    IsCompleted = false
-                //};
-                //newList.notes.Add(subtask2);
-                //realm.Add(subtask1);
-                //realm.Add(subtask2);
-                //var newtask2 = new TodoNote()
-                //{
-                //    Id = 3,
-                //    header = "Задача с подзадачами",
-                //    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
-                //    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
-                //    HasInners = true,
-                //    IsCompleted = false
-                //};
-                //newList.notes.Add(newtask2);
-                //newtask2.InnerNotes.Add(subtask1);
-                //newtask2.InnerNotes.Add(subtask2);
-                //realm.Add(newtask2);
-                //realm.Add(newList, update: true);
-
-
+                realm.Add(newtask2);
+                realm.Add(newList);
                 
             });
 
