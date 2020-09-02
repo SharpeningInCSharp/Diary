@@ -54,7 +54,7 @@ namespace TodoModel
 						});
 					}
 				}
-
+				Add(tb);
 			}
 		}
 

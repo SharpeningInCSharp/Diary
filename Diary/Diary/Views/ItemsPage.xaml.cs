@@ -145,14 +145,14 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			if (TasksList is null)
-			{
-				var inputName = await InputListName();
+			//if (TasksList is null)
+			//{
+			//	var inputName = await InputListName();
 
-				await AddNewList(inputName);
+			//	await AddNewList(inputName);
 
-				return;
-			}
+			//	return;
+			//}
 
 			var empltyTask = new OuterTask();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
@@ -183,30 +183,30 @@ namespace Diary.Views
 			AddButton.Rotation = 0;
 		}
 
-		private async System.Threading.Tasks.Task AddNewList(string inputName)
-		{
-			TasksList = new TaskList(inputName);
+		//private async System.Threading.Tasks.Task AddNewList(string inputName)
+		//{
+		//	TasksList = new TaskList(inputName);
 
-			var db = taskItemsViewModel.GetDbInstance();
-			db.Write(() =>
-			{
-				db.Add(new TaskListEntity(TasksList));
-			});
+		//	var db = taskItemsViewModel.GetDbInstance();
+		//	db.Write(() =>
+		//	{
+		//		db.Add(new TaskListEntity(TasksList));
+		//	});
 
-			await DisplayPromptAsync("Message", "New list successfuly created");
-		}
+		//	await DisplayPromptAsync("Message", "New list successfuly created");
+		//}
 
-		private async Task<string> InputListName()
-		{
-			string input = "";
+		//private async Task<string> InputListName()
+		//{
+		//	string input = "";
 
-			while (DataValidation.IsNameValid(input) == false)
-			{
-				input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
-			}
+		//	while (DataValidation.IsNameValid(input) == false)
+		//	{
+		//		input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
+		//	}
 
-			return input;
-		}
+		//	return input;
+		//}
 
 		protected override void OnAppearing()
 		{

@@ -90,22 +90,87 @@ namespace TodoModel.Database
 
             realm.Write(() =>
             {
+                PriorityEntity NormalPriority = new PriorityEntity()
+                {
+                    Name = "Normal",
+                    Value = 5,
+                    Color = Color.Gold.ToArgb()
+                };
+
+                PriorityEntity LowPriority = new PriorityEntity()
+                {
+                    Name = "Low",
+                    Value = 2,
+                    Color = Color.Chartreuse.ToArgb()
+                };
+
+                PriorityEntity HighPriority = new PriorityEntity()
+                {
+                    Name = "High",
+                    Value = 8,
+                    Color = Color.Red.ToArgb()
+                };
+
+                realm.Add(NormalPriority);
+                realm.Add(LowPriority);
+                realm.Add(HighPriority);
+
                 var newList = new TaskListEntity()
                 {
                     Name = "Лист"
                 };
-                realm.Add(newList);
-                //var newtask1 = new TodoNote()
+                
+                var newTask = new TodoNote()
+                {
+                    Id = 0,
+                    header = "Задача без подзадач",
+                    Priority = NormalPriority,
+                    taskList = newList,
+                    HasInners = false,
+                    IsCompleted = false
+                };
+                newList.notes.Add(newTask);
+
+
+                //var subtask1 = new TodoNote()
                 //{
-                //    Id = 0,
-                //    header = "Задание без подзадач",
-                //    Priority = realm.All<PriorityEntity>().FirstOrDefault(),
-                //    taskList = realm.All<TaskListEntity>().FirstOrDefault(),
+                //    Id = 1,
+                //    header = "Подзадача 1",
+                //    Priority = HighPriority,
+                //    taskList = newList,
                 //    HasInners = false,
                 //    IsCompleted = false
                 //};
-                //newList.notes.Add(newtask1);
-                //realm.Add(newtask1);
+
+
+                //var subtask2 = new TodoNote()
+                //{
+                //    Id = 2,
+                //    header = "Подзадача 2",
+                //    Priority = HighPriority,
+                //    taskList = newList,
+                //    HasInners = false,
+                //    IsCompleted = false
+                //};
+
+                //var newtask2 = new TodoNote()
+                //{
+                //    Id = 3,
+                //    header = "Задача с подзадачами",
+                //    Priority = HighPriority,
+                //    taskList = newList,
+                //    HasInners = true,
+                //    IsCompleted = false
+                //};
+
+                //newtask2.InnerNotes.Add(subtask1);
+
+                //newList.notes.Add(newtask2);
+
+
+                realm.Add(newList);
+                realm.Add(newTask);
+                
                 //var subtask1 = new TodoNote()
                 //{
                 //    Id = 1,
@@ -144,26 +209,7 @@ namespace TodoModel.Database
                 //realm.Add(newList, update: true);
 
 
-                realm.Add(new PriorityEntity()
-                {
-                    Name = "Low",
-                    Value = 2,
-                    Color = Color.Chartreuse.ToArgb()
-                });
-
-                realm.Add(new PriorityEntity()
-                {
-                    Name = "Normal",
-                    Value = 5,
-                    Color = Color.Gold.ToArgb()
-                });
-
-                realm.Add(new PriorityEntity()
-                {
-                    Name = "High",
-                    Value = 8,
-                    Color = Color.Red.ToArgb()
-                });
+                
             });
 
 
