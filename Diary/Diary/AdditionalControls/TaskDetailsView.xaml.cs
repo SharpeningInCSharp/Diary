@@ -131,7 +131,6 @@ namespace Diary.AdditionalControls
 					value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
 				};
 				db.Add(newSet, update: true);
-				
 				TodoNote newNote = new TodoNote();
 				newNote.Id = db.All<Settings>().First(x => x.Param == "Notes").value;
 				newNote.header = HeaderEntry.Text;

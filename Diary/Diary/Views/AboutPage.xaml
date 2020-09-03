@@ -50,15 +50,39 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span x:Name="qwerty"  Text="Эта штука разработана тремя пацанами из" ForegroundColor="{StaticResource PaletteBeige}"/>
-                                <Span Text=" " />
-                                <Span Text="ДВГУПС" FontAttributes="Bold" ForegroundColor="{StaticResource PaletteBeige}"/>
-                                <Span Text="." ForegroundColor="{StaticResource PaletteBeige}"/>
+                                <Span x:Name="qwerty"  Text="Данное приложение было спроектированно и реализовано в учебных целях. " ForegroundColor="{StaticResource PaletteBeige}"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
                 <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Контакты: " ForegroundColor="{StaticResource PaletteBeige}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Selesnjow@gmail.com" FontAttributes="Bold" ForegroundColor="{StaticResource PaletteBeige}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="PMPonomarenko@gmail.com" FontAttributes="Bold" ForegroundColor="{StaticResource PaletteBeige}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <!--<Label>
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
@@ -71,11 +95,20 @@
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Это просто кнопка (руки на стол)"
+                </Label>-->
+                <Button Margin="0,10,0,0" Text="Сайт университета"
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource PaletteBeige}"
                         TextColor="{StaticResource PaletteGrayBlue}" />
+                <Label HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="ДВГУПС 2020" FontAttributes="Bold" ForegroundColor="{StaticResource PaletteBeige}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </StackLayout>
         </ScrollView>
     </Grid>
