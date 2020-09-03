@@ -15,7 +15,7 @@ namespace Diary.AdditionalControls
 			InitializeComponent();
 
 			taskViewModel = DependencyService.Get<TaskViewModel>();
-			//TODO: bind events
+			
 		}
 
 		private void OnItemCompleted(object sender, EventArgs e)

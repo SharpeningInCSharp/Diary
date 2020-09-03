@@ -12,7 +12,6 @@ namespace Diary.Views
 	{
 		public AboutPage()
 		{
-			//TodoModel.Database.SettingsInitialization.ParamsSetting(); //инициализация параметров в Realm
 			InitializeComponent();
 		}
 	}

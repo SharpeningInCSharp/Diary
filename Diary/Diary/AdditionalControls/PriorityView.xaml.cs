@@ -1,11 +1,7 @@
 ﻿using Diary.ViewModels;
-using Realms;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 using TodoModel;
 using TodoModel.Database;
 using Xamarin.Forms;
@@ -13,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Diary.AdditionalControls
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PriorityView : ContentPage
 	{
 		public TaskBase task;
@@ -47,9 +43,7 @@ namespace Diary.AdditionalControls
 			if (e.Item == null)
 				return;
 			task.Priority = new Priority(pri);
-			//await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-			//Deselect Item
+			
 			PriorityChanged?.Invoke();
 			await Navigation.PopAsync(false);
 		}

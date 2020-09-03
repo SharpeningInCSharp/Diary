@@ -1,10 +1,6 @@
 ﻿using Diary.ViewModels;
 using Realms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TodoModel.Database;
 using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
@@ -12,7 +8,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Diary.AdditionalControls
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddPriorityView : ContentPage
 	{
 		public Color PriorityColor = Color.Red;

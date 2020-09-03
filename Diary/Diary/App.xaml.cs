@@ -1,13 +1,11 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 using Diary.Services;
 using Diary.Views;
 using Diary.ViewModels;
 
 namespace Diary
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
 
 		public App()

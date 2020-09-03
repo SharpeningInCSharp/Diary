@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Diary.Models
+﻿namespace Diary.Models
 {
-	public enum MenuItemType
+    public enum MenuItemType
 	{
 		Account,
 		TaskList,

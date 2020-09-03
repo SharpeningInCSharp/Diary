@@ -63,6 +63,5 @@ namespace Diary.ViewModels
 
 		}
 
-		//TODO: add method for removing
 	}
 }

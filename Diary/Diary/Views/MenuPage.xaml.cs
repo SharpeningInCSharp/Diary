@@ -1,20 +1,17 @@
 ﻿using Diary.Models;
 using Diary.ViewModels;
-using Realms;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using TodoModel;
 using TodoModel.Database;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Diary.Views
 {
-	// Learn more about making custom code visible in the Xamarin.Forms previewer
-	// by visiting https://aka.ms/xamarinforms-previewer
-	[DesignTimeVisible(false)]
+    // Learn more about making custom code visible in the Xamarin.Forms previewer
+    // by visiting https://aka.ms/xamarinforms-previewer
+    [DesignTimeVisible(false)]
 	public partial class MenuPage : ContentPage
 	{
 		MainPage RootPage { get => Application.Current.MainPage as MainPage; }

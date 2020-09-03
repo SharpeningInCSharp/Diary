@@ -1,31 +1,30 @@
 ﻿using Diary.ViewModels;
-using Realms;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using TodoModel;
 using TodoModel.Database;
 using Xamarin.Forms;
-using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
 
 namespace Diary.AdditionalControls
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TaskDetailsView : ContentPage
 	{
 		public TaskBase Task { get; }
 		public TaskList TasksList { get; }
 
+		public bool newTask;
+
 		private readonly TaskViewModel taskViewModel;
 		private readonly TaskList container;
 		public delegate void UpdateList(Task a);
 		public event UpdateList list_changed;
-		public TaskDetailsView(TaskBase task, TaskList container)
+		public TaskDetailsView(TaskBase task, TaskList container, bool NewTask = false)
 		{
 			InitializeComponent();
 
+			newTask = NewTask;
 			taskViewModel = DependencyService.Get<TaskViewModel>();
 			TasksList = container;
 
@@ -75,16 +74,6 @@ namespace Diary.AdditionalControls
 			}
 		}
 
-
-		private void RepeatButton_Clicked(object sender, EventArgs e)
-		{
-			 
-		}
-
-		private void SelectDatesRangeButton_Clicked(object sender, EventArgs e)
-		{
-
-		}
 
 		async private void CloseButton_Clicked(object sender, EventArgs e)
 		{
@@ -136,13 +125,16 @@ namespace Diary.AdditionalControls
 			var db = (new RealmDbViewModel()).GetDbInstance();
 			db.Write(() =>
 			{
-				Settings newSet = new Settings()
-				{
-					Param = "Notes",
-					value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
-				};
-				db.Add(newSet, update: true);
 
+				if (!newTask)
+				{
+					Settings newSet = new Settings()
+					{
+						Param = "Notes",
+						value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
+					};
+					db.Add(newSet, update: true);
+				}
 				TodoNote newNote = new TodoNote();
 				newNote.Id = db.All<Settings>().First(x => x.Param == "Notes").value;
 				newNote.header = HeaderEntry.Text;

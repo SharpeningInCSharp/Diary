@@ -2,16 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TodoModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Diary.AdditionalControls
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class InnerTaskCollection : ContentView
 	{
 		private const int SingleCollectionItemSize = 60;

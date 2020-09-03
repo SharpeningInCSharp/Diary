@@ -1,28 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Diary.Models;
-using Diary.Views;
 using Diary.ViewModels;
 using TodoModel;
 using TodoModel.Database;
 using Diary.AdditionalControls;
-using Xamarin.Forms.Shapes;
-using System.Threading;
-using Realms;
-using Xamarin.Forms.Internals;
 
 namespace Diary.Views
 {
-	// Learn more about making custom code visible in the Xamarin.Forms previewer
-	// by visiting https://aka.ms/xamarinforms-previewer
-	[DesignTimeVisible(false)]
+    // Learn more about making custom code visible in the Xamarin.Forms previewer
+    // by visiting https://aka.ms/xamarinforms-previewer
+    [DesignTimeVisible(false)]
 	public partial class ItemsPage : ContentPage
 	{
 		TaskList TasksList;
@@ -63,22 +52,12 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			//if (TasksList is null)
-			//{
-			//	var inputName = await InputListName();
-
-			//	await AddNewList(inputName);
-
-			//	return;
-			//}
-
 			var empltyTask = new OuterTask();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
-			TaskDetailsView qwerty = new TaskDetailsView(empltyTask, TasksList);
+			TaskDetailsView qwerty = new TaskDetailsView(empltyTask, TasksList, true);
             qwerty.list_changed += Qwerty_list_changed; ;
 			await Navigation.PushAsync(qwerty, false);
 
-			//TasksList.Add(empltyTask);
 
             AddButton.Rotation = 0;
 		}
@@ -89,30 +68,6 @@ namespace Diary.Views
 			TasksList_CollectionChanged();
 		}
 
-		//private async System.Threading.Tasks.Task AddNewList(string inputName)
-		//{
-		//	TasksList = new TaskList(inputName);
-
-		//	var db = taskItemsViewModel.GetDbInstance();
-		//	db.Write(() =>
-		//	{
-		//		db.Add(new TaskListEntity(TasksList));
-		//	});
-
-		//	await DisplayPromptAsync("Message", "New list successfuly created");
-		//}
-
-		//private async Task<string> InputListName()
-		//{
-		//	string input = "";
-
-		//	while (DataValidation.IsNameValid(input) == false)
-		//	{
-		//		input = await DisplayPromptAsync("Enter Task's list name", "There're no lists available, please create new");
-		//	}
-
-		//	return input;
-		//}
 
         protected override void OnAppearing()
 		{

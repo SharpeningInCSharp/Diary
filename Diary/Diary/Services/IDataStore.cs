@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Diary.Services
 {
-	public interface IDataStore<T>
+    public interface IDataStore<T>
 	{
 		Task<bool> AddItemAsync(T item);
 		Task<bool> UpdateItemAsync(T item);
