@@ -14,11 +14,8 @@ namespace TodoModel.Database
     {
         public static void ParamsSetting()
         {
-
             var config = new RealmConfiguration() { SchemaVersion = 3 };
-
             var realm = Realm.GetInstance(config);
-
             var starts = realm.All<Settings>().Where(p => p.Param == "Starts").FirstOrDefault();
             if (starts == null)
             {
@@ -60,7 +57,6 @@ namespace TodoModel.Database
         {
             var config = new RealmConfiguration() { SchemaVersion = 3 };
             var realm = Realm.GetInstance(config);
-
             realm.Write(() =>
             {
                 PriorityEntity NormalPriority = new PriorityEntity()
@@ -121,7 +117,6 @@ namespace TodoModel.Database
                     HasInners = false,
                     IsCompleted = false
                 };
-
 
                 var subtask2 = new TodoNote()
                 {

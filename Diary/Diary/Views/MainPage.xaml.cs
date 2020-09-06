@@ -13,15 +13,10 @@ namespace Diary.Views
 		Dictionary<string, NavigationPage> MenuPages = new Dictionary<string, NavigationPage>();
 		public MainPage()
 		{
-
 			TodoModel.Database.SettingsInitialization.ParamsSetting(); //инициализация параметров в Realm
-
 			InitializeComponent();
-
 			MasterBehavior = MasterBehavior.Popover;
-
             NavigateFromMenu("About");
-
 		}
 
 		public async Task NavigateFromMenu(string id)
@@ -45,8 +40,6 @@ namespace Diary.Views
 			if (newPage != null && Detail != newPage)
 			{
 				Detail = newPage;
-
-
 				IsPresented = false;
 			}
 		}

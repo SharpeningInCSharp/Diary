@@ -1,5 +1,6 @@
 ﻿using Diary.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TodoModel;
 using TodoModel.Database;
@@ -32,7 +33,7 @@ namespace Diary.AdditionalControls
 			if (task is OuterTask)
 			{
 				InnerTasksGrid.IsVisible = true;
-				InitializeCB(container);
+				InitializeCB(container); ///????????????????????????!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			}
 			else
 				InnerTasksGrid.IsVisible = false;
@@ -138,16 +139,46 @@ namespace Diary.AdditionalControls
 				newNote.Priority = db.All<PriorityEntity>().First(x => x.Name == PriorityBut.Text);
 				newNote.IsCompleted = false;
 				newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
-				newNote.HasInners = false;
-				db.Add(newNote);
+				
 
 				TaskListEntity a = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
+
+				///inner tasks saving
+				//List<TaskBase> tasks = container.Tasks.ToList();
+                if ( ((OuterTask)Task).InnerTasks.Count() > 0)
+                {
+					newNote.HasInners = true;
+					foreach (TaskBase inner in ((OuterTask)Task).InnerTasks)
+					{
+						Settings newSett = new Settings()
+						{
+							Param = "Notes",
+							value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
+						};
+						db.Add(newSett, update: true);
+						TodoNote newInner = new TodoNote()
+						{
+							Id = db.All<Settings>().First(x => x.Param == "Notes").value,
+							header = inner.Header,
+							Priority = db.All<PriorityEntity>().First(x => x.Name == inner.Priority.Name),
+							taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title),
+							HasInners = false,
+							IsCompleted = false
+						};
+						db.Add(newInner);
+						newNote.InnerNotes.Add(newInner);
+					}
+				}
+                else
+					newNote.HasInners = false;
+				///
+				db.Add(newNote);
 				a.notes.Add(newNote);
 
 				Task b = new Task();
 				b.Header = newNote.header;
 				b.Note = newNote.Note;
-				b.Priority = new Priority(newNote.Priority); 
+				b.Priority = new Priority(newNote.Priority);
 				list_changed?.Invoke(b);
 			});
 			DisplayAlert("Сохранение", "Успешно", "Ок");
