@@ -9,6 +9,8 @@ namespace TodoModel
 		/// </summary>
 		public bool IsCompleted { get; private set; } = false;
 
+		public int Id { get; set; }
+
 		/// <summary>
 		/// Header of the Task
 		/// </summary>

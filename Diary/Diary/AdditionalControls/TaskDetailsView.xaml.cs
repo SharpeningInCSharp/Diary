@@ -140,7 +140,6 @@ namespace Diary.AdditionalControls
 				newNote.IsCompleted = false;
 				newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
 				
-
 				TaskListEntity a = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
 
 				///inner tasks saving

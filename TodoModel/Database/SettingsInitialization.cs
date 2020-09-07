@@ -107,7 +107,6 @@ namespace TodoModel.Database
                 };
                 newList.notes.Add(newTask);
 
-
                 var subtask1 = new TodoNote()
                 {
                     Id = 1,
