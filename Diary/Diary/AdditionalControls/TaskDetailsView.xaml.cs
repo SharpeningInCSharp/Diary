@@ -57,7 +57,6 @@ namespace Diary.AdditionalControls
 					db.Remove(db.All<TodoNote>().First(x => x.header == Task.Header));
 				}
 			);
-
 			Task.Delete();
 			Navigation.PopAsync();
 		}
@@ -71,7 +70,6 @@ namespace Diary.AdditionalControls
 				Task.MoveOut();
 
 				targetTasksList.Add(Task);
-				//TODO: save changes
 			}
 		}
 

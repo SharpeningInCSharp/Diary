@@ -40,6 +40,7 @@ namespace Diary.ViewModels
 			Thread.Sleep(OnTaskCompletionMsTimeout);
 
 			var item = (TaskBase)layout.BindingContext;
+
 			item.Complete();
 		}
 
