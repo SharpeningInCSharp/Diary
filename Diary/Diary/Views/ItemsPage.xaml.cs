@@ -62,7 +62,7 @@ namespace Diary.Views
             AddButton.Rotation = 0;
 		}
 
-        private void Qwerty_list_changed(TodoModel.Task a)
+        private void Qwerty_list_changed(TodoModel.OuterTask a)
         {
 			TasksList.Add(a);
 			TasksList_CollectionChanged();

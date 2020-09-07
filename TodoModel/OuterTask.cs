@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Remotion.Linq.Parsing.Structure.IntermediateModel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TodoModel.Database;
 
 namespace TodoModel
 {
@@ -39,6 +41,23 @@ namespace TodoModel
 
 			OnPropertyChanged("InnerTasks");
 		}
+
+		public OuterTask(TodoNote task)
+        {
+			Header = task.header;
+			Note = task.Note;
+			Priority = new Priority(task.Priority);
+			if(task.HasInners) 
+			foreach(TodoNote inner in task.InnerNotes)
+            {
+					Add(new Task()
+					{
+						Header = inner.header,
+						Note = inner.Note,
+						Priority = new Priority(inner.Priority)
+					});
+            }
+        }
 	}
 
 	public partial class OuterTask : IEnumerable<TaskBase>
