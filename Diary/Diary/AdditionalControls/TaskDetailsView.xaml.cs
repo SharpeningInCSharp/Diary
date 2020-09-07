@@ -44,8 +44,6 @@ namespace Diary.AdditionalControls
 		private void InitializeCB(TaskList container)
 		{
 			var db = taskViewModel.GetDbInstance();
-
-			
 		}
 
 		private void RemoveButton_Clicked(object sender, EventArgs e)
@@ -122,6 +120,12 @@ namespace Diary.AdditionalControls
         private void SaveTaskButton_Clicked(object sender, EventArgs e)
         {
 			var db = (new RealmDbViewModel()).GetDbInstance();
+			if ( ((OuterTask)Task).Id != 0) {
+				db.Write(() =>
+				{
+					db.Remove(db.All<TodoNote>().First(x => x.Id == ((OuterTask)Task).Id));
+				});
+			}
 			db.Write(() =>
 			{
 				Settings newSet = new Settings()
@@ -138,7 +142,6 @@ namespace Diary.AdditionalControls
 				newNote.IsCompleted = false;
 				newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
 				
-
 				TaskListEntity a = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
 
 				///inner tasks saving

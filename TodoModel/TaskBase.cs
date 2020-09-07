@@ -9,6 +9,8 @@ namespace TodoModel
 		/// </summary>
 		public bool IsCompleted { get; private set; } = false;
 
+		public int Id { get; set; } = 0;
+
 		/// <summary>
 		/// Header of the Task
 		/// </summary>
@@ -61,6 +63,7 @@ namespace TodoModel
 
 		public TaskBase(TaskBase taskBase)
 		{
+			Id = taskBase.Id;
 			headerData = taskBase.headerData;
 			noteData = taskBase.noteData;
 			priority = taskBase.priority;
