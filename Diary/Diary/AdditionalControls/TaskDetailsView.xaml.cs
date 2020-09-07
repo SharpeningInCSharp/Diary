@@ -19,7 +19,7 @@ namespace Diary.AdditionalControls
 
 		private readonly TaskViewModel taskViewModel;
 		private readonly TaskList container;
-		public delegate void UpdateList(Task a);
+		public delegate void UpdateList(OuterTask a);
 		public event UpdateList list_changed;
 		public TaskDetailsView(TaskBase task, TaskList container, bool NewTask = false)
 		{
@@ -170,15 +170,13 @@ namespace Diary.AdditionalControls
 					}
 				}
                 else
-					newNote.HasInners = false;
+				newNote.HasInners = false;
 				///
 				db.Add(newNote);
 				a.notes.Add(newNote);
 
-				Task b = new Task();
-				b.Header = newNote.header;
-				b.Note = newNote.Note;
-				b.Priority = new Priority(newNote.Priority);
+				OuterTask b = new OuterTask(newNote);
+				
 				list_changed?.Invoke(b);
 			});
 			DisplayAlert("Сохранение", "Успешно", "Ок");
