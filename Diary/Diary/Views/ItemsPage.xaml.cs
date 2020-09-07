@@ -52,9 +52,24 @@ namespace Diary.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			var empltyTask = new OuterTask();
+			//var db = (new RealmDbViewModel()).GetDbInstance();
+			//Settings newSet = new Settings()
+			//{
+			//	Param = "Notes",
+			//	value = db.All<Settings>().First(x => x.Param == "Notes").value + 1
+			//};
+			//TodoNote newNote = new TodoNote();
+			//	newNote.Id = db.All<Settings>().First(x => x.Param == "Notes").value;
+			//	newNote.header = "";
+			//	newNote.Note = "";
+			//	newNote.Priority = db.All<PriorityEntity>().FirstOrDefault();
+			//	newNote.IsCompleted = false;
+			//	newNote.HasInners = false;
+			//	newNote.taskList = db.All<TaskListEntity>().First(x => x.Name == TasksList.Title);
+			//db.Add(newNote);
+			var emptyTask = new OuterTask();
 			await AddButton.RotateTo(-135, 200, Easing.CubicInOut);
-			TaskDetailsView qwerty = new TaskDetailsView(empltyTask, TasksList, true);
+			TaskDetailsView qwerty = new TaskDetailsView(emptyTask, TasksList, true);
             qwerty.list_changed += Qwerty_list_changed; ;
 			await Navigation.PushAsync(qwerty, false);
 

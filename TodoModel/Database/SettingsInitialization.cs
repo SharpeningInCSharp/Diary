@@ -33,7 +33,7 @@ namespace TodoModel.Database
                     var newSet = new Settings
                     {
                         Param = "Notes",
-                        value = 3
+                        value = 5
                     };
                     realm.Add(newSet);
                 });
@@ -98,7 +98,7 @@ namespace TodoModel.Database
 
                 var newTask = new TodoNote()
                 {
-                    Id = 0,
+                    Id = 1,
                     header = "Задача без подзадач",
                     Priority = NormalPriority,
                     taskList = newList,
@@ -109,7 +109,7 @@ namespace TodoModel.Database
 
                 var subtask1 = new TodoNote()
                 {
-                    Id = 1,
+                    Id = 2,
                     header = "Подзадача 1",
                     Priority = HighPriority,
                     taskList = newList,
@@ -119,7 +119,7 @@ namespace TodoModel.Database
 
                 var subtask2 = new TodoNote()
                 {
-                    Id = 2,
+                    Id = 3,
                     header = "Подзадача 2",
                     Priority = HighPriority,
                     taskList = newList,
@@ -129,7 +129,7 @@ namespace TodoModel.Database
 
                 var newtask2 = new TodoNote()
                 {
-                    Id = 3,
+                    Id = 4,
                     header = "Задача с подзадачами",
                     Priority = HighPriority,
                     taskList = newList,

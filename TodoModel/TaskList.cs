@@ -37,6 +37,7 @@ namespace TodoModel
 			{
 				var tb = new OuterTask
 				{
+					Id = item.Id,
 					Header = item.header,
 					Note = item.Note,
 					Priority = new Priority(item.Priority),
@@ -48,6 +49,7 @@ namespace TodoModel
 					{
 						tb.Add(new Task
 						{
+							Id = inItem.Id,
 							Header = inItem.header,
 							Note = inItem.Note,
 							Priority = new Priority(inItem.Priority),

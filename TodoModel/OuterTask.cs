@@ -18,6 +18,11 @@ namespace TodoModel
 		public OuterTask() : base()
 		{ }
 
+		//public OuterTask(int id) : base()
+		//{
+		//	Id = id;
+		//}
+
 		public void Add(Task task)
 		{
 			innerTasks.Add(task ?? throw new ArgumentNullException(nameof(task)));
